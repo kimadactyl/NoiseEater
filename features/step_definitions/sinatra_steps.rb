@@ -6,25 +6,30 @@ Then(/^I should see "(.*?)"$/) do |text|
   expect(page).to have_content text
 end
 
-Given(/^I have selected "(.*?)"$/) do |filename|
+Given(/^I have entered description "(.*?)"$/) do |description|
+  page.fill_in "description", :with => description
+end
+
+Given(/^I have selected file "(.*?)"$/) do |filename|
   page.attach_file "audio", filename
 end
 
-Given(/^I have entered a valid email address$/) do
-  page.fill_in 'Email:', :with => 'kim@alliscalm.net'
+Given(/^I have entered email "(.*?)"$/) do |email|
+  page.fill_in "email", :with => email
 end
 
 Given(/^I have agreed to the terms and conditions$/) do
   page.check "I agree to the terms and conditions"
 end
 
-Given(/^I am not currently waiting for another audio file report$/) do
-  pending # express the regexp above with the code you wish you had
+Given(/^I click the submit button$/) do
+  page.click_button "Upload!"
 end
 
-Then(/^I should be allowed to submit the form$/) do
-  pending # express the regexp above with the code you wish you had
+Then(/^I should be taken to "(.*?)"$/) do |path|
+  expect(path).to eq(path)
 end
+  
 
 Then(/^I should be shown a confirmation$/) do
   pending # express the regexp above with the code you wish you had
