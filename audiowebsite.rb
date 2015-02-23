@@ -14,10 +14,11 @@ class AudioWebsite < Sinatra::Base
       a.processed = false
       a.created_at = Time.now
       a.save
-      redirect "/thankyou"
+      redirect "/report/#{a.id}"
     end
 
-    get "/thankyou" do
-      erb :thankyou
+    get "/report/:id" do
+      @a = Audio.get params[:id]
+      erb :report
     end
 end

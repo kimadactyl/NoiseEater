@@ -1,7 +1,5 @@
 Feature: Upload audio file
-	In order to clean my audio files from noise
-	As a user
-	I want to upload audio files to the app
+	In order to clean my audio files from noise I want to upload audio files to the app.
 
 	Scenario: View submission form
 		Given I am on the homepage
