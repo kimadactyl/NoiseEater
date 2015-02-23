@@ -1,0 +1,21 @@
+[
+  { 
+    "test": "Global Statistics",
+    "results":  [45.5, 0.0, 9.1, 27.3,	9.1, 9.1]
+  },
+  {
+    "test": "Time History",
+    "results":  [ 
+                  { "t": 1, "q": 0, "db": -10},
+                  { "t": 2, "q": 0, "db": 79},
+                  { "t": 3, "q": 30, "db": 82}
+                ]
+  },
+  {
+    "test": "Wind Free Regions",
+    "results":  [
+                  {"s": 0.00, "e": 1.99},
+                  {"s": 2.99, "e": 4.99}
+                ]
+  }
+]

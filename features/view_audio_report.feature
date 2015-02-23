@@ -3,7 +3,7 @@ Feature: Audio file report
 	After the user has uploaded an audio file, they will be emailed a URL to a report on the file. 
 
 	Scenario: User views audio report
-
+		Given I am on /report/"id"
 		The report should:
 
 		* Show a visualisation of the whole audio file, with noise regions marked

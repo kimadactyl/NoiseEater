@@ -9,7 +9,7 @@ Feature: Upload audio file
 		And I should see "Email"
 		And I should see "Upload!"
 	
-	Scenario: Validate submission form
+	Scenario: Upload an audio file successfully
 		Given I am on the homepage
 		* I have entered description "iPhone test recording from internal mic"
 		* I have selected file "testdata/iphone1.wav"
@@ -19,7 +19,7 @@ Feature: Upload audio file
 		# * I am not currently waiting for another audio file report
 		# * I have selected at least one test {wind noise, handling noise, distortion}
 		* I click the submit button
-		Then I should be taken to "/upload"
+		Then I should be taken to "/thankyou"
 
 	# Scenario: Upload audio file
 	# 	Then I should be shown a confirmation 
