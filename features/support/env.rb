@@ -6,7 +6,5 @@ require "rspec"
  
 World do
   Capybara.app = AudioWebsite
- 
-  include Capybara::DSL
   include RSpec::Matchers
 end
