@@ -1,0 +1,31 @@
+{
+  "name": "peaks.js",
+  "version": "0.4.3",
+  "main": "src/main.js",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "test_data"
+  ],
+  "dependencies": {
+    "waveform-data": "~1.4.2",
+    "requirejs": "~2.1.14",
+    "eventemitter2": "~0.4.14",
+    "kineticjs": "~5.1.0"
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/bbcrd/peaks.js",
+  "_release": "0.4.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.4.3",
+    "commit": "bc5b0c62f5f7aaf877d5c39658934183395a88ca"
+  },
+  "_source": "git://github.com/bbcrd/peaks.js.git",
+  "_target": "*",
+  "_originalSource": "peaks.js"
+}

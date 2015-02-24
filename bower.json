@@ -1,9 +1,10 @@
 {
-  "name": "foundation-compass-app",
+  "name": "Salford Audio",
   "version": "0.0.1",
-  "private": "true",
   "dependencies": {
-    "foundation": "zurb/bower-foundation",
-    "peaks.js": "~0.4.3"
+    "jquery": null,
+    "foundation": null,
+    "peaks.js": null,
+    "requirejs": null
   }
 }

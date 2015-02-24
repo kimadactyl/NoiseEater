@@ -1,0 +1,14 @@
+{
+  "name": "audio-context",
+  "homepage": "https://github.com/juliangruber/audio-context",
+  "version": "0.1.0",
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.0",
+    "commit": "2027342c4893108192566036e6729a59870abacf"
+  },
+  "_source": "git://github.com/juliangruber/audio-context.git",
+  "_target": "~0.1.0",
+  "_originalSource": "juliangruber/audio-context"
+}
