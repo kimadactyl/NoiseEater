@@ -6,7 +6,11 @@ require(["jquery", "peaks", "foundation"], function ($, Peaks) {
   var p = Peaks.init({
     container: document.querySelector('#peaks-container'),
     mediaElement: document.querySelector('audio'),
-    dataUri: '/audio/28/waveform.json'
+    zoomLevels: [512, 1024, 2048, 4096],
+    waveformBuilderOptions: {
+      scale: 128,
+      scale_adjuster: 127
+    }
   });
 
   p.on('segments.ready', function(){
