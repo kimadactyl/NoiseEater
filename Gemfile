@@ -20,3 +20,6 @@ gem 'dm-sqlite-adapter'
 # File uploads
 gem 'carrierwave'
 gem 'carrierwave-datamapper', :require => 'carrierwave/datamapper'
+
+# Audio processing 
+gem 'audio_waveform-ruby'

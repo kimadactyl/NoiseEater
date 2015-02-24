@@ -6,7 +6,7 @@ require(["jquery", "peaks", "foundation"], function ($, Peaks) {
   var p = Peaks.init({
     container: document.querySelector('#peaks-container'),
     mediaElement: document.querySelector('audio'),
-    dataUri: 'test_data/sample.json'
+    dataUri: '/audio/28/waveform.json'
   });
 
   p.on('segments.ready', function(){

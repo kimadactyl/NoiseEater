@@ -1,4 +1,5 @@
 require "sinatra/base"
+require "audio_waveform"
 require "./models"
  
 class AudioWebsite < Sinatra::Base
