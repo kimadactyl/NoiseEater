@@ -1,5 +1,3 @@
-require "./models"
-
 class ProcessorQueue
 
   def initialize
@@ -57,6 +55,3 @@ class ProcessorQueue
   end
 
 end
-
-# Start the thing up
-queue = ProcessorQueue.new

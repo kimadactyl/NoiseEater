@@ -32,6 +32,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.4.1)
+      capybara (>= 2.3.0, < 2.5.0)
+      json
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -57,6 +60,7 @@ GEM
       gherkin (~> 2.12)
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.1.2)
+    daemons (1.1.9)
     data_objects (0.10.15)
       addressable (~> 2.1)
     datamapper (1.2.0)
@@ -106,6 +110,7 @@ GEM
       dm-core (~> 1.2.0)
     do_sqlite3 (0.10.15)
       data_objects (= 0.10.15)
+    eventmachine (1.0.3)
     fastercsv (1.5.5)
     ffi (1.9.6)
     gherkin (2.12.2)
@@ -113,6 +118,8 @@ GEM
     i18n (0.7.0)
     json (1.8.2)
     json_pure (1.8.2)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
@@ -145,6 +152,10 @@ GEM
     shotgun (0.9)
       rack (>= 1.0)
     stringex (1.5.1)
+    thin (1.6.3)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0)
+      rack (~> 1.0)
     thread_safe (0.3.4)
     tilt (2.0.1)
     tzinfo (1.2.2)
@@ -159,13 +170,16 @@ PLATFORMS
 DEPENDENCIES
   audio_waveform-ruby
   capybara
+  capybara-webkit
   carrierwave
   carrierwave-datamapper
   compass (~> 1.0)
   cucumber
   datamapper
   dm-sqlite-adapter
+  launchy
   rspec
   sass (~> 3.4.0)
   shotgun
   sinatra!
+  thin

@@ -7,11 +7,14 @@ gem "sinatra", git: 'https://github.com/sinatra/sinatra.git'
 
 # Web server
 gem "shotgun"
+gem "thin"
 
 # Test suite
 gem "cucumber"
 gem "capybara"
+gem "capybara-webkit"
 gem "rspec"
+gem "launchy"
 
 # Database
 gem "datamapper"

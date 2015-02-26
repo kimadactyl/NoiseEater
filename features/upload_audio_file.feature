@@ -5,7 +5,7 @@ Feature: Upload audio file
 		Given I am on the homepage
 		Then I should see "Audio"
 		And I should see "Email"
-		And I should see "Upload!"
+		And I should see "Upload"
 	
 	Scenario: Upload an audio file successfully
 		Given I am on the homepage
@@ -17,7 +17,7 @@ Feature: Upload audio file
 		# * I am not currently waiting for another audio file report
 		# * I have selected at least one test {wind noise, handling noise, distortion}
 		* I click the submit button
-		Then I should be taken to "/thankyou"
+		Then I should be taken to a report page
 
 	# Scenario: Upload audio file
 	# 	Then I should be shown a confirmation 

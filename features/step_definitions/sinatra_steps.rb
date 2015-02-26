@@ -7,27 +7,28 @@ Then(/^I should see "(.*?)"$/) do |text|
 end
 
 Given(/^I have entered description "(.*?)"$/) do |description|
-  page.fill_in "description", :with => description
+  fill_in "description", :with => description
 end
 
 Given(/^I have selected file "(.*?)"$/) do |filename|
-  page.attach_file "audio", filename
+  attach_file "audio", filename
 end
 
 Given(/^I have entered email "(.*?)"$/) do |email|
-  page.fill_in "email", :with => email
+  fill_in "email", :with => email
 end
 
 Given(/^I have agreed to the terms and conditions$/) do
-  page.check "I agree to the terms and conditions"
+  check "I agree to the terms and conditions"
 end
 
 Given(/^I click the submit button$/) do
-  page.click_button "Upload!"
+  save_and_open_page
+  click_button "Upload"
 end
 
-Then(/^I should be taken to "(.*?)"$/) do |path|
-  expect(path).to eq(path)
+Then(/^I should be taken to a report page$/) do
+  expect(page).to have_content "Thanks for uploading"
 end
   
 
