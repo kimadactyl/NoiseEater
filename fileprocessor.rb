@@ -4,6 +4,7 @@ class ProcessorQueue
     # Start the queue
     puts "Queue starting."
     @running = true
+    @ticket = 0
     # Get the next ticket
     next_ticket
   end

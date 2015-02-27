@@ -23,7 +23,6 @@ Given(/^I have agreed to the terms and conditions$/) do
 end
 
 Given(/^I click the submit button$/) do
-  save_and_open_page
   click_button "Upload"
 end
 

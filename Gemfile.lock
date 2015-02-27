@@ -60,9 +60,9 @@ GEM
       gherkin (~> 2.12)
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.1.2)
-    daemons (1.1.9)
     data_objects (0.10.15)
       addressable (~> 2.1)
+    database_cleaner (1.4.0)
     datamapper (1.2.0)
       dm-aggregates (~> 1.2.0)
       dm-constraints (~> 1.2.0)
@@ -110,7 +110,6 @@ GEM
       dm-core (~> 1.2.0)
     do_sqlite3 (0.10.15)
       data_objects (= 0.10.15)
-    eventmachine (1.0.3)
     fastercsv (1.5.5)
     ffi (1.9.6)
     gherkin (2.12.2)
@@ -152,10 +151,6 @@ GEM
     shotgun (0.9)
       rack (>= 1.0)
     stringex (1.5.1)
-    thin (1.6.3)
-      daemons (~> 1.0, >= 1.0.9)
-      eventmachine (~> 1.0)
-      rack (~> 1.0)
     thread_safe (0.3.4)
     tilt (2.0.1)
     tzinfo (1.2.2)
@@ -175,6 +170,7 @@ DEPENDENCIES
   carrierwave-datamapper
   compass (~> 1.0)
   cucumber
+  database_cleaner
   datamapper
   dm-sqlite-adapter
   launchy
@@ -182,4 +178,3 @@ DEPENDENCIES
   sass (~> 3.4.0)
   shotgun
   sinatra!
-  thin

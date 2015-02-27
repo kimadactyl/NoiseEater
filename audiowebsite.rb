@@ -1,16 +1,12 @@
 require "sinatra/base"
 require "audio_waveform"
 require "tilt/erb"
-require "thin"
 require "./models"
 require "./fileprocessor"
  
 class AudioWebsite < Sinatra::Base
-  helpers do
-    def queue
-      ProcessorQueue.new
-    end
-  end
+
+  @queue = ProcessorQueue.new
 
   get "/" do
       erb :index
@@ -37,4 +33,6 @@ class AudioWebsite < Sinatra::Base
       erb :processing       
     end
   end
+
+  # run!
 end
