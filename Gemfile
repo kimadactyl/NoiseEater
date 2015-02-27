@@ -7,6 +7,7 @@ gem "sinatra", git: 'https://github.com/sinatra/sinatra.git'
 
 # Web server
 gem "shotgun"
+gem "thin"
 
 # Test suite
 gem "cucumber"
@@ -17,6 +18,7 @@ gem "launchy"
 # gem "poltergeist"
 # gem "phantomjs", :require => "phantomjs/poltergeist"
 gem "database_cleaner"
+gem "eventmachine"
 
 # Database
 gem "datamapper"
@@ -26,5 +28,5 @@ gem 'dm-sqlite-adapter'
 gem 'carrierwave'
 gem 'carrierwave-datamapper', :require => 'carrierwave/datamapper'
 
-# Audio processing 
+# Audio processing
 gem 'audio_waveform-ruby'

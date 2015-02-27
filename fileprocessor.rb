@@ -1,12 +1,24 @@
+require 'eventmachine'
+
 class ProcessorQueue
 
   def initialize
     # Start the queue
     puts "Queue starting."
     @running = true
-    @ticket = 0
-    # Get the next ticket
-    next_ticket
+    @ticket = Audio.first(:processed => false)
+    unless @ticket
+      @ticket = Audio.last
+    end
+    Thread.new { loop }
+  end
+
+  def loop
+    while true do
+      if next_ticket == "no ticket"
+        sleep 1
+      end
+    end
   end
 
   def next_ticket
@@ -19,8 +31,8 @@ class ProcessorQueue
       process(@ticket)
     else
       # If not, stop the queue
-      puts "No files to process. Shutting down."
-      @running = false
+      # just skip a frame
+      return "no ticket"
     end
   end
 
@@ -46,7 +58,7 @@ class ProcessorQueue
     # If it's not, process it now.
     if @running == false
       @running = true
-      next_ticket 
+      next_ticket
     end
   end
 
