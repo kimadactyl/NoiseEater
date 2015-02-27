@@ -16,7 +16,9 @@ class ProcessorQueue
   def loop
     while true do
       if next_ticket == "no ticket"
-        sleep 1
+        sleep 5
+        # tick of of up to 5 seconds when the queue does empty itself to prevent
+        # excessive loops during no data shouldn't be a dealbreaker?
       end
     end
   end
