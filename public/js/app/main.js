@@ -13,7 +13,9 @@ require(["jquery", "peaks", "foundation"], function ($, Peaks) {
     }
   });
 
+  console.log(regions);
   p.on('segments.ready', function(){
     // do something when segments are ready to be displayed
+    p.segments.add(regions);
   });
 });

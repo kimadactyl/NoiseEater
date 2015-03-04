@@ -54,3 +54,16 @@
     </section>
   </div>
 </div>  
+
+<script type="text/javascript">
+  var regions = [
+      {{#wind_free_regions}}
+      {
+        startTime: {{s}},
+        endTime: {{e}},
+        color: "yellow",
+        labelText: "Wind-free region"
+      },
+      {{/wind_free_regions}}
+    ]
+</script>

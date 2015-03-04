@@ -1,39 +1,43 @@
 <div class="row">
-  <form method="post" action="/" enctype='multipart/form-data' data-abide>
-    <fieldset class="large-6 columns">
-      <legend>Upload your audio file</legend>
-
-      <label for="audio">Description
-        <input type="text" name="description" id="description">
-      </label>      
-
-      <label for="audio">Audio
-        <input type="file" name="audio" id="audio" required>
-        <small class="error">A wav file is required.</small>
-      </label>
-
-      <label for="email">Email
-        <input type="email" name="email" id="email" required>
-        <small class="error">A valid email address is required.</small>
-      </label>
-
-      <label for="terms">
-        <input type="checkbox" name="terms" id="terms" required>
-        I agree to the terms and conditions
-        <small class="error">You must agree to the terms and conditions</small>
-      </label>
-
-      <div class="large-12 columns">
-        <button type="submit" name="upload" id="upload" value="upload">Upload</button>
-      </div>
-    </fieldset>
-  </form>
   <div class="large-6 columns">
-    <h2>Recently Processed</h2>
-    <ol>
+    <h2>Upload your audio file</h2>
+    <form method="post" action="/" enctype='multipart/form-data' data-abide>
+      <fieldset>
+
+        <label for="audio">Description
+          <input type="text" name="description" id="description">
+        </label>      
+
+        <label for="audio">Audio
+          <input type="file" name="audio" id="audio" required>
+          <small class="error">A wav file is required.</small>
+        </label>
+
+        <label for="email">Email
+          <input type="email" name="email" id="email" required>
+          <small class="error">A valid email address is required.</small>
+        </label>
+
+        <label for="terms">
+          <input type="checkbox" name="terms" id="terms" required>
+          I agree to the terms and conditions
+          <small class="error">You must agree to the terms and conditions</small>
+        </label>
+
+        <div class="large-12 columns">
+          <button type="submit" name="upload" id="upload" value="upload">Upload</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="large-6 columns">
+    <h2>Recently processed</h2>
+    <ol start="{{list_start}}" reversed>
       {{#audio}}
         <li>
-          {{description}}
+          <a href="/report/{{id}}">
+            {{description}}
+          </a>
         </li>
       {{/audio}}
     </ol>
