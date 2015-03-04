@@ -43,5 +43,5 @@ class NoiseEater < Sinatra::Base
     end
   end
 
-  run!
+  # run!
 end
