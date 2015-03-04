@@ -1,15 +1,24 @@
+$:.unshift(__FILE__, ".")
 require "sinatra/base"
+require "mustache/sinatra"
 require "audio_waveform"
-require "tilt/erb"
 require "./models"
 require "./fileprocessor"
 
 $queue = ProcessorQueue.new
 
-class AudioWebsite < Sinatra::Base
+class NoiseEater < Sinatra::Base
+
+  register Mustache::Sinatra
+  require 'views/layout'
+
+  set :mustache, {
+    :views     => 'views/',
+    :templates => 'templates/'
+  }
 
   get "/" do
-      erb :index
+    mustache :index
   end
 
   post "/" do
@@ -26,11 +35,11 @@ class AudioWebsite < Sinatra::Base
   get "/report/:id" do
     @a = Audio.get params[:id]
     if(!@a)
-      erb :error
+      mustache :error
     elsif(@a.processed == true)
-      erb :report
+      mustache :report
     elsif(@a.processed == false)
-      erb :processing, :locals => {:queue => $queue, :a => @a}
+      mustache :processing, :locals => {:queue => $queue, :a => @a}
     end
   end
 

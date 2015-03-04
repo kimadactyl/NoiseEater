@@ -28,4 +28,14 @@
       </div>
     </fieldset>
   </form>
+  <div class="large-6 columns">
+    <h2>Recently Processed</h2>
+    <ol>
+      {{#audio}}
+        <li>
+          {{description}}
+        </li>
+      {{/audio}}
+    </ol>
+  </div>
 </div>

@@ -7,5 +7,5 @@ require "rspec"
 require "launchy"
 
 
-Capybara.app = AudioWebsite
+Capybara.app = NoiseEater
 include RSpec::Matchers

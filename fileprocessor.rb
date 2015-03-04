@@ -1,5 +1,3 @@
-require 'eventmachine'
-
 class ProcessorQueue
 
   def initialize

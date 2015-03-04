@@ -3,3 +3,5 @@
 *.DS_Store
 /stylesheets/*
 /testdata/big-test/*
+/public/audio/*
+audio.db
