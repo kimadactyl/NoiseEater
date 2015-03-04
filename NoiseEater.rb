@@ -1,5 +1,6 @@
 $:.unshift(__FILE__, ".")
 require "sinatra/base"
+require "json"
 require "mustache/sinatra"
 require "audio_waveform"
 require "./models"
@@ -37,9 +38,9 @@ class NoiseEater < Sinatra::Base
     if(!@a)
       mustache :error
     elsif(@a.processed == true)
-      mustache :report
+      mustache :report, {}, :a => @a
     elsif(@a.processed == false)
-      mustache :processing, :locals => {:queue => $queue, :a => @a}
+      mustache :processing, {}, :queue => $queue
     end
   end
 

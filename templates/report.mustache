@@ -1,7 +1,56 @@
 <div class="row">
-  <p>Thanks for uploading {{decription}}!</p>
-  <div id="peaks-container"></div>
-  <audio controls>
-    <source src="/audio/{{source}}" type="audio/wav">
-  </audio>
+  <div class="large-12 columns">
+    <h2>Report for: {{description}}</h2>
+
+    <div id="peaks-container"></div>
+    <audio controls>
+      <source src="/audio/{{audio_source}}" type="audio/wav">
+    </audio>
+  </div>
+  <div class="large-9 columns">
+    <section id="global-stats">
+      <h3>Global Statistics</h3>
+      <table>
+        <thead>
+          <tr>
+            <td>SNR</td>
+            <td>&gt; 20dB</td>
+            <td>20db to 10dB</td>
+            <td>10dB to 0dB</td>
+            <td>0dB to -10dB</td>
+            <td>-10dB to -20dB</td>
+            <td>&lt; -20dB</td>
+          </tr>
+        </thead>
+        <tr>
+          <td>Total time</td>
+          {{#global_stats}}
+            <td>{{.}}</td>
+          {{/global_stats}}
+        </tr>
+      </table>
+    </section>
+  </div>
+
+  <div class="large-3 columns">  
+    <section id="time_history">
+      <h3>Time History</h3>
+      <table>
+        <thead>
+          <tr>
+            <td>Time (s)</td>
+            <td>Noise dBA</td>
+            <td>Noise %</td>
+          </tr>
+        </thead>
+        {{#time_history}}
+          <tr>
+            <td>{{T}}</td>
+            <td>{{dBA}}</td>
+            <td>{{QDeg}}</td>
+          </tr>
+        {{/time_history}}
+      </table>
+    </section>
+  </div>
 </div>  

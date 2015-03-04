@@ -183,6 +183,7 @@ DEPENDENCIES
   datamapper
   dm-sqlite-adapter
   eventmachine
+  json
   launchy
   mustache-sinatra
   rspec

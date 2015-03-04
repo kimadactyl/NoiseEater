@@ -5,6 +5,7 @@ gem "sass", "~> 3.4.0"
 gem "compass", "~> 1.0"
 gem "sinatra", git: 'https://github.com/sinatra/sinatra.git'
 gem "mustache-sinatra"
+gem "json"
 
 # Web server
 gem "shotgun"
