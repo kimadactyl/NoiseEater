@@ -3,6 +3,7 @@ require "sinatra/base"
 require "json"
 require "mustache/sinatra"
 require "audio_waveform"
+require 'streamio-ffmpeg'
 require "./models"
 require "./fileprocessor"
 
@@ -27,6 +28,8 @@ class NoiseEater < Sinatra::Base
     a.source = params[:audio]
     a.email = params[:email]
     a.description = params[:description]
+    # Selector for no output, wav, or mp3
+    a.output = params[:output]
     a.processed = false
     a.created_at = Time.now
     a.save

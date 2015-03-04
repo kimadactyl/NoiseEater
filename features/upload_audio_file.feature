@@ -19,11 +19,6 @@ Feature: Upload audio file
 		* I click the submit button
 		Then I should be taken to a report page
 
-	# Scenario: Upload audio file
-	# 	Then I should be shown a confirmation 
-	# 	And told to wait for an email containing a link to the audio file report
-	# 	And given an estimate of how long it will take to get the audio file report
-
 	# Scenario: User is currently waiting for another audio file report
 	# 	Given the user is currently waiting for another audio file report
 	# 	Then I should see an error message explaining the status of the project

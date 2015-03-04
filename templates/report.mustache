@@ -30,6 +30,23 @@
         </tr>
       </table>
     </section>
+    <section id="wind-free-regions">
+      <h3>Wind-Free Regions</h3>
+      <table>
+        <thead>
+          <tr>
+            <td>Start (s)</td>
+            <td>End (s)</td>
+          </tr>
+        </thead>
+        {{#wind_free_regions}}
+          <tr>
+            <td>{{s}}</td>
+            <td>{{e}}</td>
+          </tr>
+          {{/wind_free_regions}}
+      </table>
+    </section>
   </div>
 
   <div class="large-3 columns">  

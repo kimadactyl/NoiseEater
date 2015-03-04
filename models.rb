@@ -28,6 +28,7 @@ class Audio
   property :email, Text, :required => true
   property :processed, Boolean, :default => false
   property :created_at, DateTime
+  property :output, Enum[:none, :wav, :mp3], :default => :none
   mount_uploader :source, AudioUploader
 end
 

@@ -3,9 +3,10 @@ source "https://rubygems.org"
 # Display
 gem "sass", "~> 3.4.0"
 gem "compass", "~> 1.0"
+
+# Sinatra and templating
 gem "sinatra", git: 'https://github.com/sinatra/sinatra.git'
 gem "mustache-sinatra"
-gem "json"
 
 # Web server
 gem "shotgun"
@@ -16,19 +17,20 @@ gem "cucumber"
 gem "capybara"
 gem "capybara-webkit"
 gem "rspec"
-gem "launchy"
+# gem "launchy"
 # gem "poltergeist"
 # gem "phantomjs", :require => "phantomjs/poltergeist"
-gem "database_cleaner"
-gem "eventmachine"
+# gem "database_cleaner"
+# gem "eventmachine"
 
 # Database
 gem "datamapper"
-gem 'dm-sqlite-adapter'
+gem "dm-sqlite-adapter"
+gem "json"
 
 # File uploads
 gem 'carrierwave'
 gem 'carrierwave-datamapper', :require => 'carrierwave/datamapper'
 
 # Audio processing
-gem 'audio_waveform-ruby'
+gem 'audio_waveform-ruby' # waveform generator

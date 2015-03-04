@@ -63,7 +63,6 @@ GEM
     daemons (1.1.9)
     data_objects (0.10.15)
       addressable (~> 2.1)
-    database_cleaner (1.4.0)
     datamapper (1.2.0)
       dm-aggregates (~> 1.2.0)
       dm-constraints (~> 1.2.0)
@@ -119,8 +118,6 @@ GEM
     i18n (0.7.0)
     json (1.8.2)
     json_pure (1.8.2)
-    launchy (2.4.3)
-      addressable (~> 2.3)
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
@@ -155,6 +152,7 @@ GEM
     sass (3.4.13)
     shotgun (0.9.1)
       rack (>= 1.0)
+    streamio-ffmpeg (1.0.0)
     stringex (1.5.1)
     thin (1.6.3)
       daemons (~> 1.0, >= 1.0.9)
@@ -179,15 +177,13 @@ DEPENDENCIES
   carrierwave-datamapper
   compass (~> 1.0)
   cucumber
-  database_cleaner
   datamapper
   dm-sqlite-adapter
-  eventmachine
   json
-  launchy
   mustache-sinatra
   rspec
   sass (~> 3.4.0)
   shotgun
   sinatra!
+  streamio-ffmpeg
   thin
