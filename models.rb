@@ -23,12 +23,25 @@ end
 
 class Audio
   include DataMapper::Resource
+  # Unique key
   property :id, Serial
+  # Optional description
   property :description, Text
+  # Email for validation
   property :email, Text, :required => true
-  property :processed, Boolean, :default => false
+  # Creation time
   property :created_at, DateTime
+  # Unique string needed to validate
+  property :validationstring, String
+  # Has the file been validated by clicking the email link?
+  property :validated, Boolean, :default => false
+  # Has the file been processed?
+  property :processed, Boolean, :default => false
+  # Was the file processed successfully? 0 == yes, other values for error codes
+  property :success, Integer, :default => 0
+  # User's requested output format
   property :output, Enum[:none, :wav, :mp3], :default => :none
+  # Uploader gizmo
   mount_uploader :source, AudioUploader
 end
 

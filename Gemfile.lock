@@ -118,6 +118,8 @@ GEM
     i18n (0.7.0)
     json (1.8.2)
     json_pure (1.8.2)
+    mail (2.6.3)
+      mime-types (>= 1.16, < 3)
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
@@ -152,7 +154,6 @@ GEM
     sass (3.4.13)
     shotgun (0.9.1)
       rack (>= 1.0)
-    streamio-ffmpeg (1.0.0)
     stringex (1.5.1)
     thin (1.6.3)
       daemons (~> 1.0, >= 1.0.9)
@@ -180,10 +181,10 @@ DEPENDENCIES
   datamapper
   dm-sqlite-adapter
   json
+  mail
   mustache-sinatra
   rspec
   sass (~> 3.4.0)
   shotgun
   sinatra!
-  streamio-ffmpeg
   thin

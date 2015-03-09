@@ -34,3 +34,6 @@ gem 'carrierwave-datamapper', :require => 'carrierwave/datamapper'
 
 # Audio processing
 gem 'audio_waveform-ruby' # waveform generator
+
+# Email server
+gem 'mail'

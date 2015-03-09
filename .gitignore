@@ -5,3 +5,4 @@
 /testdata/big-test/*
 /public/audio/*
 audio.db
+/uploads/*

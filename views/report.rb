@@ -22,7 +22,7 @@ class NoiseEater
 
       def wind_free_regions
         datafile = File.read("./public/audio/" + @a.id.to_s + "/" + "data.json")
-        JSON.parse(datafile)["Wind Free Regions"]
+        JSON.parse(datafile)["Wind free regions"]
       end
     end
   end

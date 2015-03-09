@@ -3,7 +3,7 @@ require "sinatra/base"
 require "json"
 require "mustache/sinatra"
 require "audio_waveform"
-require 'streamio-ffmpeg'
+require "securerandom"
 require "./models"
 require "./fileprocessor"
 
@@ -14,15 +14,18 @@ class NoiseEater < Sinatra::Base
   register Mustache::Sinatra
   require 'views/layout'
 
+  # Set env for Mustache
   set :mustache, {
     :views     => 'views/',
     :templates => 'templates/'
   }
 
+  # Index page
   get "/" do
     mustache :index
   end
 
+  # Post audio file
   post "/" do
     a = Audio.new
     a.source = params[:audio]
@@ -30,12 +33,14 @@ class NoiseEater < Sinatra::Base
     a.description = params[:description]
     # Selector for no output, wav, or mp3
     a.output = params[:output]
-    a.processed = false
+    # Make a random string to validate with
+    a.validationstring = SecureRandom.hex
     a.created_at = Time.now
     a.save
     redirect "/report/#{a.id}"
   end
 
+  # Report pages
   get "/report/:id" do
     @a = Audio.get params[:id]
     if(!@a)
@@ -47,5 +52,22 @@ class NoiseEater < Sinatra::Base
     end
   end
 
-  # run!
+  # Validate strings clicked in emails
+  get "/validate/:key" do
+    a = Audio.first(:validationstring => params[:key])
+    if a
+      a.validated = true
+      a.save
+      mustache :validated
+    else
+      not_found
+    end
+  end
+
+  not_found do
+    status 404
+    mustache :notfound
+  end
+
+  run!
 end

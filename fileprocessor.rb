@@ -1,3 +1,8 @@
+require 'mail'
+
+DOMAIN = "http://localhost:4567"
+FROM_EMAIL = "noreply@noiseater.com"
+
 class ProcessorQueue
 
   def initialize
@@ -44,11 +49,12 @@ class ProcessorQueue
     puts "Source path is #{input}. Starting..."
     output = File.dirname(input)
     # Run the windDet binary
-    `./windDet -i #{input} -o #{output}/output`
+    `./windDet -i #{input} -o #{output}/output -j #{output}/data.json`
     puts "#{a.id}: Processing complete"
     # Mark it as complete in the database
     a.processed = true
     a.save
+    send_email(id)
     # Check for the next file
     next_ticket
   end
@@ -67,4 +73,21 @@ class ProcessorQueue
     @ticket
   end
 
+  def send_email(id)
+    a = Audio.get(id)
+    link =  DOMAIN + '/validate/' + a.validationstring
+
+    mail = Mail.new do
+      from FROM_EMAIL
+      to a.email
+      subject 'NoiseEater: approve your upload now'
+      body 'Thanks for your submission. Click here to start processing your file: ' + link
+    end
+
+    mail.deliver
+  end
+
 end
+
+
+
