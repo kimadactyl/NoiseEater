@@ -12,6 +12,9 @@ gem "mustache-sinatra"
 gem "shotgun"
 gem "thin"
 
+# Pretty output
+gem "colorize"
+
 # Test suite
 gem "cucumber"
 gem "capybara"

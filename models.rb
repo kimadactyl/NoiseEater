@@ -38,7 +38,7 @@ class Audio
   # Has the file been processed?
   property :processed, Boolean, :default => false
   # Was the file processed successfully? 0 == yes, other values for error codes
-  property :success, Integer, :default => 0
+  property :success, Boolean, :default => false
   # User's requested output format
   property :output, Enum[:none, :wav, :mp3], :default => :none
   # Uploader gizmo

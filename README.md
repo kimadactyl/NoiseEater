@@ -4,9 +4,10 @@ Webapp which implements various wind noise detection alrorithms developed by the
 
 ## Prerequisites
 
- * [Compiled windDet in project directory](https://github.com/kenders2000/WindNoiseDetection) to do the actual processing
+ * [Compiled `windDet` in project directory](https://github.com/kenders2000/WindNoiseDetection) to do the actual processing
  * [AudioWaveform](https://github.com/bbcrd/audiowaveform) for non-Web Audio API browsers
- * [ffmpeg](https://www.ffmpeg.org/) for audio file conversion and slicing
+ * [`ffmpeg`](https://www.ffmpeg.org/) for audio file conversion and slicing
+ * `sendmail` or other mailserver to send validation emails
 
 ## What's what?
 
@@ -24,6 +25,8 @@ Webapp which implements various wind noise detection alrorithms developed by the
 
  * `ruby NoiseEater.rb` and uncommenting `run!` like loads a basic but persistent webserver: good for testing uploads, bad for testing changing views/templates.
  * `shotgun` and commenting out `run!` loads a more design-friendly environment but reloads the server on each file load
+
+In the console output, server messages are in green and user interaction is in blue.
 
 ## Credits
 

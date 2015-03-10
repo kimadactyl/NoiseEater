@@ -1,17 +1,14 @@
-require 'mail'
-
-DOMAIN = "http://localhost:4567"
-FROM_EMAIL = "noreply@noiseater.com"
-
 class ProcessorQueue
 
   def initialize
     # Start the queue
-    puts "Queue starting."
+    puts ("Queue starting on " + $DOMAIN + " as " + $FROM_EMAIL).colorize(:green)
+    puts $REQUIRE_VALIDATION ? "Validation is enabled".colorize(:blue) : "Validation is disabled".colorize(:blue)
+    puts $SEND_CONFIRMATION ? "Email confirmation is enabled".colorize(:green) : "Email confirmation is disabled".colorize(:green)
     @running = true
     @ticket = Audio.first(:processed => false)
     unless @ticket
-      @ticket = Audio.last
+      @ticket = "no ticket"
     end
     Thread.new { loop }
   end
@@ -19,21 +16,24 @@ class ProcessorQueue
   def loop
     while true do
       if next_ticket == "no ticket"
+        # Sleep for 5 seconds then try again
         sleep 5
-        # tick of of up to 5 seconds when the queue does empty itself to prevent
-        # excessive loops during no data shouldn't be a dealbreaker?
       end
     end
   end
 
   def next_ticket
     # Find next unprocessed ticket sorted by number order
-    ticket = Audio.first(:processed => false)
+    if $REQUIRE_VALIDATION
+      ticket = Audio.first(:processed => false, :validated => true)
+    else
+      ticket = Audio.first(:processed => false)
+    end
     if(ticket)
       # If there's a ticket to process, go do that
-      @ticket = ticket.id
-      puts "Next ticket: #{@ticket}"
-      process(@ticket)
+      t = ticket.id
+      puts "#{t}: Next ticket".colorize(:green)
+      process(t)
     else
       # If not, stop the queue
       # just skip a frame
@@ -44,17 +44,27 @@ class ProcessorQueue
   def process(id)
     # Process a file given an ID
     a = Audio.get(id)
-    puts "#{id}: Starting processing"
     input = a.source.path
-    puts "Source path is #{input}. Starting..."
     output = File.dirname(input)
     # Run the windDet binary
-    `./windDet -i #{input} -o #{output}/output -j #{output}/data.json`
-    puts "#{a.id}: Processing complete"
-    # Mark it as complete in the database
-    a.processed = true
+    puts "#{a.id}: ./windDet -i #{input} -o #{output}/output -j #{output}/data.json".colorize(:green)
+    # Run commmand and check exit status
+    if system "./windDet -i #{input} -o #{output}/output -j #{output}/data.json"
+      puts "#{a.id}: Processing completed successfully.".colorize(:green)
+      # Mark it as complete in the database
+      a.processed = true
+      a.success = true
+      if $SEND_CONFIRMATION
+        # Confirm if requested
+        send_confirmation_email(a.id)
+        puts "#{a.id}: Sent confirmation email".colorize(:green)
+      end
+    else
+      puts "#{a.id}: Processing unsuccessful.".colorize(:red)
+      a.processed = true
+      a.success = false
+    end
     a.save
-    send_email(id)
     # Check for the next file
     next_ticket
   end
@@ -73,15 +83,15 @@ class ProcessorQueue
     @ticket
   end
 
-  def send_email(id)
+  def send_confirmation_email(id)
     a = Audio.get(id)
-    link =  DOMAIN + '/validate/' + a.validationstring
+    link =  $DOMAIN + "/report/" + a.id.to_s
 
     mail = Mail.new do
-      from FROM_EMAIL
+      from $FROM_EMAIL
+      subject 'NoiseEater: your request is completed'
       to a.email
-      subject 'NoiseEater: approve your upload now'
-      body 'Thanks for your submission. Click here to start processing your file: ' + link
+      body 'Audio file processing complete. View the report on our website: ' + link
     end
 
     mail.deliver

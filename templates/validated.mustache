@@ -1,1 +1,10 @@
-<p>Thanks for validating your email address. Your request has been added to the queue.</p>
+<div class="row">
+  <div class="columns large-12">
+    <p>Thanks for validating your email address. Your request has been added to the queue. <a href="/report/{{id}}">Click here to continue</a> or wait 3 seconds to be redirected automatically.</p>
+  </div>
+</div>
+<script type="text/javascript">
+setTimeout(function () {
+  window.location.href = "/report/" + {{id}};
+}, 3000)
+</script>
