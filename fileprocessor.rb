@@ -46,23 +46,44 @@ class ProcessorQueue
     a = Audio.get(id)
     input = a.source.path
     output = File.dirname(input)
-    # Run the windDet binary
-    puts "#{a.id}: ./windDet -i #{input} -o #{output}/output -j #{output}/data.json".colorize(:green)
-    # Run commmand and check exit status
-    if system "./windDet -i #{input} -o #{output}/output -j #{output}/data.json"
-      puts "#{a.id}: Processing completed successfully.".colorize(:green)
-      # Mark it as complete in the database
-      a.processed = true
-      a.success = true
-      if $SEND_CONFIRMATION
-        # Confirm if requested
-        send_confirmation_email(a.id)
-        puts "#{a.id}: Sent confirmation email".colorize(:green)
-      end
+
+    # Probe the file for error and input format
+    probe = `ffprobe -show_error -show_streams -v quiet #{input}`
+    # Tests we want to run this through
+    tests = ["codec_name=pcm_s16le", "channels=1", "bits_per_sample=16", "sample_rate=44100"]
+
+    # Is it a valid format?
+    if probe.include? "[ERROR]"
+        puts "#{a.id}: Audio file is not in a valid format. Aborting.".colorize(:red)
+        a.processed = true
+        a.success = false
     else
-      puts "#{a.id}: Processing unsuccessful.".colorize(:red)
-      a.processed = true
-      a.success = false
+      # If so, is it a 16 bit, 44.1khz, mono wav file?
+      unless tests.all? { |test| probe.include?(test) }
+        # If not, convert to a valid format
+        puts "#{a.id}: Not a 16 bit mono wav. Converting.".colorize(:green)
+        puts "#{a.id}: ffmpeg -i #{input} -acodec pcm_s16le -ac 1 -ar 44100 #{output}/converted.wav".colorize(:green)
+        `ffmpeg -i #{input} -acodec pcm_s16le -ac 1 -ar 44100 -v quiet #{output}/converted.wav`
+        input = "#{output}/converted.wav"
+      end
+      # Then either way, process the file.
+      # Run the windDet binary and check exit status
+      puts "#{a.id}: ./windDet -i #{input} -o #{output}/output -j #{output}/data.json".colorize(:green)
+      if system "./windDet -i #{input} -o #{output}/output -j #{output}/data.json"
+        puts "#{a.id}: Processing completed successfully.".colorize(:green)
+        # Mark it as complete in the database
+        a.processed = true
+        a.success = true
+        if $SEND_CONFIRMATION
+          # Confirm if requested
+          send_confirmation_email(a.id)
+          puts "#{a.id}: Sent confirmation email".colorize(:green)
+        end
+      else
+        puts "#{a.id}: Processing unsuccessful.".colorize(:red)
+        a.processed = true
+        a.success = false
+      end
     end
     a.save
     # Check for the next file
