@@ -12,7 +12,7 @@ require "./fileprocessor"
 $DOMAIN = "http://localhost:4567"
 $FROM_EMAIL = "Noise Eater <noreply@noiseater.com>"
 $REQUIRE_VALIDATION = false
-$SEND_CONFIRMATION = true
+$SEND_CONFIRMATION = false
 
 $queue = ProcessorQueue.new
 

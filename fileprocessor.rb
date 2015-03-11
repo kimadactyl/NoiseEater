@@ -62,21 +62,32 @@ class ProcessorQueue
       unless tests.all? { |test| probe.include?(test) }
         # If not, convert to a valid format
         puts "#{a.id}: Not a 16 bit mono wav. Converting.".colorize(:green)
-        puts "#{a.id}: ffmpeg -i #{input} -acodec pcm_s16le -ac 1 -ar 44100 #{output}/converted.wav".colorize(:green)
+        puts "#{a.id}: ffmpeg -i #{input} -acodec pcm_s16le -ac 1 -ar 44100 #{output}/converted.wav".colorize(:yellow)
         `ffmpeg -i #{input} -acodec pcm_s16le -ac 1 -ar 44100 -v quiet #{output}/converted.wav`
         input = "#{output}/converted.wav"
       end
       # Then either way, process the file.
       # Run the windDet binary and check exit status
-      puts "#{a.id}: ./windDet -i #{input} -o #{output}/output -j #{output}/data.json".colorize(:green)
+      puts "#{a.id}: ./windDet -i #{input} -o #{output}/output -j #{output}/data.json".colorize(:yellow)
       if system "./windDet -i #{input} -o #{output}/output -j #{output}/data.json"
         puts "#{a.id}: Processing completed successfully.".colorize(:green)
+
+        # If seperate files were requested, make them now
+        data = File.read("#{output}/data.json")
+        Dir.mkdir("#{output}/regions")
+        regions = JSON.parse(data)["Wind free regions"]
+        regions.each_with_index do |region, idx|
+          puts "#{a.id}: ffmpeg -i #{input} -ss #{region["s"]} -t #{region["e"]} #{output}/regions/region-#{idx}.wav".colorize(:yellow)
+          `ffmpeg -i #{input} -ss #{region["s"]} -t #{region["e"]} -v quiet #{output}/regions/region-#{idx}.wav`
+        end
+        puts "#{a.id}: Regions written.".colorize(:green)
+
         # Mark it as complete in the database
         a.processed = true
         a.success = true
         if $SEND_CONFIRMATION
           # Confirm if requested
-          send_confirmation_email(a.id)
+          send_confirmation_email(a)
           puts "#{a.id}: Sent confirmation email".colorize(:green)
         end
       else
@@ -86,6 +97,7 @@ class ProcessorQueue
       end
     end
     a.save
+    puts "#{a.id}: Complete".colorize(:green)
     # Check for the next file
     next_ticket
   end
@@ -104,8 +116,7 @@ class ProcessorQueue
     @ticket
   end
 
-  def send_confirmation_email(id)
-    a = Audio.get(id)
+  def send_confirmation_email(a)
     link =  $DOMAIN + "/report/" + a.id.to_s
 
     mail = Mail.new do

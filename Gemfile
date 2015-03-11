@@ -15,17 +15,6 @@ gem "thin"
 # Pretty output
 gem "colorize"
 
-# Test suite
-gem "cucumber"
-gem "capybara"
-gem "capybara-webkit"
-gem "rspec"
-# gem "launchy"
-# gem "poltergeist"
-# gem "phantomjs", :require => "phantomjs/poltergeist"
-# gem "database_cleaner"
-# gem "eventmachine"
-
 # Database
 gem "datamapper"
 gem "dm-sqlite-adapter"
@@ -40,3 +29,16 @@ gem 'audio_waveform-ruby' # waveform generator
 
 # Email server
 gem 'mail'
+
+# Test suite
+group :development do
+  gem "cucumber"
+  gem "capybara"
+  gem "capybara-webkit"
+  gem "rspec"
+  # gem "launchy"
+  # gem "poltergeist"
+  # gem "phantomjs", :require => "phantomjs/poltergeist"
+  # gem "database_cleaner"
+  # gem "eventmachine"
+end
