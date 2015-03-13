@@ -8,16 +8,11 @@ gem "compass", "~> 1.0"
 gem "sinatra", git: 'https://github.com/sinatra/sinatra.git'
 gem "mustache-sinatra"
 
-# Web server
-gem "shotgun"
-gem "thin"
-
 # Pretty output
 gem "colorize"
 
 # Database
 gem "datamapper"
-gem "dm-sqlite-adapter"
 gem "json"
 
 # File uploads
@@ -30,12 +25,21 @@ gem 'audio_waveform-ruby' # waveform generator
 # Email server
 gem 'mail'
 
+# Live server
+group :production do
+	gem "rack"
+	# gem "dm-postgres-adapter"
+end
+
+
 # Test suite
 group :development do
   gem "cucumber"
   gem "capybara"
-  # gem "capybara-webkit"
   gem "rspec"
+  gem "dm-sqlite-adapter"
+  # gem "shotgun"
+  # gem "capybara-webkit"
   # gem "launchy"
   # gem "poltergeist"
   # gem "phantomjs", :require => "phantomjs/poltergeist"
