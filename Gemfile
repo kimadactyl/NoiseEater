@@ -28,7 +28,7 @@ gem 'mail'
 # Live server
 group :production do
 	gem "rack"
-	# gem "dm-postgres-adapter"
+	gem "dm-postgres-adapter"
 end
 
 
