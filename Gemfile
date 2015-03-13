@@ -25,9 +25,11 @@ gem 'audio_waveform-ruby' # waveform generator
 # Email server
 gem 'mail'
 
+# Webserver
+gem "rack"
+
 # Live server
 group :production do
-	gem "rack"
 	gem "dm-postgres-adapter"
 end
 

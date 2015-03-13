@@ -1,0 +1,10 @@
+development:
+	adapter: sqlite
+	database: audio
+	host: localhost
+production:
+	adapter: postgresql
+	database: noise_eater
+	username: <%= ENV['PG_USER'] %>
+	password: <%= ENV['PG_USER'] %>
+	host: localhost

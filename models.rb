@@ -1,7 +1,7 @@
 require "data_mapper"
-require "dm-sqlite-adapter"
 require "carrierwave"
 require "carrierwave/datamapper"
+require "dm-sqlite-adapter"
 
 DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/audio.db")
 
