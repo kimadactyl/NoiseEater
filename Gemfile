@@ -34,7 +34,7 @@ gem 'mail'
 group :development do
   gem "cucumber"
   gem "capybara"
-  gem "capybara-webkit"
+  # gem "capybara-webkit"
   gem "rspec"
   # gem "launchy"
   # gem "poltergeist"
