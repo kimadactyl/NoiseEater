@@ -9,8 +9,8 @@ require 'colorize'
 require "./models"
 require "./fileprocessor"
 
-$DOMAIN = "http://localhost:4567"
-$FROM_EMAIL = "Noise Eater <noreply@noiseater.com>"
+$DOMAIN = "http://goodrecord.webfaction.com"
+$FROM_EMAIL = "Noise Eater <noreply@NoiseEater.com>"
 $REQUIRE_VALIDATION = false
 $SEND_CONFIRMATION = false
 

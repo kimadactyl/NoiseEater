@@ -28,18 +28,20 @@ gem 'mail'
 # Webserver
 gem "rack"
 
-# Live server
-group :production do
-	gem "dm-postgres-adapter"
-end
 
+# Fix these later
+
+# group :production do
+	gem "dm-postgres-adapter"
+# end
+
+gem "dm-sqlite-adapter"
 
 # Test suite
 group :development do
   gem "cucumber"
   gem "capybara"
   gem "rspec"
-  gem "dm-sqlite-adapter"
   # gem "shotgun"
   # gem "capybara-webkit"
   # gem "launchy"

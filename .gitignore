@@ -6,4 +6,4 @@
 /public/audio/*
 audio.db
 /uploads/*
-/config/database.yml
+/config/database
