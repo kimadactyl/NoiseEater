@@ -1,12 +1,10 @@
 require "data_mapper"
 require "carrierwave"
 require "carrierwave/datamapper"
-require "dm-sqlite-adapter"
-require "dm-postgres-adapter"
+require $DBGEM
 
-settings = File.read("config/database")
-DataMapper::setup(:default, settings)
-
+# DataMapper::Logger.new(STDOUT, :debug)
+DataMapper::setup(:default, $DBSTRING)
 
 class AudioUploader < CarrierWave::Uploader::Base
   storage :file

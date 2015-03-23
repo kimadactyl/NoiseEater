@@ -18,6 +18,7 @@ gem "json"
 # File uploads
 gem 'carrierwave'
 gem 'carrierwave-datamapper', :require => 'carrierwave/datamapper'
+gem 'fileutils'
 
 # Audio processing
 gem 'audio_waveform-ruby' # waveform generator
@@ -28,17 +29,14 @@ gem 'mail'
 # Webserver
 gem "rack"
 
-
-# Fix these later
-
-# group :production do
-	gem "dm-postgres-adapter"
-# end
-
-gem "dm-sqlite-adapter"
+group :production do
+  gem "dm-postgres-adapter"
+  gem "dm-mysql-adapter"
+end
 
 # Test suite
 group :development do
+  gem "dm-sqlite-adapter"
   gem "cucumber"
   gem "capybara"
   gem "rspec"

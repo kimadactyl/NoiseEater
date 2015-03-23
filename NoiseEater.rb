@@ -6,13 +6,10 @@ require "audio_waveform"
 require "securerandom"
 require 'mail'
 require 'colorize'
+require 'fileutils'
+require "./config/settings"
 require "./models"
 require "./fileprocessor"
-
-$DOMAIN = "http://goodrecord.webfaction.com"
-$FROM_EMAIL = "Noise Eater <noreply@NoiseEater.com>"
-$REQUIRE_VALIDATION = false
-$SEND_CONFIRMATION = false
 
 $queue = ProcessorQueue.new
 
@@ -98,7 +95,7 @@ class NoiseEater < Sinatra::Base
         to a.email
         body 'Thanks for your submission. Click here to start processing your file: ' + link
       end
-
+      mail.delivery_method :sendmail
       mail.deliver
     end
   end

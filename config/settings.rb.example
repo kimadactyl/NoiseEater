@@ -1,0 +1,17 @@
+# Emails sent from this address
+$FROM_EMAIL = "Noise Eater <noreply@NoiseEater.com>"
+
+# Settings for validation emails
+$DOMAIN = "http://localhost:4567"
+$REQUIRE_VALIDATION = false
+
+# Send an email when processing complete?
+$SEND_CONFIRMATION = false
+
+# Paths for ffmpeg tools
+$FFMPEG = "ffmpeg"
+$FFPROBE = "ffprobe"
+
+# Database connection settings and appropriate DM gem
+$DBGEM = "dm-sqlite-adapter"
+$DBSTRING = "Your datamapper init string"

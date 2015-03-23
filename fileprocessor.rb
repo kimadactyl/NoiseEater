@@ -5,6 +5,7 @@ class ProcessorQueue
     puts ("Queue starting on " + $DOMAIN + " as " + $FROM_EMAIL).colorize(:green)
     puts $REQUIRE_VALIDATION ? "Validation is enabled".colorize(:blue) : "Validation is disabled".colorize(:blue)
     puts $SEND_CONFIRMATION ? "Email confirmation is enabled".colorize(:green) : "Email confirmation is disabled".colorize(:green)
+puts `which ffmpeg`
     @running = true
     @ticket = Audio.first(:processed => false)
     unless @ticket
@@ -48,7 +49,7 @@ class ProcessorQueue
     output = File.dirname(input)
 
     # Probe the file for error and input format
-    probe = `ffprobe -show_error -show_streams -v quiet #{input}`
+    probe = `#{$FFPROBE} -show_error -show_streams -v quiet #{input}`
     # Tests we want to run this through
     tests = ["codec_name=pcm_s16le", "channels=1", "bits_per_sample=16", "sample_rate=44100"]
 
@@ -63,7 +64,7 @@ class ProcessorQueue
         # If not, convert to a valid format
         puts "#{a.id}: Not a 16 bit mono wav. Converting.".colorize(:green)
         puts "#{a.id}: ffmpeg -i #{input} -acodec pcm_s16le -ac 1 -ar 44100 #{output}/converted.wav".colorize(:yellow)
-        `ffmpeg -i #{input} -acodec pcm_s16le -ac 1 -ar 44100 -v quiet #{output}/converted.wav`
+        `#{$FFMPEG} -i #{input} -acodec pcm_s16le -ac 1 -ar 44100 -v quiet #{output}/converted.wav -y`
         input = "#{output}/converted.wav"
       end
       # Then either way, process the file.
@@ -74,11 +75,11 @@ class ProcessorQueue
 
         # If seperate files were requested, make them now
         data = File.read("#{output}/data.json")
-        Dir.mkdir("#{output}/regions")
+        FileUtils.mkdir_p("#{output}/regions")
         regions = JSON.parse(data)["Wind free regions"]
         regions.each_with_index do |region, idx|
           puts "#{a.id}: ffmpeg -i #{input} -ss #{region["s"]} -t #{region["e"]} #{output}/regions/region-#{idx}.wav".colorize(:yellow)
-          `ffmpeg -i #{input} -ss #{region["s"]} -t #{region["e"]} -v quiet #{output}/regions/region-#{idx}.wav`
+          `#{$FFMPEG} -i #{input} -ss #{region["s"]} -t #{region["e"]} -v quiet #{output}/regions/region-#{idx}.wav -y`
         end
         puts "#{a.id}: Regions written.".colorize(:green)
 
@@ -96,7 +97,9 @@ class ProcessorQueue
         a.success = false
       end
     end
+    
     a.save
+
     puts "#{a.id}: Complete".colorize(:green)
     # Check for the next file
     next_ticket
@@ -125,7 +128,7 @@ class ProcessorQueue
       to a.email
       body 'Audio file processing complete. View the report on our website: ' + link
     end
-
+    mail.delivery_method :sendmail
     mail.deliver
   end
 
