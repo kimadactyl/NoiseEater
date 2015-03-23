@@ -5,7 +5,8 @@ class ProcessorQueue
     puts ("Queue starting on " + $DOMAIN + " as " + $FROM_EMAIL).colorize(:green)
     puts $REQUIRE_VALIDATION ? "Validation is enabled".colorize(:blue) : "Validation is disabled".colorize(:blue)
     puts $SEND_CONFIRMATION ? "Email confirmation is enabled".colorize(:green) : "Email confirmation is disabled".colorize(:green)
-puts `which ffmpeg`
+    print ("ffmpeg path is " + `which ffmpeg`).colorize(:green)
+    print ("ffprobe path is " + `which ffprobe`).colorize(:green)
     @running = true
     @ticket = Audio.first(:processed => false)
     unless @ticket
@@ -69,14 +70,23 @@ puts `which ffmpeg`
       end
       # Then either way, process the file.
       # Run the windDet binary and check exit status
-      puts "#{a.id}: ./windDet -i #{input} -o #{output}/output -j #{output}/data.json".colorize(:yellow)
-      if system "./windDet -i #{input} -o #{output}/output -j #{output}/data.json"
+      puts "#{a.id}: #{$WINDDET} -i #{input} -j #{output}/data.json".colorize(:yellow)
+      if system "#{$WINDDET} -i #{input} -j #{output}/data.json"
         puts "#{a.id}: Processing completed successfully.".colorize(:green)
+
+
+        if system "#{$AUDIOWAVEFORM} -i #{input} -o #{output}/waves.dat -b 8 >/dev/null" 
+          puts "#{a.id}: Generated waveform data".colorize(:green) 
+        else
+          puts "#{a.id}: Waveform generation failed! #{$AUDIOWAVEFORM} -i #{input} -o #{output}/waves.dat -b 8".colorize(:red)
+        end
 
         # If seperate files were requested, make them now
         data = File.read("#{output}/data.json")
+        # Make a directory if it doesn't exist
         FileUtils.mkdir_p("#{output}/regions")
         regions = JSON.parse(data)["Wind free regions"]
+        # For each region, write one file in regions dir
         regions.each_with_index do |region, idx|
           puts "#{a.id}: ffmpeg -i #{input} -ss #{region["s"]} -t #{region["e"]} #{output}/regions/region-#{idx}.wav".colorize(:yellow)
           `#{$FFMPEG} -i #{input} -ss #{region["s"]} -t #{region["e"]} -v quiet #{output}/regions/region-#{idx}.wav -y`
@@ -86,6 +96,7 @@ puts `which ffmpeg`
         # Mark it as complete in the database
         a.processed = true
         a.success = true
+
         if $SEND_CONFIRMATION
           # Confirm if requested
           send_confirmation_email(a)
@@ -98,9 +109,10 @@ puts `which ffmpeg`
       end
     end
     
+    # Save db record
     a.save
-
     puts "#{a.id}: Complete".colorize(:green)
+
     # Check for the next file
     next_ticket
   end

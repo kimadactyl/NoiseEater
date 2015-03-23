@@ -3,17 +3,24 @@ require(["jquery", "peaks", "foundation"], function ($, Peaks) {
   // Documentation can be found at: http://foundation.zurb.com/docs
   $(document).foundation();
 
+  url = window.location.pathname;
+  url = url.split("/")
+  url = url[2];
+
   var p = Peaks.init({
     container: document.querySelector('#peaks-container'),
     mediaElement: document.querySelector('audio'),
-    zoomLevels: [512, 1024, 2048, 4096],
-    waveformBuilderOptions: {
-      scale: 128,
-      scale_adjuster: 127
+    // logger: console.error.bind(console),
+    // zoomLevels: [512, 1024, 2048, 4096],
+    // waveformBuilderOptions: {
+    //   scale: 128,
+    //   scale_adjuster: 127
+    // },
+    dataUri: {
+      arraybuffer: '/audio/' + url + '/waves.dat'
     }
   });
 
-  console.log(regions);
   p.on('segments.ready', function(){
     // do something when segments are ready to be displayed
     p.segments.add(regions);

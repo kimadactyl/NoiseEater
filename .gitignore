@@ -1,10 +1,10 @@
+*.DS_Store
 /bower_components/*
 /.sass-cache/*
-*.DS_Store
+/uploads/*
+/bin/*
 /stylesheets/*
 /testdata/big-test/*
 /public/audio/*
-audio.db
-/uploads/*
+/audio.db
 /config/settings.rb
-/windDet

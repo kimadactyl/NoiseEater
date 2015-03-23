@@ -1,3 +1,4 @@
+require './config/settings'
 require './models'
 
 puts Audio.destroy ? "Database cleared" : "Error: Database not cleared!"

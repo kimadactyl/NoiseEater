@@ -2,7 +2,7 @@
 $FROM_EMAIL = "Noise Eater <noreply@NoiseEater.com>"
 
 # Settings for validation emails
-$DOMAIN = "http://localhost:4567"
+$DOMAIN = "http://localhost:9393"
 $REQUIRE_VALIDATION = false
 
 # Send an email when processing complete?
@@ -14,4 +14,8 @@ $FFPROBE = "ffprobe"
 
 # Database connection settings and appropriate DM gem
 $DBGEM = "dm-sqlite-adapter"
-$DBSTRING = "Your datamapper init string"
+$DBSTRING = "sqlite3://audio.db"
+
+# Binaries
+$AUDIOWAVEFORM = "./bin/audiowaveform"
+$WINDDET = "./bin/windDet"
