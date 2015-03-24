@@ -30,20 +30,24 @@ class Audio
   property :description, Text
   # Email for validation
   property :email, Text, :required => true
-  # Creation time
+  # Creation time and completion time
   property :created_at, DateTime
+  property :completed_at, DateTime, :default => 0
   # Unique string needed to validate
   property :validationstring, String
   # Has the file been validated by clicking the email link?
-  property :validated, Boolean, :default => false
+  # Defaults to true in case server is restarted with this setting changed
+  property :validated, Boolean, :default => true
   # Has the file been processed?
   property :processed, Boolean, :default => false
   # Was the file processed successfully? 0 == yes, other values for error codes
   property :success, Boolean, :default => false
-  # User's requested output format
-  property :output, Enum[:none, :wav, :mp3], :default => :none
+  # Output options
+  property :output, Enum[:none, :source, :mp3], :default => :mp3
+  property :type, Enum[:none, :mute, :zip], :default => :none
   # Uploader gizmo
   mount_uploader :source, AudioUploader
 end
 
+# DataMapper.auto_migrate!
 DataMapper.finalize
