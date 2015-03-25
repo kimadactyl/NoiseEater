@@ -31,10 +31,10 @@ class Audio
   # Email for validation
   property :email, Text, :required => true
   # What to detect for
-  property :detection, Enum[:wind, :mic, :distortion], required => true
+  property :detection, Enum[:wind, :mic, :distortion], default => :wind
   # Creation time and completion time
   property :created_at, DateTime
-  property :completed_at, DateTime, :default => 0
+  property :completed_at, DateTime
   # Unique string needed to validate
   property :validationstring, String
   # Has the file been validated by clicking the email link?
