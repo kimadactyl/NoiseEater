@@ -32,15 +32,20 @@ class NoiseEater < Sinatra::Base
   # Post audio file
   post "/" do
     a = Audio.new
+    # Basic info
     a.source = params[:audio]
     a.email = params[:email]
     a.description = params[:description]
-    # Selector for no output, wav, or mp3
+    # Selector for no output, wav, or mp3, and segments or muted waveform
     a.output = params[:output]
+    a.type = params[:type]
+    # What detection type?
+    a.detection = params[:detection]
     # Make a random string to validate with
     a.validationstring = SecureRandom.hex
+    # Timestamp it at upload
     a.created_at = Time.now
-    # Email the user unless we turn off validation
+    # Email the user unless validation is disabled
     if $REQUIRE_VALIDATION 
       a.save
       puts "#{a.id}: Emailing #{a.email} a validation link".colorize(:blue)

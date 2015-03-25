@@ -30,6 +30,8 @@ class Audio
   property :description, Text
   # Email for validation
   property :email, Text, :required => true
+  # What to detect for
+  property :detection, Enum[:wind, :mic, :distortion], required => true
   # Creation time and completion time
   property :created_at, DateTime
   property :completed_at, DateTime, :default => 0
