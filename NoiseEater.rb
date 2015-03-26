@@ -37,8 +37,8 @@ class NoiseEater < Sinatra::Base
     a.email = params[:email]
     a.description = params[:description]
     # Selector for no output, wav, or mp3, and segments or muted waveform
-    a.output = params[:output]
-    a.type = params[:type]
+    # a.output = params[:output]
+    # a.type = params[:type]
     # What detection type?
     a.detection = params[:detection]
     # Make a random string to validate with
@@ -60,8 +60,8 @@ class NoiseEater < Sinatra::Base
   end
 
   # Report pages
-  get "/report/:id" do
-    @a = Audio.get params[:id]
+  get "/report/:validationstring/output" do
+    @a = Audio.first(:validationstring => params[:key])
     if(!@a)
       mustache :error
     elsif(@a.processed == true)
@@ -69,6 +69,63 @@ class NoiseEater < Sinatra::Base
     elsif(@a.processed == false)
       mustache :processing, {}, :queue => $queue
     end
+  end
+
+  post "/report/:validationstring" do
+    # Generate an output file from a report
+    a = Audio.first(:validationstring => params[:key])
+
+    # Regions or whole file, and a threshold, passed to this section
+    type = params[:type]
+    thresh = params[:thresh]
+    format = params[:output]
+
+    # Sanity check
+    unless(a && type && thresh && a.completed_at)
+      halt mustache :error
+    end
+
+    # Read our JSON
+    dir = File.dirname(input)
+    output = File.dirname(a.source.path)
+
+    # Select the file to process from
+    case format
+    when "mp3"
+      input = output + "/input.mp3"
+    when "ogg"
+      input = output + "/input.ogg"
+    when "source"
+      input = a.source.path
+    end
+
+    # TODO: read threshold data properly
+    data = File.read("#{output}/data.json")
+    regions = JSON.parse(data)["Wind free regions"]
+
+    if(type == "regions")
+      # Make a directory
+      FileUtils.mkdir_p("#{output}/regions")
+
+      # For each region, write one file in regions dir
+      puts "#{a.id}: Writing regions... ".colorize(:yellow)
+      regions.each_with_index do |region, idx|
+        print "#{idx},"
+        `#{$FFMPEG} -i #{input} -ss #{region["s"]} -t #{region["e"]} -v quiet #{output}/regions/region-#{idx}.wav -y`
+      end
+      puts "#{a.id}: Regions written.".colorize(:green)
+
+      # TODO: Zip regions
+
+    elsif(type == "mute")
+      # Single file with muted sections
+      regions.each do |regions|
+        filter << "volume=enable='between(t,#{region["s"]},#{region["e"]}':volume=0, "
+      end
+      puts "#{a.id}: Regions written.".colorize(:green)
+      `#{$FFMPEG} -i #{input} -af #{filter}`
+    end
+
   end
 
   # Validate strings clicked in emails
@@ -105,6 +162,4 @@ class NoiseEater < Sinatra::Base
     end
   end
 
-  # run!
 end
-

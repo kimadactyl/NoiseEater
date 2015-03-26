@@ -5,8 +5,8 @@ class ProcessorQueue
     puts ("Queue starting on " + $DOMAIN + " as " + $FROM_EMAIL).colorize(:green)
     puts $REQUIRE_VALIDATION ? "Validation is enabled".colorize(:blue) : "Validation is disabled".colorize(:blue)
     puts $SEND_CONFIRMATION ? "Email confirmation is enabled".colorize(:green) : "Email confirmation is disabled".colorize(:green)
-    print ("ffmpeg path is " + `which ffmpeg`).colorize(:green)
-    print ("ffprobe path is " + `which ffprobe`).colorize(:green)
+    # print ("ffmpeg path is " + `which ffmpeg`).colorize(:green)
+    # print ("ffprobe path is " + `which ffprobe`).colorize(:green)
     @running = true
     @ticket = Audio.first(:processed => false)
     unless @ticket
@@ -75,23 +75,18 @@ class ProcessorQueue
         puts "#{a.id}: Processing completed successfully.".colorize(:green)
 
 
-        if system "#{$AUDIOWAVEFORM} -i #{input} -o #{output}/waves.dat -b 8 >/dev/null" 
+        # Write waveform data. -b 8 is critical for peaks.js to work with the data.
+        if system "#{$AUDIOWAVEFORM} -i #{input} -o #{output}/waves.dat -b 8" 
           puts "#{a.id}: Generated waveform data".colorize(:green) 
         else
           puts "#{a.id}: Waveform generation failed! #{$AUDIOWAVEFORM} -i #{input} -o #{output}/waves.dat -b 8".colorize(:red)
         end
 
-        # If seperate files were requested, make them now
-        data = File.read("#{output}/data.json")
-        # Make a directory if it doesn't exist
-        FileUtils.mkdir_p("#{output}/regions")
-        regions = JSON.parse(data)["Wind free regions"]
-        # For each region, write one file in regions dir
-        regions.each_with_index do |region, idx|
-          puts "#{a.id}: ffmpeg -i #{input} -ss #{region["s"]} -t #{region["e"]} #{output}/regions/region-#{idx}.wav".colorize(:yellow)
-          `#{$FFMPEG} -i #{input} -ss #{region["s"]} -t #{region["e"]} -v quiet #{output}/regions/region-#{idx}.wav -y`
-        end
-        puts "#{a.id}: Regions written.".colorize(:green)
+        # Convert it to an mp3 and ogg for playback
+        puts "#{a.id}: Writing mp3"
+        `#{$FFMPEG} -i #{input} -codec:a libmp3lame -qscale:a 2 #{output}/input.mp3`
+        puts "#{a.id}: Writing ogg"
+        `#{$FFMPEG} -i #{input} -codec:a libvorbis -qscale:a 7 #{output}/input.ogg`
 
         # Mark it as complete in the database
         a.processed = true

@@ -1,6 +1,7 @@
 require "data_mapper"
 require "carrierwave"
 require "carrierwave/datamapper"
+# require "./config/settings"
 require $DBGEM
 
 # DataMapper::Logger.new(STDOUT, :debug)
@@ -31,7 +32,7 @@ class Audio
   # Email for validation
   property :email, Text, :required => true
   # What to detect for
-  property :detection, Enum[:wind, :mic, :distortion], default => :wind
+  property :detection, Enum[:wind, :mic, :distortion]
   # Creation time and completion time
   property :created_at, DateTime
   property :completed_at, DateTime
@@ -44,9 +45,6 @@ class Audio
   property :processed, Boolean, :default => false
   # Was the file processed successfully? 0 == yes, other values for error codes
   property :success, Boolean, :default => false
-  # Output options
-  property :output, Enum[:none, :source, :mp3], :default => :mp3
-  property :type, Enum[:none, :mute, :zip], :default => :none
   # Uploader gizmo
   mount_uploader :source, AudioUploader
 end
