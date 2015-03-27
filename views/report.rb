@@ -2,6 +2,10 @@ class NoiseEater
   module Views
     class Report < Layout
 
+      def id
+        @a.id.to_s
+      end
+
       def description
         @a.description
       end

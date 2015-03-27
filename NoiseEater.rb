@@ -60,8 +60,13 @@ class NoiseEater < Sinatra::Base
   end
 
   # Report pages
-  get "/report/:validationstring/output" do
-    @a = Audio.first(:validationstring => params[:key])
+  get "/report/:key" do
+    # If validation is on, use that as the key, if not just use the ID
+    if $REQUIRE_VALIDATION 
+      @a = Audio.first(:validationstring => params[:key])
+    else
+      @a = Audio.get(params[:key])
+    end
     if(!@a)
       mustache :error
     elsif(@a.processed == true)
@@ -71,59 +76,78 @@ class NoiseEater < Sinatra::Base
     end
   end
 
-  post "/report/:validationstring" do
+  post "/report/:key/output" do
     # Generate an output file from a report
-    a = Audio.first(:validationstring => params[:key])
+    @a = Audio.get(params[:key])
 
     # Regions or whole file, and a threshold, passed to this section
     type = params[:type]
-    thresh = params[:thresh]
-    format = params[:output]
+    format = params[:format]
+    # TODO
+    thresh = true # params[:thresh]
 
     # Sanity check
-    unless(a && type && thresh && a.completed_at)
+    unless(@a && type && thresh && format)
       halt mustache :error
     end
 
+    puts "#{@a.id}: Output file request received".colorize(:green)
+
     # Read our JSON
-    dir = File.dirname(input)
-    output = File.dirname(a.source.path)
+    dir = File.dirname(@a.source.path)
 
     # Select the file to process from
+    # Using this as the input format to cut down on conversions needed
     case format
     when "mp3"
-      input = output + "/input.mp3"
+      input = dir + "/input.mp3"
+      ext = "mp3"
     when "ogg"
-      input = output + "/input.ogg"
+      input = dir + "/input.ogg"
+      ext = "ogg"
     when "source"
       input = a.source.path
+      ext = File.extname(a.source.path)
     end
 
     # TODO: read threshold data properly
-    data = File.read("#{output}/data.json")
+    data = File.read("#{dir}/data.json")
     regions = JSON.parse(data)["Wind free regions"]
 
-    if(type == "regions")
+    # Same whichever format
+    response.headers['content_type'] = "application/octet-stream"
+
+    if(type == "zip")
       # Make a directory
-      FileUtils.mkdir_p("#{output}/regions")
+      FileUtils.mkdir_p("#{dir}/regions")
 
       # For each region, write one file in regions dir
-      puts "#{a.id}: Writing regions... ".colorize(:yellow)
+      print "#{@a.id}: Writing regions... ".colorize(:yellow)
       regions.each_with_index do |region, idx|
         print "#{idx},"
-        `#{$FFMPEG} -i #{input} -ss #{region["s"]} -t #{region["e"]} -v quiet #{output}/regions/region-#{idx}.wav -y`
+        `#{$FFMPEG} -i #{input} -ss #{region["s"]} -t #{region["e"]} -v quiet #{dir}/regions/region-#{idx}.#{ext} -y`
       end
-      puts "#{a.id}: Regions written.".colorize(:green)
+      `zip --filesync --junk-paths #{dir}/regions.zip #{dir}/regions/*.#{ext}`
+      puts "zip #{dir}/regions.zip #{dir}/regions/*.#{ext}"
+      puts "\n#{@a.id}: Regions written.".colorize(:green)
+      attachment("#{@a.description}-noise-free-regions.zip")
+      response.write(File.read("#{dir}/regions.zip"))
 
       # TODO: Zip regions
 
     elsif(type == "mute")
       # Single file with muted sections
-      regions.each do |regions|
-        filter << "volume=enable='between(t,#{region["s"]},#{region["e"]}':volume=0, "
+      filter = []
+      regions.each do |region|
+        filter.push "volume=enable='between(t,#{region["s"]},#{region["e"]})':volume=0"
       end
-      puts "#{a.id}: Regions written.".colorize(:green)
-      `#{$FFMPEG} -i #{input} -af #{filter}`
+      filter = '"' + filter.join(", ") + '"'
+      `#{$FFMPEG} -i #{input} -af #{filter} -v quiet #{dir}/output.#{ext} -y`
+      puts "#{@a.id}: Muted file #{dir}/output.#{ext} written.".colorize(:green)
+
+      attachment("#{@a.description}-with-regions-muted.#{ext}")
+      response.write(File.read("#{dir}/output.#{ext}"))
+      puts "#{@a.id} Muted file sent"
     end
 
   end

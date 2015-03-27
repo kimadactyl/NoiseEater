@@ -28,34 +28,6 @@
           <input type="radio" name="detection" id="detection-distortion" value="distortion"><label for="detection-distortion  ">Distortion</label><br>
           <input type="radio" name="detection" id="detection-mic" value="mic" disabled><label for="detection-mic"><strike>Microphone Handling Noise (Coming soon!)</strike></label>
 
-
-        <fieldset>
-          <legend>Output Options</legend>
-          <label>
-            <h6>Output File Quality</h6>
-            <em>Would you prefer compressed output (faster download), or do you need your audio in source format (higher quality)? Request &ldquo;no output&rdquo; if you don't want an audio player.</em>
-          </label>
-            <input type="radio" name="output" id="output-mp3" value="mp3" checked>
-            <label for="output-mp3">MP3 (compressed output is fine)</label><br>
-            <input type="radio" name="output" id="output-wav" value="wav">
-            <label for="output-wav">Source (don't compress my audio please)</label><br>
-            <input type="radio" name="output" id="output-none" value="none">
-            <label for="output-none">No audio (just give me the report)</label>
-        
-            <label>
-              <h6>Output Format</h6>
-              <em>Would you like your audio file muted in the sections containing noise or split into regions and downloadable as a zip file? Select &ldquo;no output&rdquo; if you just want the report.</em>
-            </label>
-            <input type="radio" name="type" id="type-mute" value="mute" checked>
-            <label for="type-mute">Mute sections containing noise</label><br>
-            <input type="radio" name="type" id="type-zip" value="zip">
-            <label for="type-zip">Zip file of noise-free regions</label><br>
-            <input type="radio" name="type" id="type-none" value="none">
-            <label for="type-none">No output</label><br>
-        </fieldset>
-
-
-
         <label for="terms">
           <input type="checkbox" name="terms" id="terms" required>
           I agree to the terms and conditions
