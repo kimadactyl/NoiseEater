@@ -3,8 +3,8 @@ class ProcessorQueue
   def initialize
     # Start the queue
     puts ("Queue starting on " + $DOMAIN + " as " + $FROM_EMAIL).colorize(:green)
-    puts $REQUIRE_VALIDATION ? "Validation is enabled".colorize(:blue) : "Validation is disabled".colorize(:blue)
-    puts $SEND_CONFIRMATION ? "Email confirmation is enabled".colorize(:green) : "Email confirmation is disabled".colorize(:green)
+    puts $REQUIRE_VALIDATION ? "Validation is enabled".colorize(:green) : "Validation is disabled".colorize(:red)
+    puts $SEND_CONFIRMATION ? "Email confirmation is enabled".colorize(:green) : "Email confirmation is disabled".colorize(:red)
     # print ("ffmpeg path is " + `which ffmpeg`).colorize(:green)
     # print ("ffprobe path is " + `which ffprobe`).colorize(:green)
     @running = true

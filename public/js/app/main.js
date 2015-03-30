@@ -1,7 +1,22 @@
 require(["jquery", "peaks", "foundation"], function ($, Peaks) {
   // Foundation JavaScript
   // Documentation can be found at: http://foundation.zurb.com/docs
-  $(document).foundation();
+  $(document).foundation({
+    slider: {
+      on_change: function(){
+        thresh = $('#threshold-slider').attr('data-slider');
+        console.log("fndisfd");
+        $("#time-history-table tbody > tr").each(function() {
+          value = $(this).find(":nth-child(3)").html();
+          if(thresh >= parseFloat(value)) {
+            $(this).css("background-color", "yellow");
+          } else {
+            $(this).css("background-color", "transparent");
+          }
+        })
+      }
+    }
+  });
 
   url = window.location.pathname;
   url = url.split("/")

@@ -15,18 +15,15 @@ class NoiseEater
       end
 
       def global_stats
-        datafile = File.read("./public/audio/" + @a.id.to_s + "/" + "data.json")
-        JSON.parse(datafile)["Global Stats"]
+        @json["Global Stats"]
       end
 
       def time_history
-        datafile = File.read("./public/audio/" + @a.id.to_s + "/" + "data.json")
-        JSON.parse(datafile)["Time History"]
+        @json["Time History"]
       end
 
       def wind_free_regions
-        datafile = File.read("./public/audio/" + @a.id.to_s + "/" + "data.json")
-        JSON.parse(datafile)["Wind free regions"]
+        @json["Wind free regions"]
       end
     end
   end

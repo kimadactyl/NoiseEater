@@ -70,8 +70,10 @@ class NoiseEater < Sinatra::Base
     if(!@a)
       mustache :error
     elsif(@a.processed == true)
-      mustache :report, {}, :a => @a
-    elsif(@a.processed == false)
+      datafile = File.read("./public/audio/" + @a.id.to_s + "/" + "data.json")
+      @json = JSON.parse(datafile)
+      mustache :report
+    elsif(a.processed == false)
       mustache :processing, {}, :queue => $queue
     end
   end
@@ -84,7 +86,7 @@ class NoiseEater < Sinatra::Base
     type = params[:type]
     format = params[:format]
     # TODO
-    thresh = true # params[:thresh]
+    thresh = 25 # params[:thresh]
 
     # Sanity check
     unless(@a && type && thresh && format)
@@ -110,9 +112,16 @@ class NoiseEater < Sinatra::Base
       ext = File.extname(a.source.path)
     end
 
-    # TODO: read threshold data properly
+    # Read time history and adjust based on threshold
     data = File.read("#{dir}/data.json")
-    regions = JSON.parse(data)["Wind free regions"]
+    regions = JSON.parse(data)["Time History"]
+
+    passing_regions = []
+    regions.each do |region|
+      passing_regions << region if region["QDeg"] < thresh
+    end
+
+    # TODO: either wait for windDet to be updated, or -1s from T to get start time
 
     # Same whichever format
     response.headers['content_type'] = "application/octet-stream"
@@ -127,13 +136,15 @@ class NoiseEater < Sinatra::Base
         print "#{idx},"
         `#{$FFMPEG} -i #{input} -ss #{region["s"]} -t #{region["e"]} -v quiet #{dir}/regions/region-#{idx}.#{ext} -y`
       end
+
+      # Write the zip file. --filesync overwrites rather than adds in extra files. --junk-paths removes dir info
       `zip --filesync --junk-paths #{dir}/regions.zip #{dir}/regions/*.#{ext}`
       puts "zip #{dir}/regions.zip #{dir}/regions/*.#{ext}"
       puts "\n#{@a.id}: Regions written.".colorize(:green)
+
+      # Send to user
       attachment("#{@a.description}-noise-free-regions.zip")
       response.write(File.read("#{dir}/regions.zip"))
-
-      # TODO: Zip regions
 
     elsif(type == "mute")
       # Single file with muted sections
@@ -145,6 +156,7 @@ class NoiseEater < Sinatra::Base
       `#{$FFMPEG} -i #{input} -af #{filter} -v quiet #{dir}/output.#{ext} -y`
       puts "#{@a.id}: Muted file #{dir}/output.#{ext} written.".colorize(:green)
 
+      # Send file
       attachment("#{@a.description}-with-regions-muted.#{ext}")
       response.write(File.read("#{dir}/output.#{ext}"))
       puts "#{@a.id} Muted file sent"

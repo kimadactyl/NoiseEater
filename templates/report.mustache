@@ -7,8 +7,21 @@
       <source src="/audio/{{id}}/input.mp3" type="audio/mp3">
       <source src="/audio/{{id}}/input.ogg" type="audio/ogg">
     </audio>
-  </div>  
 
+  </div>  
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <h5>Threshold: <span id="sliderOutput"></span></h5>
+    <div id="threshold-slider" class="range-slider" data-slider data-options="display_selector: #sliderOutput; initial: 25;">
+      <span class="range-slider-handle" role="slider" tabindex="0"></span>
+      <span class="range-slider-active-segment"></span>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="large-8 columns">
     <section id="global-stats">
       <h3>Global Statistics</h3>
@@ -33,9 +46,9 @@
       </table>
     </section>
     <div class="large-4 columns">
-      <section id="time_history">
+      <section id="time-history">
         <h3>Time History</h3>
-        <table>
+        <table id="time-history-table">
           <thead>
             <tr>
               <td>Time (s)</td>
@@ -114,5 +127,6 @@
         labelText: "Wind-free region"
       },
       {{/wind_free_regions}}
-    ]  
+    ]
+  var thresh = 25;
 </script>
