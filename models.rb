@@ -21,6 +21,17 @@ class AudioUploader < CarrierWave::Uploader::Base
   def move_to_store
     true
   end
+
+  def md5
+    chunk = model.send(mounted_as)
+    @md5 ||= Digest::MD5.hexdigest(chunk.read.to_s)
+  end
+
+  def filename
+    # save filename as md5 hash of file.
+    # useful for later duplicate checking
+    @name ||= "#{md5}#{File.extname(super)}" if super
+  end
 end
 
 class Audio

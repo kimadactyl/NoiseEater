@@ -76,8 +76,8 @@ class ProcessorQueue
 
 
         # Write waveform data. -b 8 is critical for peaks.js to work with the data.
-        if system "#{$AUDIOWAVEFORM} -i #{input} -o #{output}/waves.dat -b 8" 
-          puts "#{a.id}: Generated waveform data".colorize(:green) 
+        if system "#{$AUDIOWAVEFORM} -i #{input} -o #{output}/waves.dat -b 8"
+          puts "#{a.id}: Generated waveform data".colorize(:green)
         else
           puts "#{a.id}: Waveform generation failed! #{$AUDIOWAVEFORM} -i #{input} -o #{output}/waves.dat -b 8".colorize(:red)
         end
@@ -103,7 +103,7 @@ class ProcessorQueue
         a.success = false
       end
     end
-    
+
     # Save db record
     a.save
     puts "#{a.id}: Complete".colorize(:green)
@@ -140,6 +140,3 @@ class ProcessorQueue
   end
 
 end
-
-
-
