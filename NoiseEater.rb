@@ -81,7 +81,7 @@ class NoiseEater < Sinatra::Base
       datafile = File.read("./public/audio/" + @a.id.to_s + "/" + "data.json")
       @json = JSON.parse(datafile)
       mustache :report
-    elsif(a.processed == false)
+    elsif(@a.processed == false)
       mustache :processing, {}, :queue => $queue
     end
   end
