@@ -31,6 +31,14 @@ class NoiseEater < Sinatra::Base
 
   # Post audio file
   post "/" do
+    # Ensure one file per user by redirecting if the queue finds
+    # May need to switch :processed for :success
+    if Audio.all(:email => params[:email], :processed => false).length > 1
+      # TODO: Change this for preferred error message format
+      redirect "/onefileperuser.html"
+      return
+    end
+
     a = Audio.new
     # Basic info
     a.source = params[:audio]
@@ -46,11 +54,11 @@ class NoiseEater < Sinatra::Base
     # Timestamp it at upload
     a.created_at = Time.now
     # Email the user unless validation is disabled
-    if $REQUIRE_VALIDATION 
+    if $REQUIRE_VALIDATION
       a.save
       puts "#{a.id}: Emailing #{a.email} a validation link".colorize(:blue)
       send_validation_email(a.id)
-    else 
+    else
       a.validated = true
       a.save
       puts "#{a.id}: Uploaded, validation disabled".colorize(:blue)
@@ -62,7 +70,7 @@ class NoiseEater < Sinatra::Base
   # Report pages
   get "/report/:key" do
     # If validation is on, use that as the key, if not just use the ID
-    if $REQUIRE_VALIDATION 
+    if $REQUIRE_VALIDATION
       @a = Audio.first(:validationstring => params[:key])
     else
       @a = Audio.get(params[:key])
