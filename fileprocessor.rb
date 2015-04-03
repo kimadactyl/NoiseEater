@@ -1,3 +1,5 @@
+$TIME_PER_KB = 1 #Time estimated to process per kb of sound data
+
 class ProcessorQueue
 
   def initialize
@@ -8,18 +10,28 @@ class ProcessorQueue
     # print ("ffmpeg path is " + `which ffmpeg`).colorize(:green)
     # print ("ffprobe path is " + `which ffprobe`).colorize(:green)
     @running = true
-    @ticket = Audio.first(:processed => false)
-    unless @ticket
-      @ticket = "no ticket"
-    end
+
+    # Caution: behaviour here may still return nil for *new* wind-noise database
+    # ie: where there is *not even an initial ticket*
+    # But otherwise last ticket is given by next_ticket, and they're compared to
+    # control processing behaviour now.
+    @ticket = next_ticket
+
     Thread.new { loop }
   end
 
   def loop
     while true do
-      if next_ticket == "no ticket"
+      if next_ticket == last_ticket
+        # The queue is at its end
         # Sleep for 5 seconds then try again
         sleep 5
+      else
+        # If there's a ticket to process, go do that
+        @ticket = next_ticket
+        t = @ticket.id
+        puts "#{t}: Next ticket".colorize(:green)
+        process(t)
       end
     end
   end
@@ -31,21 +43,22 @@ class ProcessorQueue
     else
       ticket = Audio.first(:processed => false)
     end
-    if(ticket)
-      # If there's a ticket to process, go do that
-      t = ticket.id
-      puts "#{t}: Next ticket".colorize(:green)
-      process(t)
+    if ticket
+      return ticket
     else
-      # If not, stop the queue
-      # just skip a frame
-      return "no ticket"
+      # If not, return the last_ticket as current queue index
+      return last_ticket
     end
+  end
+
+  def last_ticket
+  # Return the last processed file on the queue
+    return Audio.last(:processed => true)
   end
 
   def process(id)
     # Process a file given an ID
-    a = Audio.get(id)
+    a = Audio.get(id)$TIME_PER_KB
     input = a.source.path
     output = File.dirname(input)
 
@@ -114,6 +127,16 @@ class ProcessorQueue
 
     # Check for the next file
     next_ticket
+  end
+
+  def time_to_process audio_id
+    # Estimated time to end of queue.
+    pending = Audio.all(:processed => 'false', :id.lte => audio_id)
+    time = 0.0
+    pending.each |audio| do
+      time += $TIME_PER_KB * audio.source.size / 1024
+    end
+    return time
   end
 
   def check_if_running
