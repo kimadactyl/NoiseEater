@@ -1,6 +1,15 @@
+<section id="hero">
+  <div class="row">
+    <div class="small-12 medium-10 small-centered text-center columns">
+      <h1>Noise Eater automatically identifies wind, distortion, and microphone handling noise in your audio file.</h1>
+      <a class="button round">Learn more</a>
+    </div>
+  </div>
+</section>
+
 <div class="row">
   <div class="large-8 columns">
-    <h2>Upload your audio file</h2>
+    <h3>Upload your audio file</h3>
     <form method="post" action="/" enctype='multipart/form-data' data-abide>
       <fieldset>
 
@@ -41,8 +50,8 @@
     </form>
   </div>
   <div class="large-4 columns">
-    <h2>Recent</h2>
-    <ol start="{{list_start}}" reversed>
+    <h3>Sample files</h3>
+    <ul>
       {{#audio}}
         <li>
           <a href="/report/{{id}}">
@@ -50,6 +59,34 @@
           </a>
         </li>
       {{/audio}}
-    </ol>
+    </ul>
   </div>
 </div>
+<hr>
+<section id="how-it-works">
+  <div class="row">
+    <div class="small-12 columns text-center">
+      <h2>The Process</h2>
+    </div>
+  </div>
+  <div class="row text-center medium-uncollapse" data-equalizer>
+    <div class="medium-4 small-12 columns" data-equalizer-watch>
+      <div class="process">
+        <img src="/images/ne_process1.png">
+        <h5>Upload your audio file</h5>
+      </div>
+    </div>
+    <div class="medium-4 small-12 columns" data-equalizer-watch>
+      <div class="process">    
+        <img src="/images/ne_process2.png">
+        <h5>Our robots identify the noise and supply you with a report</h5>
+      </div>
+    </div>    
+    <div class="medium-4 small-12 columns" data-equalizer-watch>
+      <div class="process">    
+        <img src="/images/ne_process3.png">
+        <h5>You can download your file with noise removed, or just examine the report</h5>
+      </div>
+    </div>    
+  </div>
+</section>

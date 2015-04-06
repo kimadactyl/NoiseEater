@@ -10,7 +10,7 @@
     <meta property="og:image" content="TODO">
     <meta property="og:description" content="Noise Eater automatically identifies wind, distortion, and microphone handling noise in your audio file.">
     {{! Google webfont }}
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/stylesheets/app.css" />
     <script src="/js/vendor/modernizr/modernizr.js"></script>
   </head>
@@ -18,10 +18,10 @@
     <header>
       <div class="row">
         <div class="small-12 medium-6 columns">
-          <h1><a href="/">NoiseEater</a></h1>
+          <h2><a href="/">NoiseEater</a></h2>
         </div>
         <div class="small-12 medium-6 columns">
-          <nav role="main">
+          <nav role="main" id="primary">
             <ul>
               <li><a href="./about">About</a></li>
               <li><a href="./contact">Contact</a></li>
@@ -29,8 +29,10 @@
         </div>
       </div>
     </header>
-    <hr>
-    {{{yield}}}
+
+    <section id="main">
+      {{{yield}}}
+    </section>
     <script data-main="/js/app" src="/js/vendor/requirejs/require.js"></script>
   </body>
 </html>

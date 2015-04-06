@@ -1,40 +1,61 @@
 @import settings
 @import foundation
 
-// Or selectively include components
-// @import
-//   "foundation/components/accordion",
-//   "foundation/components/alert-boxes",
-//   "foundation/components/block-grid",
-//   "foundation/components/breadcrumbs",
-//   "foundation/components/button-groups",
-//   "foundation/components/buttons",
-//   "foundation/components/clearing",
-//   "foundation/components/dropdown",
-//   "foundation/components/dropdown-buttons",
-//   "foundation/components/flex-video",
-//   "foundation/components/forms",
-//   "foundation/components/grid",
-//   "foundation/components/inline-lists",
-//   "foundation/components/joyride",
-//   "foundation/components/keystrokes",
-//   "foundation/components/labels",
-//   "foundation/components/magellan",
-//   "foundation/components/orbit",
-//   "foundation/components/pagination",
-//   "foundation/components/panels",
-//   "foundation/components/pricing-tables",
-//   "foundation/components/progress-bars",
-//   "foundation/components/reveal",
-//   "foundation/components/side-nav",
-//   "foundation/components/split-buttons",
-//   "foundation/components/sub-nav",
-//   "foundation/components/switches",
-//   "foundation/components/tables",
-//   "foundation/components/tabs",
-//   "foundation/components/thumbs",
-//   "foundation/components/tooltips",
-//   "foundation/components/top-bar",
-//   "foundation/components/type",
-//   "foundation/components/offcanvas",
-//   "foundation/components/visibility";
+@mixin invert
+  background-color: $primary-color
+  color: white
+  h1, h2, h3, h4, h5, h6
+    color: white
+
+header
+  .row
+    padding: 2em 0
+  h2
+    text-indent: 100%
+    white-space: nowrap
+    overflow: hidden
+    background: url("/images/ne_logo.png") 0 0 no-repeat
+    width: 331px
+    height: 116px
+
+nav#primary
+  ul
+    list-style-type: none
+    text-align: right
+    margin-top: 1.6em
+  li
+    display: inline-block
+    font-size: rem-calc(24)
+    margin: 1em
+
+
+section#hero
+  +invert
+  .row
+    padding: 2em 0
+    background: url("/images/ne_bot_bannerbacking.png") 100% 20% no-repeat
+  h1
+    margin-bottom: 1em
+    font-weight: 300
+  a
+    border-color: white
+    font-size: rem-calc(24)
+
+section#main
+  .row 
+    padding: 2em 0
+  h3
+    text-align: center
+
+section#how-it-works
+  h2
+    font-size: rem-calc(48)
+    color: $primary-color
+    font-weight: 300
+  .process
+    padding: 4em 0.5em 2em
+    +radius(15px)
+    +invert
+    height: 100%
+  h5
+    margin-top: 2em
