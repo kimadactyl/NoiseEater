@@ -5,7 +5,6 @@ require(["jquery", "peaks", "foundation"], function ($, Peaks) {
     slider: {
       on_change: function(){
         thresh = $('#threshold-slider').attr('data-slider');
-        console.log("fndisfd");
         $("#time-history-table tbody > tr").each(function() {
           value = $(this).find(":nth-child(3)").html();
           if(thresh >= parseFloat(value)) {

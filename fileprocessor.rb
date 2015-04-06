@@ -1,5 +1,3 @@
-$TIME_PER_KB = 1 #Time estimated to process per kb of sound data
-
 class ProcessorQueue
 
   def initialize
@@ -58,7 +56,7 @@ class ProcessorQueue
 
   def process(id)
     # Process a file given an ID
-    a = Audio.get(id)$TIME_PER_KB
+    a = Audio.get(id)
     input = a.source.path
     output = File.dirname(input)
 
@@ -133,7 +131,7 @@ class ProcessorQueue
     # Estimated time to end of queue.
     pending = Audio.all(:processed => 'false', :id.lte => audio_id)
     time = 0.0
-    pending.each |audio| do
+    pending.each do |audio|
       time += $TIME_PER_KB * audio.source.size / 1024
     end
     return time
