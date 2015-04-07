@@ -1,6 +1,8 @@
 @import settings
 @import foundation
 
+$tertiary-color: #5b5b5b
+
 @mixin invert
   background-color: $primary-color
   color: white
@@ -18,9 +20,14 @@ header
     width: 331px
     height: 116px
 
-nav#primary
+nav
   ul
     list-style-type: none
+  li
+    display: inline-block
+
+nav#primary
+  ul
     text-align: right
     margin-top: 1.6em
   li
@@ -28,6 +35,11 @@ nav#primary
     font-size: rem-calc(24)
     margin: 1em
 
+nav#secondary
+  a
+    color: white
+  li
+    margin: 0 0.5em
 
 section#hero
   +invert
@@ -38,6 +50,7 @@ section#hero
     margin-bottom: 1em
     font-weight: 300
   a
+    color: white
     border-color: white
     font-size: rem-calc(24)
 
@@ -46,6 +59,11 @@ section#main
     padding: 2em 0
   h3
     text-align: center
+
+div#droparea
+  +invert
+  height: 5em
+  border: 2px dotted $secondary-color
 
 section#how-it-works
   h2
@@ -59,3 +77,15 @@ section#how-it-works
     height: 100%
   h5
     margin-top: 2em
+
+section#footer
+  background-color: $tertiary-color
+  .row
+    padding-top: 4em
+    background: url("/images/ne_bot_footerbacking.png") 100% 20% no-repeat
+    min-height: 30em
+  img, nav, ul
+    display: inline-block
+  .impressum
+    font-size: 100%
+    margin-top: 1.3em

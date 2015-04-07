@@ -1,0 +1,24 @@
+/* TEAM */
+    Lead: Kim Foale
+    Contact: kim@allicalm.net
+    Twitter: @kimadactl
+    Location: Manchester, UK
+
+    Designer: Mark Dormand
+    Contact: mark@studiosquid.co.uk
+    Twitter: @studiosquid
+
+    Noise detection: Paul Kendrick
+    Email: P.kendrick@salford.ac.uk 
+    Twitter: @kenders2000
+
+    Good Recording Project manager: Trevor Cox
+    Twitter: @trevor_cox
+
+/* THANKS */
+    Endless Sinatra advice: Justin Hellings
+    Twitter: @JHellings
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Software: Sinatra, Peaks.js suite, jQuery, Zurb Foundation

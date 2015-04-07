@@ -12,6 +12,7 @@
     {{! Google webfont }}
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/stylesheets/app.css" />
+    <link type="text/plain" rel="author" href="/humans.txt" />
     <script src="/js/vendor/modernizr/modernizr.js"></script>
   </head>
   <body>
@@ -21,10 +22,10 @@
           <h2><a href="/">NoiseEater</a></h2>
         </div>
         <div class="small-12 medium-6 columns">
-          <nav role="main" id="primary">
+          <nav role="navigation" id="primary">
             <ul>
-              <li><a href="./about">About</a></li>
-              <li><a href="./contact">Contact</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
           </nav>
         </div>
       </div>
@@ -33,6 +34,31 @@
     <section id="main">
       {{{yield}}}
     </section>
-    <script data-main="/js/app" src="/js/vendor/requirejs/require.js"></script>
+
+    <section id="footer">
+      <div class="row">
+        <div class="small-12 medium-7 columns">
+          <img src="/images/ne_logo_footer.png">
+          <nav role="secondary" id="secondary">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/licensing">Licensing</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </nav>
+
+        </div>
+        <div class="small-12 medium-5 columns text-right">
+          <p class="impressum">
+            &copy; 2015 Noise Eater<br>
+            A project by Salford University's<br> <a href="http://www.salford.ac.uk/computing-science-engineering/research/acoustics">Acoustics Research Centre</a>.<br><br>
+            Site by <a href="http://alliscalm.net">Kim Foale</a> &amp; <a href="http://studiosquid.co.uk/">Squid.</a><br>
+            <a href="https://github.com/kimadactyl/NoiseEater">Fork me on github!</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
   </body>
 </html>

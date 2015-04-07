@@ -9,42 +9,51 @@
 
 <div class="row">
   <div class="large-8 columns">
+  
     <h3>Upload your audio file</h3>
+
     <form method="post" action="/" enctype='multipart/form-data' data-abide>
       <fieldset>
 
-        <label for="audio">
-          <h5>Audio File</h5>
-          <em>Select any valid audio format.</em>
-          <input type="file" name="audio" id="audio" required>
-          <small class="error">Please select an audio file</small>
-        </label>
+        <div id="droparea">
+          <p>Drop file here or click to navigate</p>
+        </div>
 
-        <label for="audio"><h5>Description</h5>
-          <input type="text" name="description" id="description" placeholder="Add a description for your reference.">
-        </label>      
+        <div id="hiddenarea">
 
-        <label for="email"><h5>Email</h5>
-          <input type="email" name="email" id="email" placeholder="You will be sent a link to confirm your request." required>
-          <small class="error">A valid email address is required.</small>
-        </label>
+          <label for="audio">
+            <h5>Audio File</h5>
+            <em>Select any valid audio format.</em>
+            <input type="file" name="audio" id="audiofile" required>
+            <small class="error">Please select an audio file</small>
+          </label>
 
-        <label>
-          <h5>Detection</h5>
-          <em>Which noise detection algorithm do you want to use?</em>
-        </label>          
-          <input type="radio" name="detection" id="detection-wind" value="wind" checked><label for="detection-wind">Wind Noise</label><br>
-          <input type="radio" name="detection" id="detection-distortion" value="distortion"><label for="detection-distortion  ">Distortion</label><br>
-          <input type="radio" name="detection" id="detection-mic" value="mic" disabled><label for="detection-mic"><strike>Microphone Handling Noise (Coming soon!)</strike></label>
+          <label for="audio"><h5>Description</h5>
+            <input type="text" name="description" id="description" placeholder="Add a description for your reference.">
+          </label>      
 
-        <label for="terms">
-          <input type="checkbox" name="terms" id="terms" required>
-          I agree to the terms and conditions
-          <small class="error">You must agree to the terms and conditions</small>
-        </label>
+          <label for="email"><h5>Email</h5>
+            <input type="email" name="email" id="email" placeholder="You will be sent a link to confirm your request." required>
+            <small class="error">A valid email address is required.</small>
+          </label>
 
-        <div class="large-12 columns">
-          <button type="submit" name="upload" id="upload" value="upload">Upload</button>
+          <label>
+            <h5>Detection</h5>
+            <em>Which noise detection algorithm do you want to use?</em>
+          </label>          
+            <input type="radio" name="detection" id="detection-wind" value="wind" checked><label for="detection-wind">Wind Noise</label><br>
+            <input type="radio" name="detection" id="detection-distortion" value="distortion"><label for="detection-distortion  ">Distortion</label><br>
+            <input type="radio" name="detection" id="detection-mic" value="mic" disabled><label for="detection-mic"><strike>Microphone Handling Noise (Coming soon!)</strike></label>
+
+          <label for="terms">
+            <input type="checkbox" name="terms" id="terms" required>
+            I agree to the terms and conditions
+            <small class="error">You must agree to the terms and conditions</small>
+          </label>
+
+          <div class="large-12 columns">
+            <button type="submit" name="upload" id="upload" value="upload">Upload</button>
+          </div>
         </div>
       </fieldset>
     </form>
@@ -89,4 +98,11 @@
       </div>
     </div>    
   </div>
+  <div class="row">
+    <div class="small-12 columns text-center">
+      <a class="button round">Learn more</a>
+    </div>
+  </div>
 </section>
+
+<script data-main="/js/app/index" src="/js/vendor/requirejs/require.js"></script>
