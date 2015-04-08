@@ -19,7 +19,7 @@ class NoiseEater
       end
 
       def time_history
-        @json["Time History"]
+        @json["Time History"].to_json
       end
 
       def wind_free_regions

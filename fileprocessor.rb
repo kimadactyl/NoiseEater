@@ -96,12 +96,12 @@ class ProcessorQueue
         # Convert it to an mp3 and ogg for playback
         unless File.extname(a.source.path) == ".mp3"
           puts "#{a.id}: Writing mp3"
-          `#{$FFMPEG} -i #{a.source.path} -codec:a libmp3lame -qscale:a 2 #{output}/input.mp3`
+          `#{$FFMPEG} -i #{a.source.path} -codec:a libmp3lame -qscale:a 2 #{output}/input.mp3 -y`
         end
         unless File.extname(a.source.path) == ".ogg"
           puts "#{a.id}: Writing ogg"
-          `#{$FFMPEG} -i #{a.source.path} -codec:a libvorbis -qscale:a 7 #{output}/input.ogg`
-        end.
+          `#{$FFMPEG} -i #{a.source.path} -codec:a libvorbis -qscale:a 7 #{output}/input.ogg -y`
+        end
 
         # Mark it as complete in the database
         a.processed = true

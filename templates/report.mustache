@@ -51,18 +51,14 @@
         <table id="time-history-table">
           <thead>
             <tr>
-              <td>Time (s)</td>
+              <td>Start (s)</td>
+              <td>End (s)</td>
               <td>Noise dBA</td>
               <td>Noise %</td>
             </tr>
           </thead>
-          {{#time_history}}
-            <tr>
-              <td>{{T}}</td>
-              <td>{{dBA}}</td>
-              <td>{{QDeg}}</td>
-            </tr>
-          {{/time_history}}
+          <tbody>
+          </tbody>
         </table>
       </section>
     </div>
@@ -128,7 +124,11 @@
       },
       {{/wind_free_regions}}
     ]
-  var thresh = 25;
+
+  var model = {
+    threshold: 25,
+    timeHistory: {{{time_history}}}
+  };
 </script>
 
 <script data-main="/js/app/report" src="/js/vendor/requirejs/require.js"></script>
