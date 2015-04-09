@@ -5,7 +5,7 @@ class NoiseEater
       def id
         @a.id.to_s
       end
-
+      
       def description
         @a.description
       end

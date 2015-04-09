@@ -86,18 +86,19 @@ class NoiseEater < Sinatra::Base
     end
   end
 
-  post "/report/:key/output" do
+  post "/report/:key" do
     # Generate an output file from a report
     @a = Audio.get(params[:key])
 
     # Regions or whole file, and a threshold, passed to this section
     type = params[:type]
     format = params[:format]
-    # TODO
-    thresh = 25 # params[:thresh]
+    # JSON array of our regions
+    # puts params[:regions]
+    regions = JSON.parse(params[:regions])
 
     # Sanity check
-    unless(@a && type && thresh && format)
+    unless(@a && type && regions && format)
       halt mustache :error
     end
 
@@ -120,23 +121,14 @@ class NoiseEater < Sinatra::Base
       ext = File.extname(a.source.path)
     end
 
-    # Read time history and adjust based on threshold
-    data = File.read("#{dir}/data.json")
-    regions = JSON.parse(data)["Time History"]
-
-    passing_regions = []
-    regions.each do |region|
-      passing_regions << region if region["QDeg"] < thresh
-    end
-
-    # TODO: either wait for windDet to be updated, or -1s from T to get start time
-
     # Same whichever format
     response.headers['content_type'] = "application/octet-stream"
 
     if(type == "zip")
       # Make a directory
       FileUtils.mkdir_p("#{dir}/regions")
+
+      # TODO: delete already existing files
 
       # For each region, write one file in regions dir
       print "#{@a.id}: Writing regions... ".colorize(:yellow)
@@ -156,18 +148,39 @@ class NoiseEater < Sinatra::Base
 
     elsif(type == "mute")
       # Single file with muted sections
-      filter = []
-      regions.each do |region|
-        filter.push "volume=enable='between(t,#{region["s"]},#{region["e"]})':volume=0"
+      # 1. Invert the regions to give sections with noise not without noise
+      iregions = []
+      regions.each_with_index do |region, idx|
+        # Our first region starts at ether the end of the last region, or zero
+        if idx > 0
+          istart = regions[idx - 1]["e"]
+        else
+          istart = 0
+        end
+        # Get the start pointer of the first region and set as the end of our first noisy region
+        iend = region["s"]
+        # In case start and end are zero
+        unless istart == iend
+          iregions.push "s" => istart, "e" => iend
+        end
       end
-      filter = '"' + filter.join(", ") + '"'
-      `#{$FFMPEG} -i #{input} -af #{filter} -v quiet #{dir}/output.#{ext} -y`
-      puts "#{@a.id}: Muted file #{dir}/output.#{ext} written.".colorize(:green)
+      # Now mute the inverted regions
+      if iregions.length > 0
+        filter = []
+        iregions.each do |region|
+          filter.push "volume=enable='between(t,#{region["s"]},#{region["e"]})':volume=0"
+        end
+        filter = '"' + filter.join(", ") + '"'
+        `#{$FFMPEG} -i #{input} -af #{filter} -v quiet #{dir}/output.#{ext} -y`
+        puts "#{@a.id}: Muted file #{dir}/output.#{ext} written.".colorize(:green)
 
-      # Send file
-      attachment("#{@a.description}-with-regions-muted.#{ext}")
-      response.write(File.read("#{dir}/output.#{ext}"))
-      puts "#{@a.id} Muted file sent"
+        # Send file
+        attachment("#{@a.description}-with-regions-muted.#{ext}")
+        response.write(File.read("#{dir}/output.#{ext}"))
+        puts "#{@a.id} Muted file sent"
+      else
+        # TODO: handle if no regions exist
+      end
     end
 
   end
