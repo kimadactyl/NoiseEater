@@ -2,7 +2,6 @@
 /bower_components/*
 /.sass-cache/*
 /uploads/*
-/bin/*
 /stylesheets/*
 /testdata/big-test/*
 /public/audio/*

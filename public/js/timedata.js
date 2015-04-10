@@ -97,8 +97,10 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
       $(document).foundation({
         slider: {
           on_change: function(){
-              // Set the threshold
-              thresh = sliderView.sliderElem.attr('data-slider');
+            // Set the threshold
+            thresh = sliderView.sliderElem.attr('data-slider');
+            // A little throttling
+            setTimeout(function() {
               octopus.setThreshold(thresh);
               // Update the noise free regions
               octopus.generateNoiseFreeRegions();
@@ -106,10 +108,11 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
               timehistoryView.render();
               // Render noise free regions
               noisefreeView.render();
-            // Wait a second before drawing waveform, very resource intensive
-            setTimeout(function() {
-              waveformView.update();
-            }, 1000);
+              // Wait a second before drawing waveform, very resource intensive
+              setTimeout(function() {
+                waveformView.update();
+              }, 1000);
+            }, 100);
           }
         }
       });
