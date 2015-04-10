@@ -14,7 +14,7 @@ $FFPROBE = "ffprobe"
 
 # Database connection settings and appropriate DM gem
 $DBGEM = "dm-sqlite-adapter"
-$DBSTRING = "sqlite3://audio.db"
+$DBSTRING = "sqlite3://#{Dir.pwd}/audio.db"
 
 # Binaries
 $AUDIOWAVEFORM = "./bin/audiowaveform"

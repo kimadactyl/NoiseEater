@@ -1767,8 +1767,8 @@ select {
 }
 /* line 121, ../js/vendor/foundation/scss/foundation/components/_alert-boxes.scss */
 .alert-box.alert {
-  background-color: #f04124;
-  border-color: #de2d0f;
+  background-color: #a80030;
+  border-color: #900029;
   color: #FFFFFF;
 }
 /* line 122, ../js/vendor/foundation/scss/foundation/components/_alert-boxes.scss */
@@ -2467,13 +2467,13 @@ button.success:hover, button.success:focus, .button.success:hover, .button.succe
 }
 /* line 226, ../js/vendor/foundation/scss/foundation/components/_buttons.scss */
 button.alert, .button.alert {
-  background-color: #f04124;
-  border-color: #cf2a0e;
+  background-color: #a80030;
+  border-color: #860026;
   color: #0abaee;
 }
 /* line 162, ../js/vendor/foundation/scss/foundation/components/_buttons.scss */
 button.alert:hover, button.alert:focus, .button.alert:hover, .button.alert:focus {
-  background-color: #cf2a0e;
+  background-color: #860026;
 }
 /* line 168, ../js/vendor/foundation/scss/foundation/components/_buttons.scss */
 button.alert:hover, button.alert:focus, .button.alert:hover, .button.alert:focus {
@@ -2620,8 +2620,8 @@ button.disabled.success:hover, button.disabled.success:focus, button[disabled].s
 }
 /* line 244, ../js/vendor/foundation/scss/foundation/components/_buttons.scss */
 button.disabled.alert, button[disabled].alert, .button.disabled.alert, .button[disabled].alert {
-  background-color: #f04124;
-  border-color: #cf2a0e;
+  background-color: #a80030;
+  border-color: #860026;
   color: #0abaee;
   cursor: default;
   opacity: 0.7;
@@ -2629,7 +2629,7 @@ button.disabled.alert, button[disabled].alert, .button.disabled.alert, .button[d
 }
 /* line 162, ../js/vendor/foundation/scss/foundation/components/_buttons.scss */
 button.disabled.alert:hover, button.disabled.alert:focus, button[disabled].alert:hover, button[disabled].alert:focus, .button.disabled.alert:hover, .button.disabled.alert:focus, .button[disabled].alert:hover, .button[disabled].alert:focus {
-  background-color: #cf2a0e;
+  background-color: #860026;
 }
 /* line 168, ../js/vendor/foundation/scss/foundation/components/_buttons.scss */
 button.disabled.alert:hover, button.disabled.alert:focus, button[disabled].alert:hover, button[disabled].alert:focus, .button.disabled.alert:hover, .button.disabled.alert:focus, .button[disabled].alert:hover, .button[disabled].alert:focus {
@@ -2637,7 +2637,7 @@ button.disabled.alert:hover, button.disabled.alert:focus, button[disabled].alert
 }
 /* line 179, ../js/vendor/foundation/scss/foundation/components/_buttons.scss */
 button.disabled.alert:hover, button.disabled.alert:focus, button[disabled].alert:hover, button[disabled].alert:focus, .button.disabled.alert:hover, .button.disabled.alert:focus, .button[disabled].alert:hover, .button[disabled].alert:focus {
-  background-color: #f04124;
+  background-color: #a80030;
 }
 /* line 245, ../js/vendor/foundation/scss/foundation/components/_buttons.scss */
 button.disabled.warning, button[disabled].warning, .button.disabled.warning, .button[disabled].warning {
@@ -4113,10 +4113,10 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
   border-radius: 0;
   background-color: #FFFFFF;
   font-family: inherit;
-  border-style: solid;
+  border-style: none;
   border-width: 1px;
   border-color: #cccccc;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
   color: rgba(0, 0, 0, 0.75);
   display: block;
   font-size: 0.875rem;
@@ -4254,7 +4254,7 @@ select {
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+);
   background-position: 100% center;
   background-repeat: no-repeat;
-  border-style: solid;
+  border-style: none;
   border-width: 1px;
   border-color: #cccccc;
   padding: 0.5rem;
@@ -4317,7 +4317,7 @@ input[type="file"] {
 /* We add basic fieldset styling */
 /* line 514, ../js/vendor/foundation/scss/foundation/components/_forms.scss */
 fieldset {
-  border: 1px solid #DDDDDD;
+  border: 1px none #DDDDDD;
   padding: 1.25rem;
   margin: 1.125rem 0;
 }
@@ -4340,7 +4340,7 @@ fieldset legend {
   font-size: 0.75rem;
   font-weight: normal;
   font-style: italic;
-  background: #f04124;
+  background: #a80030;
   color: #FFFFFF;
 }
 /* line 524, ../js/vendor/foundation/scss/foundation/components/_forms.scss */
@@ -4357,7 +4357,7 @@ span.error, small.error {
   font-size: 0.75rem;
   font-weight: normal;
   font-style: italic;
-  background: #f04124;
+  background: #a80030;
   color: #FFFFFF;
 }
 
@@ -4375,7 +4375,7 @@ span.error, small.error {
 /* line 543, ../js/vendor/foundation/scss/foundation/components/_forms.scss */
 .error label,
 .error label.error {
-  color: #f04124;
+  color: #a80030;
 }
 /* line 548, ../js/vendor/foundation/scss/foundation/components/_forms.scss */
 .error small.error {
@@ -4386,7 +4386,7 @@ span.error, small.error {
   font-size: 0.75rem;
   font-weight: normal;
   font-style: italic;
-  background: #f04124;
+  background: #a80030;
   color: #FFFFFF;
 }
 /* line 553, ../js/vendor/foundation/scss/foundation/components/_forms.scss */
@@ -4414,7 +4414,7 @@ select.error {
 
 /* line 575, ../js/vendor/foundation/scss/foundation/components/_forms.scss */
 label.error {
-  color: #f04124;
+  color: #a80030;
 }
 
 /* line 246, ../js/vendor/foundation/scss/foundation/components/_icon-bar.scss */
@@ -4975,7 +4975,7 @@ kbd {
 }
 /* line 99, ../js/vendor/foundation/scss/foundation/components/_labels.scss */
 .label.alert {
-  background-color: #f04124;
+  background-color: #a80030;
   color: #FFFFFF;
 }
 /* line 100, ../js/vendor/foundation/scss/foundation/components/_labels.scss */
@@ -5592,7 +5592,7 @@ ul.pagination li {
 }
 /* line 66, ../js/vendor/foundation/scss/foundation/components/_progress-bars.scss */
 .progress.alert .meter {
-  background: #f04124;
+  background: #a80030;
   height: 100%;
   display: block;
 }
@@ -6871,13 +6871,13 @@ meta.foundation-mq-topbar {
 }
 /* line 337, ../js/vendor/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li > a.button.alert {
-  background-color: #f04124;
-  border-color: #cf2a0e;
+  background-color: #a80030;
+  border-color: #860026;
   color: #0abaee;
 }
 /* line 162, ../js/vendor/foundation/scss/foundation/components/_buttons.scss */
 .top-bar-section ul li > a.button.alert:hover, .top-bar-section ul li > a.button.alert:focus {
-  background-color: #cf2a0e;
+  background-color: #860026;
 }
 /* line 168, ../js/vendor/foundation/scss/foundation/components/_buttons.scss */
 .top-bar-section ul li > a.button.alert:hover, .top-bar-section ul li > a.button.alert:focus {
@@ -6944,13 +6944,13 @@ meta.foundation-mq-topbar {
 }
 /* line 349, ../js/vendor/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li > button.alert {
-  background-color: #f04124;
-  border-color: #cf2a0e;
+  background-color: #a80030;
+  border-color: #860026;
   color: #0abaee;
 }
 /* line 162, ../js/vendor/foundation/scss/foundation/components/_buttons.scss */
 .top-bar-section ul li > button.alert:hover, .top-bar-section ul li > button.alert:focus {
-  background-color: #cf2a0e;
+  background-color: #860026;
 }
 /* line 168, ../js/vendor/foundation/scss/foundation/components/_buttons.scss */
 .top-bar-section ul li > button.alert:hover, .top-bar-section ul li > button.alert:focus {
@@ -9157,11 +9157,43 @@ th.hide-for-touch {
     display: table-cell !important;
   }
 }
-/* line 13, ../../sass/app.sass */
+/* line 5, ../../sass/app.sass */
+input::-webkit-input-placeholder {
+  text-align: center;
+}
+
+/* line 8, ../../sass/app.sass */
+input:-moz-placeholder {
+  text-align: center;
+}
+
+/* line 11, ../../sass/app.sass */
+input::-moz-placeholder {
+  text-align: center;
+}
+
+/* line 14, ../../sass/app.sass */
+input:-ms-input-placeholder {
+  text-align: center;
+}
+
+/* line 19, ../../sass/app.sass */
+h1, h2, h3, h4, h5, h6 {
+  color: #0abaee;
+}
+
+/* line 22, ../../sass/app.sass */
+h2.title {
+  font-size: 3rem;
+  font-weight: 300;
+  margin-bottom: 0.5em;
+}
+
+/* line 34, ../../sass/app.sass */
 header .row {
   padding: 2em 0;
 }
-/* line 15, ../../sass/app.sass */
+/* line 36, ../../sass/app.sass */
 header h2 {
   text-indent: 100%;
   white-space: nowrap;
@@ -9171,90 +9203,173 @@ header h2 {
   height: 116px;
 }
 
-/* line 24, ../../sass/app.sass */
+/* line 45, ../../sass/app.sass */
 nav ul {
   list-style-type: none;
 }
-/* line 26, ../../sass/app.sass */
+/* line 47, ../../sass/app.sass */
 nav li {
   display: inline-block;
 }
 
-/* line 30, ../../sass/app.sass */
+/* line 51, ../../sass/app.sass */
 nav#primary ul {
   text-align: right;
   margin-top: 1.6em;
 }
-/* line 33, ../../sass/app.sass */
+/* line 54, ../../sass/app.sass */
 nav#primary li {
   display: inline-block;
   font-size: 1.5rem;
   margin: 1em;
 }
 
-/* line 39, ../../sass/app.sass */
+/* line 60, ../../sass/app.sass */
 nav#secondary a {
   color: white;
 }
-/* line 41, ../../sass/app.sass */
+/* line 62, ../../sass/app.sass */
 nav#secondary li {
   margin: 0 0.5em;
 }
 
-/* line 44, ../../sass/app.sass */
+/* line 65, ../../sass/app.sass */
 section#hero {
   background-color: #0abaee;
   color: white;
 }
-/* line 9, ../../sass/app.sass */
+/* line 30, ../../sass/app.sass */
 section#hero h1, section#hero h2, section#hero h3, section#hero h4, section#hero h5, section#hero h6 {
   color: white;
 }
-/* line 46, ../../sass/app.sass */
+/* line 67, ../../sass/app.sass */
 section#hero .row {
   padding: 2em 0;
   background: url("/images/ne_bot_bannerbacking.png") 100% 20% no-repeat;
 }
-/* line 49, ../../sass/app.sass */
+/* line 70, ../../sass/app.sass */
 section#hero h1 {
   margin-bottom: 1em;
   font-weight: 300;
+  line-height: 1.3em;
 }
-/* line 52, ../../sass/app.sass */
+/* line 74, ../../sass/app.sass */
 section#hero a {
   color: white;
   border-color: white;
   font-size: 1.5rem;
 }
 
-/* line 58, ../../sass/app.sass */
+/* line 80, ../../sass/app.sass */
 section#main .row {
   padding: 2em 0;
 }
-/* line 60, ../../sass/app.sass */
+/* line 82, ../../sass/app.sass */
 section#main h3 {
   text-align: center;
 }
 
-/* line 63, ../../sass/app.sass */
-div#droparea {
-  background-color: #0abaee;
-  color: white;
-  height: 5em;
-  border: 2px dotted #e6e6e6;
+/* line 85, ../../sass/app.sass */
+form#uploadform {
+  border: 3px solid #0abaee;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  border-radius: 0.5em;
 }
-/* line 9, ../../sass/app.sass */
-div#droparea h1, div#droparea h2, div#droparea h3, div#droparea h4, div#droparea h5, div#droparea h6 {
+/* line 86, ../../sass/app.sass */
+form#uploadform label {
+  color: #0abaee;
+}
+/* line 88, ../../sass/app.sass */
+form#uploadform label[for="terms"] {
+  margin-top: 2em;
+}
+/* line 90, ../../sass/app.sass */
+form#uploadform #droparea {
+  padding: 2em 0;
+}
+/* line 92, ../../sass/app.sass */
+form#uploadform #droparea:hover {
+  cursor: pointer;
+  cursor: hand;
+}
+/* line 95, ../../sass/app.sass */
+form#uploadform #droparea img {
+  margin-right: 1em;
+}
+/* line 97, ../../sass/app.sass */
+form#uploadform #hiddenarea {
+  padding: 0 2.5em;
+}
+/* line 99, ../../sass/app.sass */
+form#uploadform #hiddenarea > label {
+  margin-bottom: 3em;
+}
+/* line 101, ../../sass/app.sass */
+form#uploadform #hiddenarea label.nomargin {
+  margin-bottom: 0;
+}
+/* line 105, ../../sass/app.sass */
+form#uploadform h4 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+/* line 108, ../../sass/app.sass */
+form#uploadform input[type="text"], form#uploadform input[type="email"] {
+  background-color: #e6e6e6;
+  color: #5b5b5b;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  border-radius: 0.5em;
+  font-size: 1rem;
+  max-width: 36em;
+  margin: 0 auto;
+  padding: 1.5em;
+}
+/* line 116, ../../sass/app.sass */
+form#uploadform input[type="radio"] {
+  opacity: 0;
+}
+/* line 118, ../../sass/app.sass */
+form#uploadform input[type="radio"] + label {
+  color: #0abaee;
+  background-color: white;
+}
+/* line 121, ../../sass/app.sass */
+form#uploadform input[type="radio"]:checked + label {
   color: white;
+  background-color: #0abaee;
+}
+/* line 124, ../../sass/app.sass */
+form#uploadform ul#distortion-type {
+  display: inline-block;
+  list-style-type: none;
+}
+/* line 127, ../../sass/app.sass */
+form#uploadform li label, form#uploadform button#upload {
+  width: 17em;
+  display: block;
+  font-size: 1.5rem;
+  padding: 0.25em;
+  border: 3px solid #0abaee;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+/* line 134, ../../sass/app.sass */
+form#uploadform button#upload {
+  color: white;
+  margin: auto auto 2em;
+  background-color: #0abaee;
+  font-weight: bold;
 }
 
-/* line 69, ../../sass/app.sass */
+/* line 143, ../../sass/app.sass */
 section#how-it-works h2 {
   font-size: 3rem;
-  color: #0abaee;
   font-weight: 300;
 }
-/* line 73, ../../sass/app.sass */
+/* line 146, ../../sass/app.sass */
 section#how-it-works .process {
   padding: 4em 0.5em 2em;
   border-radius: 15px;
@@ -9262,35 +9377,35 @@ section#how-it-works .process {
   color: white;
   height: 100%;
 }
-/* line 9, ../../sass/app.sass */
+/* line 30, ../../sass/app.sass */
 section#how-it-works .process h1, section#how-it-works .process h2, section#how-it-works .process h3, section#how-it-works .process h4, section#how-it-works .process h5, section#how-it-works .process h6 {
   color: white;
 }
-/* line 78, ../../sass/app.sass */
+/* line 151, ../../sass/app.sass */
 section#how-it-works h5 {
   margin-top: 2em;
 }
 
-/* line 82, ../../sass/app.sass */
+/* line 155, ../../sass/app.sass */
 table#time-history-table .pass {
   background-color: yellow;
 }
 
-/* line 86, ../../sass/app.sass */
+/* line 159, ../../sass/app.sass */
 section#footer {
   background-color: #5b5b5b;
 }
-/* line 88, ../../sass/app.sass */
+/* line 161, ../../sass/app.sass */
 section#footer .row {
   padding-top: 4em;
   background: url("/images/ne_bot_footerbacking.png") 100% 20% no-repeat;
   min-height: 30em;
 }
-/* line 92, ../../sass/app.sass */
+/* line 165, ../../sass/app.sass */
 section#footer img, section#footer nav, section#footer ul {
   display: inline-block;
 }
-/* line 94, ../../sass/app.sass */
+/* line 167, ../../sass/app.sass */
 section#footer .impressum {
   font-size: 100%;
   margin-top: 1.3em;

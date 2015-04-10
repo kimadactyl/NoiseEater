@@ -8,57 +8,58 @@
 </section>
 
 <div class="row">
-  <div class="large-8 columns">
+  <div class="small-12 columns text-center">
   
-    <h3>Upload your audio file</h3>
+    <h2 class="title">Upload your audio file</h2>
 
-    <form method="post" action="/" enctype='multipart/form-data' data-abide>
-      <fieldset>
-
+    <form method="post" id="uploadform" action="/" enctype='multipart/form-data' data-abide>
         <div id="droparea">
-          <p>Drop file here or click to navigate</p>
+          <h3>
+            <img src="/images/ne_audiofile_icon.png">
+            Drop file here or click to navigate
+          </h3>
         </div>
 
         <div id="hiddenarea">
 
           <label for="audio">
-            <h5>Audio File</h5>
+            <h4>Audio File</h4>
             <em>Select any valid audio format.</em>
             <input type="file" name="audio" id="audiofile" required>
             <small class="error">Please select an audio file</small>
           </label>
 
-          <label for="audio"><h5>Description</h5>
+          <label for="audio"><h4>Description</h4>
             <input type="text" name="description" id="description" placeholder="Add a description for your reference.">
           </label>      
 
-          <label for="email"><h5>Email</h5>
+          <label for="email"><h4>Email</h4>
             <input type="email" name="email" id="email" placeholder="You will be sent a link to confirm your request." required>
             <small class="error">A valid email address is required.</small>
           </label>
 
-          <label>
-            <h5>Detection</h5>
-            <em>Which noise detection algorithm do you want to use?</em>
+          <label class="nomargin">
+            <h4>Detection</h4>
+            Which noise detection algorithm do you want to use?
           </label>          
-            <input type="radio" name="detection" id="detection-wind" value="wind" checked><label for="detection-wind">Wind Noise</label><br>
-            <input type="radio" name="detection" id="detection-distortion" value="distortion"><label for="detection-distortion  ">Distortion</label><br>
-            <input type="radio" name="detection" id="detection-mic" value="mic" disabled><label for="detection-mic"><strike>Microphone Handling Noise (Coming soon!)</strike></label>
-
+          <ul id="distortion-type">
+            <li><input type="radio" name="detection" id="detection-wind" value="wind" checked><label for="detection-wind">Wind Noise</label></li>
+            <li><input type="radio" name="detection" id="detection-distortion" value="distortion"><label for="detection-distortion">Distortion</label></li>
+            <li><input type="radio" name="detection" id="detection-mic" value="mic" disabled><label for="detection-mic"><strike>Microphone Handling Noise</strike></label></li>
+          </ul>
           <label for="terms">
             <input type="checkbox" name="terms" id="terms" required>
             I agree to the terms and conditions
             <small class="error">You must agree to the terms and conditions</small>
           </label>
 
-          <div class="large-12 columns">
-            <button type="submit" name="upload" id="upload" value="upload">Upload</button>
-          </div>
+          <button type="submit" name="upload" id="upload" value="upload">Upload</button>
         </div>
-      </fieldset>
     </form>
   </div>
-  <div class="large-4 columns">
+</div>
+<div class="row">
+  <div class="small-12 columns">
     <h3>Sample files</h3>
     <ul>
       {{#audio}}

@@ -1,7 +1,28 @@
 @import settings
 @import foundation
+@import compass/css3/border-radius
+
+input::-webkit-input-placeholder
+  text-align: center
+
+input:-moz-placeholder
+  text-align: center
+
+input::-moz-placeholder 
+  text-align: center 
+
+input:-ms-input-placeholder 
+  text-align: center
 
 $tertiary-color: #5b5b5b
+
+h1, h2, h3, h4, h5, h6
+  color: $primary-color
+
+h2.title
+  font-size: rem-calc(48px)
+  font-weight: 300
+  margin-bottom: 0.5em
 
 @mixin invert
   background-color: $primary-color
@@ -49,6 +70,7 @@ section#hero
   h1
     margin-bottom: 1em
     font-weight: 300
+    line-height: 1.3em
   a
     color: white
     border-color: white
@@ -60,15 +82,66 @@ section#main
   h3
     text-align: center
 
-div#droparea
-  +invert
-  height: 5em
-  border: 2px dotted $secondary-color
+form#uploadform
+  label
+    color: $primary-color
+  label[for="terms"]
+    margin-top: 2em
+  #droparea
+    padding: 2em 0
+    &:hover
+      cursor: pointer
+      cursor: hand
+    img
+      margin-right: 1em
+  #hiddenarea
+    padding: 0 2.5em
+  #hiddenarea > label
+    margin-bottom: 3em
+  #hiddenarea label.nomargin
+    margin-bottom: 0
+  border: 3px solid $primary-color
+  +border-radius(0.5em)
+  h4
+    font-size: rem-calc(24px)
+    font-weight: bold
+  input[type="text"], input[type="email"]
+    background-color: $secondary-color
+    color: $tertiary-color
+    +border-radius(0.5em)
+    font-size: rem-calc(16px)
+    max-width: 36em
+    margin: 0 auto
+    padding: 1.5em
+  input[type="radio"]
+    opacity: 0
+    &+ label
+      color: $primary-color
+      background-color: white
+    &:checked + label
+      color: white
+      background-color: $primary-color
+  ul#distortion-type
+    display: inline-block
+    list-style-type: none
+  li label, button#upload
+    width: 17em
+    display: block
+    font-size: rem-calc(24px)
+    padding: 0.25em
+    border: 3px solid $primary-color
+    +border-radius(10px)
+  button#upload
+    color: white
+    margin: auto auto 2em
+    background-color: $primary-color
+    font-weight: bold
+
+
 
 section#how-it-works
   h2
     font-size: rem-calc(48)
-    color: $primary-color
     font-weight: 300
   .process
     padding: 4em 0.5em 2em

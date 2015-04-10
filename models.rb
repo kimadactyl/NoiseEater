@@ -60,5 +60,6 @@ class Audio
   mount_uploader :source, AudioUploader
 end
 
-# DataMapper.auto_migrate!
 DataMapper.finalize
+# DataMapper.auto_migrate!
+# DataMapper.auto_upgrade!

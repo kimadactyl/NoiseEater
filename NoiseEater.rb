@@ -198,6 +198,14 @@ class NoiseEater < Sinatra::Base
     end
   end
 
+  get "/about" do
+    mustache :about
+  end
+
+  get "/contact" do
+    mustache :contact
+  end
+
   not_found do
     status 404
     mustache :notfound
