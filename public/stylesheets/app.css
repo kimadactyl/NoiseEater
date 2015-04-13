@@ -9469,40 +9469,53 @@ section#download form {
   margin-bottom: 2em;
 }
 
+/* line 216, ../../sass/app.sass */
+.error .row {
+  background: url("/images/ne_bot_error.png") 100% 0% no-repeat;
+}
 /* line 218, ../../sass/app.sass */
+.error h2 {
+  font-size: 3rem;
+}
+/* line 220, ../../sass/app.sass */
+.error .button {
+  margin: 5em 0 25em;
+}
+
+/* line 225, ../../sass/app.sass */
 footer {
   background-color: #5b5b5b;
 }
-/* line 220, ../../sass/app.sass */
+/* line 227, ../../sass/app.sass */
 footer a {
   color: white;
 }
-/* line 222, ../../sass/app.sass */
+/* line 229, ../../sass/app.sass */
 footer .row {
   padding-top: 4em;
   background: url("/images/ne_bot_footerbacking.png") 100% 20% no-repeat;
   min-height: 30em;
 }
-/* line 226, ../../sass/app.sass */
+/* line 233, ../../sass/app.sass */
 footer img, footer nav, footer ul {
   display: inline-block;
 }
-/* line 228, ../../sass/app.sass */
+/* line 235, ../../sass/app.sass */
 footer .impressum {
   font-size: 100%;
   margin-top: 1.3em;
   color: white;
 }
-/* line 232, ../../sass/app.sass */
+/* line 239, ../../sass/app.sass */
 footer .impressum a {
   color: white;
   text-decoration: underline;
 }
-/* line 235, ../../sass/app.sass */
+/* line 242, ../../sass/app.sass */
 footer .authors {
   color: #e6e6e6;
 }
-/* line 237, ../../sass/app.sass */
+/* line 244, ../../sass/app.sass */
 footer .authors a {
   color: #e6e6e6;
 }
