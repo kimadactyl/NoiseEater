@@ -11,6 +11,10 @@ require(["jquery", "foundation"], function($) {
       $('#droparea .selected span').text(fileInput.val().split('\\').pop());
       $('#hiddenarea').slideDown("slow");
       $('.selected').show();
+
+      $('html, body').animate({
+        scrollTop: $("#uploadform").offset().top
+      }, 500);
     })
 
     $('#droparea').click(function(){
