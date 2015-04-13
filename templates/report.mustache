@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="large-12 columns">
+  <div class="large-12 columns text-center">
     <h2>Report for: {{description}}</h2>
 
     <div class="error">{{error}}</div>
@@ -24,7 +24,7 @@
 </div>
 
 <div class="row">
-  <div class="large-8 columns">
+  <div class="large-7 columns text-center">
     <section id="global-stats">
       <h3>Global Statistics</h3>
       <table>
@@ -39,54 +39,38 @@
             <td>&lt; -20dB</td>
           </tr>
         </thead>
-        <tr>
-          <td>Total time</td>
-          {{#global_stats}}
-            <td>{{.}}</td>
-          {{/global_stats}}
-        </tr>
+        <tbody>
+          <tr>
+            <td>Total time</td>
+            {{#global_stats}}
+              <td>{{.}}</td>
+            {{/global_stats}}
+          </tr>
+        </tbody>
       </table>
     </section>
-    <div class="large-4 columns">
-      <section id="time-history">
-        <h3>Time History</h3>
-        <table id="time-history-table">
-          <thead>
-            <tr>
-              <td>Start (s)</td>
-              <td>End (s)</td>
-              <td>Noise dBA</td>
-              <td>Noise %</td>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-      </section>
-    </div>
-    <div class="large-4 columns">
-      <section id="wind-free-regions">
-        <h3>Wind-Free Regions</h3>
-        <table id="wind-free-regions">
-          <thead>
-            <tr>
-              <td>Start (s)</td>
-              <td>End (s)</td>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-      </section>
-    </div>
+    <section id="wind-free-regions">
+      <h3>Wind-Free Regions</h3>
+      <table id="wind-free-regions">
+        <thead>
+          <tr>
+            <td>Start (s)</td>
+            <td>End (s)</td>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </section>
   </div>
 
-  <div class="large-4 columns">
+  <div class="large-5 columns text-center">
+
+    <h3>Download these regions</h3>
 
     <section id="download">
       <form id="output" method="post" action="/report/{{id}}">
         <fieldset>
-          <h5>Download these regions</h5>
           <label for="format"><h6>Format</h6> </label>
           <input type="radio" name="format" id="format-mp3" value="mp3" checked>
           <label for="format-mp3">MP3</label><br>

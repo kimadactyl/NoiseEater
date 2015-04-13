@@ -14,21 +14,29 @@ input::-moz-placeholder
 input:-ms-input-placeholder 
   text-align: center
 
-$tertiary-color: #5b5b5b
-
 h1, h2, h3, h4, h5, h6
   color: $primary-color
 
-h2.title
-  font-size: rem-calc(48px)
-  font-weight: 300
+h2
+  font-weight: 300  
   margin-bottom: 0.5em
+
+h4
+  font-weight: bold
+
+a:hover
+  text-decoration: underline
+
+.spacer
+  margin-bottom: 4em
 
 @mixin invert
   background-color: $primary-color
   color: white
   h1, h2, h3, h4, h5, h6
     color: white
+
+// === Header and navigation ===
 
 header
   .row
@@ -62,6 +70,8 @@ nav#secondary
   li
     margin: 0 0.5em
 
+// === Home/upload Page ===
+
 section#hero
   +invert
   .row
@@ -75,12 +85,10 @@ section#hero
     color: white
     border-color: white
     font-size: rem-calc(24)
-
-section#main
-  .row 
-    padding: 2em 0
-  h3
-    text-align: center
+    &.first
+      margin-right: 1.5em
+    &.second
+      margin-left: 1.5em
 
 form#uploadform
   label
@@ -88,7 +96,6 @@ form#uploadform
   label[for="terms"]
     margin-top: 2em
   #droparea
-    padding: 2em 0
     &:hover
       cursor: pointer
       cursor: hand
@@ -102,9 +109,16 @@ form#uploadform
     margin-bottom: 0
   border: 3px solid $primary-color
   +border-radius(0.5em)
-  h4
-    font-size: rem-calc(24px)
-    font-weight: bold
+  input[type="file"]
+    display: none
+  .notselected
+    h3
+      margin: 1.5em
+  .selected
+    h3
+      margin: 1.5em 1.5em 0
+    span
+      text-decoration: underline
   input[type="text"], input[type="email"]
     background-color: $secondary-color
     color: $tertiary-color
@@ -137,12 +151,33 @@ form#uploadform
     background-color: $primary-color
     font-weight: bold
 
-
+section#samples
+  background-color: $secondary-color
+  padding: 2em 0 3em
+  h2
+    color: $tertiary-color
+  h4
+    color: $primary-color
+  ul
+    list-style-type: none
+    background-color: white
+    padding: 1em
+    margin: 0
+    +radius(7px)
+  li
+    background-color: $secondary-color
+    margin: 1em 0
+    padding: 1em
+    font-weight: 600
+    +radius(7px)
+    a
+      color: $tertiary-color
+    &:hover
+      background-color: $primary-color
+      a
+        color: white
 
 section#how-it-works
-  h2
-    font-size: rem-calc(48)
-    font-weight: 300
   .process
     padding: 4em 0.5em 2em
     +radius(15px)
@@ -151,13 +186,39 @@ section#how-it-works
   h5
     margin-top: 2em
 
-table#time-history-table
-  .pass
-    background-color: yellow
+// === Report Page === //
+
+audio
+  width: 100%
+
+table
+  tbody
+    background-color: $secondary-color
+
+section#download
+  form
+    border: 2px solid $primary-color
+    +radius(10px)
+
+// table#time-history-table
+//   .pass
+//     background-color: #25E063
+
+// === Static pages === //
+
+.static
+  background: url("/images/")
+  margin-bottom: 6em
+  h2
+    margin-bottom: 2em
 
 
-section#footer
+// === Footer === //
+
+footer
   background-color: $tertiary-color
+  a
+    color: white
   .row
     padding-top: 4em
     background: url("/images/ne_bot_footerbacking.png") 100% 20% no-repeat
@@ -167,3 +228,11 @@ section#footer
   .impressum
     font-size: 100%
     margin-top: 1.3em
+    color: white
+    a
+      color: white
+      text-decoration: underline
+  .authors
+    color: $secondary-color
+    a
+      color: $secondary-color

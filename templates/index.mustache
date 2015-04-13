@@ -1,8 +1,8 @@
 <section id="hero">
-  <div class="row">
+  <div class="row spacer">
     <div class="small-12 medium-10 small-centered text-center columns">
       <h1>Noise Eater automatically identifies wind, distortion, and microphone handling noise in your audio file.</h1>
-      <a class="button round">Learn more</a>
+      <a class="button round first">Learn more</a> <a class="button round second" href="#samples">See samples</a>
     </div>
   </div>
 </section>
@@ -12,19 +12,24 @@
   
     <h2 class="title">Upload your audio file</h2>
 
-    <form method="post" id="uploadform" action="/" enctype='multipart/form-data' data-abide>
+    <form method="post" id="uploadform" action="/" enctype='multipart/form-data' class="spacer" data-abide>
         <div id="droparea">
-          <h3>
-            <img src="/images/ne_audiofile_icon.png">
-            Drop file here or click to navigate
-          </h3>
+          <span class="notselected">
+            <h3>
+              <img src="/images/ne_audiofile_icon.png">
+              Drop file here or click to navigate
+            </h3>
+          </span>
+          <span class="selected">
+            <h3>
+              <img src="/images/ne_audiofile_icon.png">
+              <span></span>
+            </h3>          
+          </span>
         </div>
 
-        <div id="hiddenarea">
-
+        <div id="hiddenarea" class="selected">
           <label for="audio">
-            <h4>Audio File</h4>
-            <em>Select any valid audio format.</em>
             <input type="file" name="audio" id="audiofile" required>
             <small class="error">Please select an audio file</small>
           </label>
@@ -56,30 +61,53 @@
           <button type="submit" name="upload" id="upload" value="upload">Upload</button>
         </div>
     </form>
+
+    <p id="moreless" class="spacer">
+      <span class="notselected">More options will appear once you’ve selected your file.</span>
+      <span class="selected"><a href="#">Clear form and cancel analysis?</a></span>
+    </p>
   </div>
 </div>
-<div class="row">
-  <div class="small-12 columns">
-    <h3>Sample files</h3>
-    <ul>
-      {{#audio}}
-        <li>
-          <a href="/report/{{id}}">
-            {{description}}
-          </a>
-        </li>
-      {{/audio}}
-    </ul>
+<section id="samples" class="spacer">
+  <div class="row text-center">
+    <div class="small-12 columns">
+      <h2>Sample files</h2>
+    </div>
   </div>
-</div>
-<hr>
+  <div class="row text-center nopadding" data-equalizer>
+    <div class="medium-4 columns">
+      <h4>Wind Noise</h4>
+      <ul data-equalizer-watch>
+        <li><a href="#">Live recording at Glastonbury</a></li>
+        <li><a href="#">Interview on a windy day in Salford</a></li>
+        <li><a href="#">Backup audio from internal mic on video camera</a></li>
+      </ul>
+    </div>
+    <div class="medium-4 columns">
+      <h4>Distortion</h4>
+      <ul data-equalizer-watch>
+        <li><a href="#">Digital clipping from live gig soundboard recording</a></li>
+        <li><a href="#">Live recording at Glastonbury</a></li>
+        <li><a href="#">Interview on a windy day in Salford</a></li>
+      </ul>
+    </div>
+    <div class="medium-4 columns">
+      <h4>Mic Handling</h4>    
+      <ul data-equalizer-watch>
+        <li><a href="#">Backup audio from internalmic on video camera</a></li>
+        <li><a href="#">Digital clipping from live gig soundboard recording</a></li>
+        <li><a href="#">Live recording at Glastonbury</a></li>
+      </ul>
+    </div>        
+  </div>
+</section>
 <section id="how-it-works">
   <div class="row">
     <div class="small-12 columns text-center">
       <h2>The Process</h2>
     </div>
   </div>
-  <div class="row text-center medium-uncollapse" data-equalizer>
+  <div class="row text-center medium-uncollapse spacer" data-equalizer>
     <div class="medium-4 small-12 columns" data-equalizer-watch>
       <div class="process">
         <img src="/images/ne_process1.png">
@@ -99,11 +127,11 @@
       </div>
     </div>    
   </div>
-  <div class="row">
+  <div class="row spacer">
     <div class="small-12 columns text-center">
       <a class="button round">Learn more</a>
     </div>
   </div>
 </section>
 
-<script data-main="/js/app/index" src="/js/vendor/requirejs/require.js"></script>
+<script data-main="/js/index" src="/js/vendor/requirejs/require.js"></script>

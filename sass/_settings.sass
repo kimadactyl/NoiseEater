@@ -121,6 +121,7 @@ $font-family-sans-serif: 'Open Sans' "Helvetica Neue", Helvetica, Roboto, Arial,
 // We use these as default colors throughout
 $primary-color: #0abaee
 $secondary-color: #e6e6e6
+$tertiary-color: #5b5b5b
 $alert-color: #a80030
 // $success-color: #43AC6A
 // $warning-color: #f08a24
@@ -128,7 +129,7 @@ $alert-color: #a80030
 
 // We use these to control various global styles
 // $body-bg: $white
-$body-font-color: $secondary-color
+$body-font-color: $tertiary-color
 // $body-font-family: $font-family-sans-serif
 // $body-font-weight: $font-weight-normal
 // $body-font-style: normal
@@ -210,9 +211,9 @@ $global-rounded: 10px
 
 // We use these to control header font sizes
 $h1-font-size: rem-calc(48)
-$h2-font-size: rem-calc(32)
+$h2-font-size: rem-calc(48)
 $h3-font-size: rem-calc(24)
-$h4-font-size: rem-calc(16)
+$h4-font-size: rem-calc(24)
 $h5-font-size: rem-calc(16)
 // $h6-font-size: 1rem
 
@@ -1269,19 +1270,19 @@ $fieldset-border-style: none
 // $include-html-table-classes: $include-html-classes
 
 // These control the background color for the table and even rows
-// $table-bg: $white
-// $table-even-row-bg: $snow
+$table-bg: transparent
+$table-even-row-bg: transparent
 
 // These control the table cell border style
-// $table-border-style: solid
+$table-border-style: none
 // $table-border-size: 1px
-// $table-border-color: $gainsboro
+// $table-border-color: white
 
 // These control the table head styles
-// $table-head-bg: $white-smoke
+$table-head-bg: $primary-color
 // $table-head-font-size: rem-calc(14)
-// $table-head-font-color: $jet
-// $table-head-font-weight: $font-weight-bold
+$table-head-font-color: white
+$table-head-font-weight: 600
 // $table-head-padding: rem-calc(8 10 10)
 
 // These control the table foot styles
@@ -1300,7 +1301,7 @@ $fieldset-border-style: none
 // These control the row padding and font styles
 // $table-row-padding: rem-calc(9 10)
 // $table-row-font-size: rem-calc(14)
-// $table-row-font-color: $jet
+$table-row-font-color: $tertiary-color
 // $table-line-height: rem-calc(18)
 
 // These are for controlling the layout, display and margin of tables

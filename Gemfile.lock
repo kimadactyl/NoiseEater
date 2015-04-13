@@ -117,7 +117,10 @@ GEM
       data_objects (= 0.10.15)
     do_sqlite3 (0.10.15)
       data_objects (= 0.10.15)
+    docile (1.1.5)
     fastercsv (1.5.5)
+    favicon_maker (1.3)
+      docile (~> 1.1)
     ffi (1.9.6)
     fileutils (0.7)
       rmagick (>= 2.13.1)
@@ -185,6 +188,7 @@ DEPENDENCIES
   dm-mysql-adapter
   dm-postgres-adapter
   dm-sqlite-adapter
+  favicon_maker
   fileutils
   json
   mail

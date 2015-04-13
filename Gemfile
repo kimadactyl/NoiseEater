@@ -40,6 +40,7 @@ group :development do
   gem "cucumber"
   gem "capybara"
   gem "rspec"
+  gem "favicon_maker"
   # gem "shotgun"
   # gem "capybara-webkit"
   # gem "launchy"

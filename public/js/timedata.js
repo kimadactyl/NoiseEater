@@ -1,10 +1,10 @@
-require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
+define(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
 
   /* ======= Octopus ======= */
 
   var octopus = {
     init: function() {
-      timehistoryView.init();
+      // timehistoryView.init();
       noisefreeView.init();
       waveformView.init();
       sliderView.init();
@@ -105,7 +105,7 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
               // Update the noise free regions
               octopus.generateNoiseFreeRegions();
               // Render time history
-              timehistoryView.render();
+              // timehistoryView.render();
               // Render noise free regions
               noisefreeView.render();
               // Wait a second before drawing waveform, very resource intensive
@@ -129,6 +129,11 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
       this.peaksElem = Peaks.init({
         container: document.querySelector('#peaks-container'),
         mediaElement: document.querySelector('audio'),
+        segmentColor: "#25E063",
+        playheadColor: "#0abaee",
+        overviewWaveformColor: "#5B5B5B",
+        zoomWaveformColor: "#5B5B5B",
+        randomizeSegmentColor: false,
         dataUri: { arraybuffer: '/audio/' + url + '/waves.dat' }
       });
 
@@ -151,7 +156,6 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
         rstring[i] =  {
           startTime: regions[i]["Ts"],
           endTime: regions[i]["Te"],
-          color: "yellow",
           labelText: "Wind-free region"
         };
       }
