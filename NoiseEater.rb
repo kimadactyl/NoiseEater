@@ -204,10 +204,11 @@ class NoiseEater < Sinatra::Base
   end
 
   get "/admin/delete/:id" do
-    del = Audio(:id)
-    del.destroy
+    a = Audio.get(params[:id])
+    a.destroy
     FileUtils.rm_rf("#{Dir.pwd}/public/audio/#{a.id}")
     puts "#{a.id}: Deleted on admin request".colorize(:red)
+    redirect "/admin"
   end
 
   get "/about" do
