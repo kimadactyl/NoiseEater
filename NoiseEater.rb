@@ -4,9 +4,10 @@ require "json"
 require "mustache/sinatra"
 require "audio_waveform"
 require "securerandom"
-require 'mail'
-require 'colorize'
-require 'fileutils'
+require "mail"
+require "colorize"
+require "fileutils"
+require "date"
 require "./config/settings"
 require "./models"
 require "./fileprocessor"
@@ -196,6 +197,17 @@ class NoiseEater < Sinatra::Base
     else
       not_found
     end
+  end
+
+  get "/admin" do
+    mustache :admin
+  end
+
+  get "/admin/delete/:id" do
+    del = Audio(:id)
+    del.destroy
+    FileUtils.rm_rf("#{Dir.pwd}/public/audio/#{a.id}")
+    puts "#{a.id}: Deleted on admin request".colorize(:red)
   end
 
   get "/about" do
