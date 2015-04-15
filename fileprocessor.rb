@@ -127,15 +127,15 @@ class ProcessorQueue
     next_ticket
   end
 
-  def time_to_process audio_id
-    # Estimated time to end of queue.
-    pending = Audio.all(:processed => 'false', :id.lte => audio_id)
-    time = 0.0
-    pending.each do |audio|
-      time += $TIME_PER_KB * audio.source.size / 1024
-    end
-    return time
-  end
+  # def time_to_process audio_id
+  #   # Estimated time to end of queue.
+  #   pending = Audio.all(:processed => 'false', :id.lte => audio_id)
+  #   time = 0.0
+  #   pending.each do |audio|
+  #     time += $TIME_PER_KB * audio.source.size / 1024
+  #   end
+  #   return time
+  # end
 
   def check_if_running
     # To be used post-form submit to check the queue is running.

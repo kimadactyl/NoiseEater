@@ -6,7 +6,7 @@ FaviconMaker.generate do
     output_dir    "./public/"
   end
 
-  from "favicon_hires.png" do
+  from "favicon_medium.png" do
     icon "apple-touch-icon-152x152-precomposed.png"
     icon "apple-touch-icon-144x144-precomposed.png"
     icon "apple-touch-icon-120x120-precomposed.png"
@@ -22,12 +22,13 @@ FaviconMaker.generate do
     icon "apple-touch-icon-precomposed.png", size: "57x57"
     icon "apple-touch-icon.png", size: "57x57"
     icon "favicon-32x32.png"
+    icon "favicon.ico", size: "64x64,32x32,24x24"
   end
 
-  from "favicon.png" do
+  from "favicon_tiny.png" do
     icon "favicon-16x16.png"
     icon "favicon.png", size: "16x16"
-    icon "favicon.ico", size: "64x64,32x32,24x24,16x16"
+    icon "favicon.ico", size: "16x16"
   end
 
   each_icon do |filepath|

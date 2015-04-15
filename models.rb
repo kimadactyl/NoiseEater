@@ -1,7 +1,7 @@
 require "data_mapper"
 require "carrierwave"
 require "carrierwave/datamapper"
-# require "./config/settings"
+require "./config/settings"
 require $DBGEM
 
 # DataMapper::Logger.new(STDOUT, :debug)
@@ -47,6 +47,8 @@ class Audio
   # Creation time and completion time
   property :created_at, DateTime
   property :completed_at, DateTime
+  # Audio length in seconds for estimating processing time
+  property :filelength, Float, :default => 0
   # Unique string needed to validate
   property :validationstring, String
   # Has the file been validated by clicking the email link?

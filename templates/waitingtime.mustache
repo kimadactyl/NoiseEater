@@ -1,0 +1,14 @@
+{{#redirect_now}}
+  Complete. Redirecting.
+  <script type="text/javascript">
+    setTimeout(function () {
+      window.location.href = "/report/" + {{redirect_now}};
+    }, 500)
+  </script>
+{{/redirect_now}}
+{{#processing_now}}
+  Your audio file is processing now, and will take approximately {{qtime}}. You will be redirected when it's complete.
+{{/processing_now}}
+{{^processing_now}}
+  You are in queue position {{qlength}}, ETA {{qtime}}.
+{{/processing_now}}

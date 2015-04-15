@@ -25,19 +25,30 @@ class NoiseEater < Sinatra::Base
     :templates => 'templates/'
   }
 
-  # Index page
+  # === Index Routes === #
   get "/" do
+    # Homepage
     mustache :index
   end
 
-  # Post audio file
   post "/" do
+    # Post audio file
+
     # Ensure one file per user by redirecting if the queue finds
     # May need to switch :processed for :success
     if Audio.all(:email => params[:email], :processed => false).length > 1
-      # TODO: Change this for preferred error message format
-      redirect "/onefileperuser.html"
-      return
+      redirect "/error/one-file-per-user"
+    end
+
+    # Probe the file for error and input format
+    filename = params[:audio][:tempfile].path
+    probe = `#{$FFPROBE} -show_error -show_streams -v quiet #{filename}`
+
+    # Is it a valid format?
+    if probe.include? "[ERROR]"
+      puts "Uploaded file is not in a valid format. Aborting.".colorize(:red)
+      # TODO: delete any temp files
+      redirect "/error/file-not-valid"
     end
 
     a = Audio.new
@@ -45,9 +56,8 @@ class NoiseEater < Sinatra::Base
     a.source = params[:audio]
     a.email = params[:email]
     a.description = params[:description]
-    # Selector for no output, wav, or mp3, and segments or muted waveform
-    # a.output = params[:output]
-    # a.type = params[:type]
+    # Length, using probe we already did and some regex
+    a.filelength = probe.match('^duration=(\d+.?\d+)')[1]
     # What detection type?
     a.detection = params[:detection]
     # Make a random string to validate with
@@ -68,28 +78,24 @@ class NoiseEater < Sinatra::Base
     redirect "/report/#{a.id}"
   end
 
-  # Report pages
+  #  === Report Routes === #
   get "/report/:key" do
-    # If validation is on, use that as the key, if not just use the ID
-    if $REQUIRE_VALIDATION
-      @a = Audio.first(:validationstring => params[:key])
-    else
-      @a = Audio.get(params[:key])
-    end
+    # View report 
+    @a = get_audio params[:key]
     if(!@a)
-      mustache :error
+      mustache :notfound
     elsif(@a.processed == true)
       datafile = File.read("./public/audio/" + @a.id.to_s + "/" + "data.json")
       @json = JSON.parse(datafile)
       mustache :report
     elsif(@a.processed == false)
-      mustache :processing, {}, :queue => $queue
+      mustache :processing
     end
   end
 
   post "/report/:key" do
     # Generate an output file from a report
-    @a = Audio.get(params[:key])
+    @a = get_audio params[:key]
 
     # Regions or whole file, and a threshold, passed to this section
     type = params[:type]
@@ -100,7 +106,7 @@ class NoiseEater < Sinatra::Base
 
     # Sanity check
     unless(@a && type && regions && format)
-      halt mustache :error
+      redirect "/error/couldnt-generate-output"
     end
 
     puts "#{@a.id}: Output file request received".colorize(:green)
@@ -186,7 +192,8 @@ class NoiseEater < Sinatra::Base
 
   end
 
-  # Validate strings clicked in emails
+  # === Validate strings clicked in emails === #
+
   get "/validate/:key" do
     @a = Audio.first(:validationstring => params[:key])
     if @a
@@ -199,17 +206,41 @@ class NoiseEater < Sinatra::Base
     end
   end
 
+  # === Admin routes === #
+
   get "/admin" do
+    # TODO: authentication
     mustache :admin
   end
 
   get "/admin/delete/:id" do
+    # TODO: Authentication
     a = Audio.get(params[:id])
     a.destroy
     FileUtils.rm_rf("#{Dir.pwd}/public/audio/#{a.id}")
     puts "#{a.id}: Deleted on admin request".colorize(:red)
     redirect "/admin"
   end
+
+  # === AJAX routes === #
+
+  get "/waitingtime/:id" do
+    id = params[:id]
+    audio = Audio.get(id)
+    # First check if it's complete
+    if audio.processed
+      @redirect_now  = $REQUIRE_VALIDATION ? audio.validationstring : audio.id
+    end
+    # Then, get the queue length
+    @qlength = Audio.count(:validated => true, :processed => false, :id.lt => id)
+    # Can overextimate if people don't validate but doesn't really matter
+    @qtime = Audio.sum(:filelength, :id.lte => id) * $TIME_PER_SECOND
+
+    # No layout as it's an AJAX request
+    mustache :waitingtime, :layout => false
+  end
+
+  #  === Static page routes === #
 
   get "/about" do
     mustache :about
@@ -219,13 +250,38 @@ class NoiseEater < Sinatra::Base
     mustache :contact
   end
 
+  # === Errors === #
+
+  get "/error/:error" do
+    case params[:error]
+    when "file-not-valid"
+      @title = "Error: File not valid"
+      @body = "Your audio file was not in a valid format. Please contact us if you think this is in error."
+    when "one-file-per-user"
+      @title = "Error: One file per user"
+      @body = "You may only have one file in the queue at once. Please wait, or cancel your existing requests."
+    when "couldnt-generate-output"
+      @title = "Error: Couldn't generate report"
+      @body = "Your output could not be generated. Please contact us, this shouldn't happen!"
+    else
+      @title = "Error"
+      @body = "Something happened without a specific error page. Please contact us and tell us what went wrong!"
+    end
+    mustache :error
+  end
+
   not_found do
     status 404
-    mustache :notfound
+    @title = "404: Page Not Found"
+    @body = "We can't find that page. Sorry!"
+    mustache :error
   end
+
+  # === Helpers === #
 
   helpers do
     def send_validation_email(id)
+      # Sends email to user
       a = Audio.get(id)
       link =  $DOMAIN + '/validate/' + a.validationstring
 
@@ -237,6 +293,11 @@ class NoiseEater < Sinatra::Base
       end
       mail.delivery_method :sendmail
       mail.deliver
+    end
+
+    def get_audio(id)
+      # Returns either the validation string or the id depending on if require validation is on
+      $REQUIRE_VALIDATION ? Audio.first(:validationstring => id) : Audio.get(id)
     end
   end
 

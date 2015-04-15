@@ -19,3 +19,6 @@ $DBSTRING = "sqlite3://#{Dir.pwd}/audio.db"
 # Binaries
 $AUDIOWAVEFORM = "./bin/audiowaveform"
 $WINDDET = "./bin/windDet"
+
+# Time estimated to process one second of data
+$TIME_PER_SECOND = 1 
