@@ -1,7 +1,6 @@
 class NoiseEater
   module Views
     class Report < Layout
-
       def id
         @a.id.to_s
       end
@@ -10,8 +9,12 @@ class NoiseEater
         @a.description
       end
 
+      def validationstring
+        @a.validationstring
+      end
+
       def audio_source
-        @a.id.to_s + "/"  + File.basename(@a.source.path)
+        @a.validationstring + "/"  + File.basename(@a.source.path)
       end
 
       def global_stats
@@ -22,9 +25,6 @@ class NoiseEater
         @json["Time History"].to_json
       end
 
-      def wind_free_regions
-        @json["Wind free regions"]
-      end
     end
   end
 end

@@ -187,31 +187,127 @@ section#how-it-works
     +radius(15px)
     +invert
     height: 100%
+  .process1 img
+    // 141px high
+    margin-bottom: 2px
+  .process2 img
+    // 123px high
+    margin-bottom: 20px
+  // .process3 
+    // 143px high
   h5
     margin-top: 2em
 
 // === Report Page === //
 
+$clean: #25E063
+
+.overview-container, .zoom-container
+  background-color: #F3F3F3
+  margin-bottom: 1em
+
+.soundinfo h3
+  color: $tertiary-color
+  margin: 1em 0 1.5em 
+
 audio
   width: 100%
 
+#threshold
+  h5
+    font-size: rem-calc(24px)
+    text-align: center
+    margin: 1em
+
+#key
+  margin-top: 4em
+  ul
+    list-style-type: none
+  li
+    color: $primary-color
+    font-weight: 600
+    div
+      margin-right: 0.5em
+      display: inline-block
+      width: 1em
+      height: 1em
+      +radius(3px)
+  li.clean div
+    background-color: $clean
+  li.noise div
+    background-color: $tertiary-color
+
 table
+  margin: 0 auto
+  thead tr td, tr td
+    padding: 1rem
+  tr td
+    text-align: center
   tbody
     background-color: $secondary-color
 
+#global-stats
+  table
+    width: 100%
+table#wind-free-regions
+  width: 50%
+
+.snr
+  display: none
+
 section#download
+  $btnsize: rem-calc(24px)
+  margin-bottom: 5em
+  fieldset
+    margin-top: 0
+    margin-bottom: 0
+  h6
+    color: $tertiary-color
+    font-weight: 600
   form
     border: 2px solid $primary-color
-    +radius(10px)
+    +radius(5px)
+  #formats label
+    font-size: rem-calc(24px)
+    font-weight: normal
+  input[type="radio"]:not(old) 
+    width: $btnsize
+    margin: 0
+    padding: 0
+    opacity: 0
+    + label
+      display: inline-block
+      margin-left: -$btnsize
+      margin-top: $btnsize / 2
+      margin-bottom: $btnsize / 2
+      padding-left: $btnsize * 1.5
+      background: url("/images/buttons/off.png") no-repeat 0 0
+      background-size: $btnsize
+      line-height: $btnsize
+    &:checked + label
+      background: url("/images/buttons/on.png") no-repeat 0 0
+      background-size: $btnsize
+  button#download
+    +radius(5px)
+    display: block
+    text-align: center
+    margin: 1em auto 0
+    color: white
+    font-weight: bold
+    background-color: $primary-color
+    &:hover
+      background-color: white
+      color: $primary-color
 
-// table#time-history-table
-//   .pass
-//     background-color: #25E063
+// === Admin === //
+table#admin
+  margin-bottom: 15em
+
 
 // === Static pages === //
 
 .static
-  // background: url("/images/")
+  background: url("/images/")
   margin-bottom: 6em
   h2
     margin-bottom: 1em

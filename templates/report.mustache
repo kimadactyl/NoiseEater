@@ -1,19 +1,30 @@
 <div class="row">
-  <div class="large-12 columns text-center">
+  <div class="medium-9 columns text-center">
     <h2 class="title">Report for: {{description}}</h2>
-
+  </div>
+  <div class="medium-3 columns">
+    <div id="key">
+      <ul>
+        <li class="clean"><div></div> Clean sound</li>
+        <li class="noise"><div></div> Noise</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
     <div class="error">{{error}}</div>
     
-    <div id="peaks-container"></div>
+    <div id="peaks-container"><h2>Loading...</h2></div>
     <audio controls>
-      <source src="/audio/{{id}}/input.mp3" type="audio/mp3">
-      <source src="/audio/{{id}}/input.ogg" type="audio/ogg">
+      <source src="/audio/{{validationstring}}/input.mp3" type="audio/mp3">
+      <source src="/audio/{{validationstring}}/input.ogg" type="audio/ogg">
     </audio>
 
   </div>  
 </div>
 
-<div class="row">
+<div class="row" id="threshold">
   <div class="small-12 columns">
     <h5>Threshold: <span id="sliderOutput"></span></h5>
     <div id="threshold-slider" class="range-slider" data-slider data-options="display_selector: #sliderOutput; initial: 25;">
@@ -23,25 +34,46 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="large-7 columns text-center">
+<div class="row soundinfo">
+  <div class="large-8 columns text-center">
     <section id="global-stats">
       <h3>Global Statistics</h3>
       <table>
         <thead>
-          <tr>
-            <td>SNR</td>
-            <td>&gt; 20dB</td>
-            <td>20db to 10dB</td>
-            <td>10dB to 0dB</td>
-            <td>0dB to -10dB</td>
-            <td>-10dB to -20dB</td>
-            <td>&lt; -20dB</td>
+          <tr id="toggle">
+            <td>
+              <span class="snr">SNR (dB)</span>
+              <span class="pc">Noise (%)</span>
+            </td>
+            <td>
+              <span class="snr">&gt; 20</span>
+              <span class="pc">&lt; 24</span>
+            </td>
+            <td>
+              <span class="snr">20 to 10</span>
+              <span class="pc">24 to 40</span>
+            </td>
+            <td>
+              <span class="snr">10 to 0</span>
+              <span class="pc">40 to 54 </span>
+            </td>
+            <td>
+              <span class="snr">0 to -10</span>
+              <span class="pc">54 to 69</span>
+            </td>
+            <td>
+              <span class="snr">-10 to -20</span>
+              <span class="pc">69 to 95</span>
+            </td>
+            <td>
+              <span class="snr">&lt; -20</span>
+              <span class="pc">&gt; 96</span>
+            </td>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Total time</td>
+            <td>Time (s)</td>
             {{#global_stats}}
               <td>{{.}}</td>
             {{/global_stats}}
@@ -50,7 +82,7 @@
       </table>
     </section>
     <section id="wind-free-regions">
-      <h3>Wind-Free Regions</h3>
+      <h3>Noise-Free Regions</h3>
       <table id="wind-free-regions">
         <thead>
           <tr>
@@ -64,24 +96,26 @@
     </section>
   </div>
 
-  <div class="large-5 columns text-center">
+  <div class="large-4 columns text-center">
 
     <h3>Download these regions</h3>
 
     <section id="download">
-      <form id="output" method="post" action="/report/{{id}}">
+      <form class="text-left" id="output" method="post" action="/report/{{validationstring}}">
         <fieldset>
-          <label for="format"><h6>Format</h6> </label>
-          <input type="radio" name="format" id="format-mp3" value="mp3" checked>
-          <label for="format-mp3">MP3</label><br>
-          <input type="radio" name="format" id="format-ogg" value="ogg">
-          <label for="format-ogg">Ogg</label><br>
-          <input type="radio" name="format" id="format-wav" value="wav">
-          <label for="format-wav">Source</label><br>
+          <label for="format"><h6>Format</h6></label>
+          <div id="formats">
+            <input type="radio" name="format" id="format-mp3" value="mp3" checked>
+            <label for="format-mp3">MP3</label><br>
+            <input type="radio" name="format" id="format-ogg" value="ogg">
+            <label for="format-ogg">Ogg</label><br>
+            <input type="radio" name="format" id="format-wav" value="wav">
+            <label for="format-wav">Source</label><br>
+          </div>
 
           <label for="type"><h6>Type</h6></label>
           <input type="radio" name="type" id="type-mute" value="mute" checked>
-          <label for="type-mute">One file with noise regions muted</label><br>
+          <label for="type-mute">File with noise regions muted</label><br>
           <input type="radio" name="type" id="type-zip" value="zip">
           <label for="type-zip">Zip file of noise-free regions</label><br>
 
@@ -99,7 +133,8 @@
   var model = {
     threshold: 25,
     timeHistory: {{{time_history}}},
-    passingRegions: []
+    passingRegions: [],
+    validationString: "{{validationstring}}",
   };
 </script>
 

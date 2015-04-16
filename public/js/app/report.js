@@ -122,9 +122,7 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
   var waveformView = {
     init: function() {
       // TODO: refactor considering we are now using validation string urls
-      url = window.location.pathname;
-      url = url.split("/")
-      url = url[2];
+      url = model.validationString // Should go through octupus rlly
 
       this.peaksElem = Peaks.init({
         container: document.querySelector('#peaks-container'),
@@ -204,6 +202,11 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
       document.getElementById("regions").value = JSON.stringify(clean);
       return true; // return false to cancel form action
     });
+
+    $('#global-stats #toggle').click(function() {
+      $('.snr').toggle();
+      $('.pc').toggle();
+    })
   });
 
 });

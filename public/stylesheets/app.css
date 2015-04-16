@@ -9448,82 +9448,229 @@ section#how-it-works .process h1, section#how-it-works .process h2, section#how-
   color: white;
 }
 /* line 190, ../../sass/app.sass */
+section#how-it-works .process1 img {
+  margin-bottom: 2px;
+}
+/* line 193, ../../sass/app.sass */
+section#how-it-works .process2 img {
+  margin-bottom: 20px;
+}
+/* line 198, ../../sass/app.sass */
 section#how-it-works h5 {
   margin-top: 2em;
 }
 
-/* line 195, ../../sass/app.sass */
+/* line 205, ../../sass/app.sass */
+.overview-container, .zoom-container {
+  background-color: #F3F3F3;
+  margin-bottom: 1em;
+}
+
+/* line 209, ../../sass/app.sass */
+.soundinfo h3 {
+  color: #5b5b5b;
+  margin: 1em 0 1.5em;
+}
+
+/* line 213, ../../sass/app.sass */
 audio {
   width: 100%;
 }
 
-/* line 199, ../../sass/app.sass */
+/* line 217, ../../sass/app.sass */
+#threshold h5 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 1em;
+}
+
+/* line 222, ../../sass/app.sass */
+#key {
+  margin-top: 4em;
+}
+/* line 224, ../../sass/app.sass */
+#key ul {
+  list-style-type: none;
+}
+/* line 226, ../../sass/app.sass */
+#key li {
+  color: #0abaee;
+  font-weight: 600;
+}
+/* line 229, ../../sass/app.sass */
+#key li div {
+  margin-right: 0.5em;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 3px;
+}
+/* line 235, ../../sass/app.sass */
+#key li.clean div {
+  background-color: #25E063;
+}
+/* line 237, ../../sass/app.sass */
+#key li.noise div {
+  background-color: #5b5b5b;
+}
+
+/* line 240, ../../sass/app.sass */
+table {
+  margin: 0 auto;
+}
+/* line 242, ../../sass/app.sass */
+table thead tr td, table tr td {
+  padding: 1rem;
+}
+/* line 244, ../../sass/app.sass */
+table tr td {
+  text-align: center;
+}
+/* line 246, ../../sass/app.sass */
 table tbody {
   background-color: #e6e6e6;
 }
 
-/* line 203, ../../sass/app.sass */
-section#download form {
-  border: 2px solid #0abaee;
-  border-radius: 10px;
+/* line 250, ../../sass/app.sass */
+#global-stats table {
+  width: 100%;
 }
 
-/* line 213, ../../sass/app.sass */
+/* line 252, ../../sass/app.sass */
+table#wind-free-regions {
+  width: 50%;
+}
+
+/* line 255, ../../sass/app.sass */
+.snr {
+  display: none;
+}
+
+/* line 258, ../../sass/app.sass */
+section#download {
+  margin-bottom: 5em;
+}
+/* line 261, ../../sass/app.sass */
+section#download fieldset {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* line 264, ../../sass/app.sass */
+section#download h6 {
+  color: #5b5b5b;
+  font-weight: 600;
+}
+/* line 267, ../../sass/app.sass */
+section#download form {
+  border: 2px solid #0abaee;
+  border-radius: 5px;
+}
+/* line 270, ../../sass/app.sass */
+section#download #formats label {
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+/* line 273, ../../sass/app.sass */
+section#download input[type="radio"]:not(old) {
+  width: 1.5rem;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+}
+/* line 278, ../../sass/app.sass */
+section#download input[type="radio"]:not(old) + label {
+  display: inline-block;
+  margin-left: -1.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-left: 2.25rem;
+  background: url("/images/buttons/off.png") no-repeat 0 0;
+  background-size: 1.5rem;
+  line-height: 1.5rem;
+}
+/* line 287, ../../sass/app.sass */
+section#download input[type="radio"]:not(old):checked + label {
+  background: url("/images/buttons/on.png") no-repeat 0 0;
+  background-size: 1.5rem;
+}
+/* line 290, ../../sass/app.sass */
+section#download button#download {
+  border-radius: 5px;
+  display: block;
+  text-align: center;
+  margin: 1em auto 0;
+  color: white;
+  font-weight: bold;
+  background-color: #0abaee;
+}
+/* line 298, ../../sass/app.sass */
+section#download button#download:hover {
+  background-color: white;
+  color: #0abaee;
+}
+
+/* line 303, ../../sass/app.sass */
+table#admin {
+  margin-bottom: 15em;
+}
+
+/* line 309, ../../sass/app.sass */
 .static {
+  background: url("/images/");
   margin-bottom: 6em;
 }
-/* line 216, ../../sass/app.sass */
+/* line 312, ../../sass/app.sass */
 .static h2 {
   margin-bottom: 1em;
 }
 
-/* line 220, ../../sass/app.sass */
+/* line 316, ../../sass/app.sass */
 .error .row {
   background: url("/images/ne_bot_error.png") 100% 0% no-repeat;
 }
-/* line 222, ../../sass/app.sass */
+/* line 318, ../../sass/app.sass */
 .error h2 {
   font-size: 3rem;
 }
-/* line 224, ../../sass/app.sass */
+/* line 320, ../../sass/app.sass */
 .error .button {
   margin: 5em 0 25em;
 }
 
-/* line 229, ../../sass/app.sass */
+/* line 325, ../../sass/app.sass */
 footer {
   background-color: #5b5b5b;
 }
-/* line 231, ../../sass/app.sass */
+/* line 327, ../../sass/app.sass */
 footer a {
   color: white;
 }
-/* line 233, ../../sass/app.sass */
+/* line 329, ../../sass/app.sass */
 footer .row {
   padding-top: 4em;
   background: url("/images/ne_bot_footerbacking.png") 100% 20% no-repeat;
   min-height: 30em;
 }
-/* line 237, ../../sass/app.sass */
+/* line 333, ../../sass/app.sass */
 footer img, footer nav, footer ul {
   display: inline-block;
 }
-/* line 239, ../../sass/app.sass */
+/* line 335, ../../sass/app.sass */
 footer .impressum {
   font-size: 100%;
   margin-top: 1.3em;
   color: white;
 }
-/* line 243, ../../sass/app.sass */
+/* line 339, ../../sass/app.sass */
 footer .impressum a {
   color: white;
   text-decoration: underline;
 }
-/* line 246, ../../sass/app.sass */
+/* line 342, ../../sass/app.sass */
 footer .authors {
   color: #e6e6e6;
 }
-/* line 248, ../../sass/app.sass */
+/* line 344, ../../sass/app.sass */
 footer .authors a {
   color: #e6e6e6;
 }

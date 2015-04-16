@@ -11,7 +11,7 @@ class AudioUploader < CarrierWave::Uploader::Base
   storage :file
 
   def store_dir
-    "public/audio/#{model.id}/"
+    "public/audio/#{model.validationstring}/"
   end
 
   def extensions_white_list
@@ -56,6 +56,7 @@ class Audio
   property :validated, Boolean, :default => true
   # Has the file been processed?
   property :processed, Boolean, :default => false
+  property :processingtime, Float, :default => 0
   # Was the file processed successfully? 0 == yes, other values for error codes
   property :success, Boolean, :default => false
   # Uploader gizmo

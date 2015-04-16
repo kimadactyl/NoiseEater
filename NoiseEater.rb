@@ -74,18 +74,23 @@ class NoiseEater < Sinatra::Base
       a.save
       puts "#{a.id}: Uploaded, validation disabled".colorize(:blue)
     end
-    # Redirect to report page
-    redirect "/report/#{a.id}"
+    # Redirect depending on require validation status
+    if $REQUIRE_VALIDATION
+      redirect "/thankyou"
+    else
+      redirect "/report/#{a.id}"
+    end
   end
 
   #  === Report Routes === #
+
   get "/report/:key" do
     # View report 
     @a = get_audio params[:key]
     if(!@a)
-      mustache :notfound
+      not_found
     elsif(@a.processed == true)
-      datafile = File.read("./public/audio/" + @a.id.to_s + "/" + "data.json")
+      datafile = File.read("./public/audio/" + @a.validationstring + "/" + "data.json")
       @json = JSON.parse(datafile)
       mustache :report
     elsif(@a.processed == false)
@@ -95,13 +100,11 @@ class NoiseEater < Sinatra::Base
 
   post "/report/:key" do
     # Generate an output file from a report
-    @a = get_audio params[:key]
-
+    @a = Audio.first(:validationstring => params[:key])
     # Regions or whole file, and a threshold, passed to this section
     type = params[:type]
     format = params[:format]
     # JSON array of our regions
-    # puts params[:regions]
     regions = JSON.parse(params[:regions])
 
     # Sanity check
@@ -200,7 +203,7 @@ class NoiseEater < Sinatra::Base
       @a.validated = true
       @a.save
       puts "#{@a.id}: Validation link clicked. Redirecting...".colorize(:blue)
-      mustache :validated, {}, :a => @a
+      mustache :validated
     else
       not_found
     end
@@ -217,7 +220,7 @@ class NoiseEater < Sinatra::Base
     # TODO: Authentication
     a = Audio.get(params[:id])
     a.destroy
-    FileUtils.rm_rf("#{Dir.pwd}/public/audio/#{a.id}")
+    FileUtils.rm_rf("#{Dir.pwd}/public/audio/#{a.validationstring}")
     puts "#{a.id}: Deleted on admin request".colorize(:red)
     redirect "/admin"
   end
@@ -244,6 +247,10 @@ class NoiseEater < Sinatra::Base
 
   get "/about" do
     mustache :about
+  end
+
+  get "/thankyou" do
+    mustache :thankyou
   end
 
   get "/contact" do

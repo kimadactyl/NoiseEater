@@ -7,29 +7,22 @@ class ProcessorQueue
     puts $SEND_CONFIRMATION ? "Email confirmation is enabled".colorize(:green) : "Email confirmation is disabled".colorize(:red)
     # print ("ffmpeg path is " + `which ffmpeg`).colorize(:green)
     # print ("ffprobe path is " + `which ffprobe`).colorize(:green)
-    @running = true
-
-    # Caution: behaviour here may still return nil for *new* wind-noise database
-    # ie: where there is *not even an initial ticket*
-    # But otherwise last ticket is given by next_ticket, and they're compared to
-    # control processing behaviour now.
-    @ticket = next_ticket
-
+    @running = false
     Thread.new { loop }
   end
 
   def loop
     while true do
-      if next_ticket == last_ticket
-        # The queue is at its end
+      if next_ticket && !@running
+        # If there's a ticket to process, go do that
+        puts "#{next_ticket}: Next ticket".colorize(:green)
+        # Stop doing this until it's done
+        @running = true
+        process(next_ticket)
+        @running = false
+      else
         # Sleep for 5 seconds then try again
         sleep 5
-      else
-        # If there's a ticket to process, go do that
-        @ticket = next_ticket
-        t = @ticket.id
-        puts "#{t}: Next ticket".colorize(:green)
-        process(t)
       end
     end
   end
@@ -42,16 +35,10 @@ class ProcessorQueue
       ticket = Audio.first(:processed => false)
     end
     if ticket
-      return ticket
+      return ticket.id
     else
-      # If not, return the last_ticket as current queue index
-      return last_ticket
+      return false
     end
-  end
-
-  def last_ticket
-  # Return the last processed file on the queue
-    return Audio.last(:processed => true)
   end
 
   def process(id)
@@ -81,10 +68,17 @@ class ProcessorQueue
       end
       # Then either way, process the file.
       # Run the windDet binary and check exit status
+      start_time = Time.now
       puts "#{a.id}: #{$WINDDET} -i #{input} -j #{output}/data.json".colorize(:yellow)
       if system "#{$WINDDET} -i #{input} -j #{output}/data.json"
-        puts "#{a.id}: Processing completed successfully.".colorize(:green)
+        processing_time = Time.now - start_time
+        puts "#{a.id}: Processing completed successfully, took #{processing_time}s.".colorize(:green)
 
+        # Sanitise json
+        data = File.open("#{output}/data.json", "r")
+        data = data.read
+        data = data.gsub(/nan|-nan|inf|-inf/, "0")
+        File.write("#{output}/data.json", data)
 
         # Write waveform data. -b 8 is critical for peaks.js to work with the data.
         if system "#{$AUDIOWAVEFORM} -i #{input} -o #{output}/waves.dat -b 8"
@@ -104,6 +98,8 @@ class ProcessorQueue
         end
 
         # Mark it as complete in the database
+        a.completed_at = Time.now
+        a.processingtime = processing_time
         a.processed = true
         a.success = true
 
@@ -122,37 +118,11 @@ class ProcessorQueue
     # Save db record
     a.save
     puts "#{a.id}: Complete".colorize(:green)
-
-    # Check for the next file
-    next_ticket
   end
 
-  # def time_to_process audio_id
-  #   # Estimated time to end of queue.
-  #   pending = Audio.all(:processed => 'false', :id.lte => audio_id)
-  #   time = 0.0
-  #   pending.each do |audio|
-  #     time += $TIME_PER_KB * audio.source.size / 1024
-  #   end
-  #   return time
-  # end
-
-  def check_if_running
-    # To be used post-form submit to check the queue is running.
-    # If it's not, process it now.
-    if @running == false
-      @running = true
-      next_ticket
-    end
-  end
-
-  def current_ticket
-    # Output current ticket status
-    @ticket
-  end
 
   def send_confirmation_email(a)
-    link =  $DOMAIN + "/report/" + a.id.to_s
+    link =  $DOMAIN + "/report/" + a.validationstring
 
     mail = Mail.new do
       from $FROM_EMAIL
