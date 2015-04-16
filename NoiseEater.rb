@@ -212,12 +212,12 @@ class NoiseEater < Sinatra::Base
   # === Admin routes === #
 
   get "/admin" do
-    # TODO: authentication
+    protected!
     mustache :admin
   end
 
   get "/admin/delete/:id" do
-    # TODO: Authentication
+    protected!
     a = Audio.get(params[:id])
     a.destroy
     FileUtils.rm_rf("#{Dir.pwd}/public/audio/#{a.validationstring}")
@@ -305,6 +305,18 @@ class NoiseEater < Sinatra::Base
     def get_audio(id)
       # Returns either the validation string or the id depending on if require validation is on
       $REQUIRE_VALIDATION ? Audio.first(:validationstring => id) : Audio.get(id)
+    end
+
+    # h/t http://www.sinatrarb.com/faq.html#auth
+    def protected!
+      return if authorized?
+      headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
+      halt 401, "Not authorized\n"
+    end
+
+    def authorized?
+      @auth ||=  Rack::Auth::Basic::Request.new(request.env)
+      @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['admin', $ADMINPASSWORD]
     end
   end
 
