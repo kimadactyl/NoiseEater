@@ -130,7 +130,7 @@ class ProcessorQueue
       to a.email
       body 'Audio file processing complete. View the report on our website: ' + link
     end
-    mail.delivery_method :sendmail
+    mail.delivery_method $MAIL_PARAMS
     mail.deliver
   end
 

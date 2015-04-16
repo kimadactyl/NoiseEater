@@ -66,19 +66,16 @@ class NoiseEater < Sinatra::Base
     a.created_at = Time.now
     # Email the user unless validation is disabled
     if $REQUIRE_VALIDATION
+      a.validated = false
       a.save
       puts "#{a.id}: Emailing #{a.email} a validation link".colorize(:blue)
       send_validation_email(a.id)
+      redirect "/thankyou"
     else
       a.validated = true
       a.save
       puts "#{a.id}: Uploaded, validation disabled".colorize(:blue)
-    end
-    # Redirect depending on require validation status
-    if $REQUIRE_VALIDATION
-      redirect "/thankyou"
-    else
-      redirect "/report/#{a.id}"
+      redirect "/report/#{a.id}"      
     end
   end
 
@@ -298,7 +295,7 @@ class NoiseEater < Sinatra::Base
         to a.email
         body 'Thanks for your submission. Click here to start processing your file: ' + link
       end
-      mail.delivery_method :sendmail
+      # mail.delivery_method :sendmail
       mail.deliver
     end
 
