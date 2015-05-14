@@ -41,7 +41,7 @@ group :development do
   gem "capybara"
   gem "rspec"
   gem "favicon_maker"
-  # gem "shotgun"
+  gem "shotgun"
   # gem "capybara-webkit"
   # gem "launchy"
   # gem "poltergeist"

@@ -25,6 +25,10 @@ class NoiseEater
         @json["Time History"].to_json
       end
 
+      def location
+        @location
+      end
+
     end
   end
 end

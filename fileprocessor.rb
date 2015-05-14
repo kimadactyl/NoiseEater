@@ -67,11 +67,35 @@ class ProcessorQueue
         input = "#{output}/converted.wav"
       end
       # Then either way, process the file.
-      # Run the windDet binary and check exit status
+
+      # Detection type?
+      case a.detection
+        when :wind
+          det = $WINDDET
+          workdir = "wind"
+        when :distortion
+          det = $DISTDET
+          workdir ="distortion"
+        when :mic
+          det = $MICDET
+          workdir = "mic"
+      end
+
+      # Timestamp for estimates
       start_time = Time.now
-      puts "#{a.id}: #{$WINDDET} -i #{input} -j #{output}/data.json".colorize(:yellow)
-      if system "#{$WINDDET} -i #{input} -j #{output}/data.json"
+      # Log that we got this far
+      puts "#{det} -i #{input} -j #{output}/data.json, :chdir => #{Dir.pwd}/bin/#{workdir}".colorize(:yellow)
+
+      # Launch process
+      pid = spawn("#{det} -i #{input} -j #{output}/data.json", :chdir => "#{Dir.pwd}/bin/#{workdir}")
+      # Wait here for a response
+      Process.waitpid(pid, 0)
+
+      # Check exist status of last process
+      if $?.success?
+        # We did it!
         processing_time = Time.now - start_time
+        puts "Completed"
         puts "#{a.id}: Processing completed successfully, took #{processing_time}s.".colorize(:green)
 
         # Sanitise json

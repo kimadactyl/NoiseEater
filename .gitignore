@@ -8,3 +8,5 @@
 /audio.db
 /config/settings.rb
 /iphone1.txt
+/bin/distortion/*
+/bin/mic/*

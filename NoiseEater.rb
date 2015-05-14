@@ -8,6 +8,7 @@ require "mail"
 require "colorize"
 require "fileutils"
 require "date"
+require "ostruct"
 require "./config/settings"
 require "./models"
 require "./fileprocessor"
@@ -36,7 +37,7 @@ class NoiseEater < Sinatra::Base
 
     # Ensure one file per user by redirecting if the queue finds
     # May need to switch :processed for :success
-    if Audio.all(:email => params[:email], :processed => false).length > 1
+    if Audio.all(:email => params[:email], :processed => false).length > 1 && $ONE_FILE_PER_USER
       redirect "/error/one-file-per-user"
     end
 
@@ -84,6 +85,7 @@ class NoiseEater < Sinatra::Base
   get "/report/:key" do
     # View report 
     @a = get_audio params[:key]
+    @location = "audio"
     if(!@a)
       not_found
     elsif(@a.processed == true)
@@ -93,6 +95,31 @@ class NoiseEater < Sinatra::Base
     elsif(@a.processed == false)
       mustache :processing
     end
+  end
+
+  get "/example/:key" do
+    # Load these manually
+    key = params[:key]
+    case key
+      when "wind-cows"
+        desc = "Wind detection: Cows mooing"
+      when "wind-birds"
+        desc = "Wind detection: Birdsong"
+      when "wind-didgeridoo"
+        desc = "Wind detection: Didgeridoo"
+      else
+        not_found
+    end
+    # Not very DRY, should probably abstract
+    datafile = File.read("./public/examples/" + key + "/" + "data.json")
+    @json = JSON.parse(datafile)
+
+    # Make a fake object
+    @a = OpenStruct.new
+    @a.description = desc
+    @a.validationstring = key
+    @location = "examples"
+    mustache :report
   end
 
   post "/report/:key" do

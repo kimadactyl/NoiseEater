@@ -122,7 +122,7 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
   var waveformView = {
     init: function() {
       // TODO: refactor considering we are now using validation string urls
-      url = model.validationString // Should go through octupus rlly
+      url = model.url // Should go through octupus rlly
 
       this.peaksElem = Peaks.init({
         container: document.querySelector('#peaks-container'),
@@ -132,7 +132,7 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
         overviewWaveformColor: "#5B5B5B",
         zoomWaveformColor: "#5B5B5B",
         randomizeSegmentColor: false,
-        dataUri: { arraybuffer: '/audio/' + url + '/waves.dat' }
+        dataUri: { arraybuffer: '/' + url + '/waves.dat' }
       });
 
       this.render();
