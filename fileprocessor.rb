@@ -84,10 +84,9 @@ class ProcessorQueue
       # Timestamp for estimates
       start_time = Time.now
       # Log that we got this far
-      puts "#{det} -i #{input} -j #{output}/data.json, :chdir => #{Dir.pwd}/bin/#{workdir}".colorize(:yellow)
-
+      puts "#{a.id}: #{det} -i #{input} -j #{output}/data.json".colorize(:yellow)
       # Launch process
-      pid = spawn("#{det} -i #{input} -j #{output}/data.json", :chdir => "#{Dir.pwd}/bin/#{workdir}")
+      pid = spawn("#{det} -i #{input} -j #{output}/data.json")
       # Wait here for a response
       Process.waitpid(pid, 0)
 
@@ -112,11 +111,18 @@ class ProcessorQueue
         end
 
         # Convert it to an mp3 and ogg for playback
-        unless File.extname(a.source.path) == ".mp3"
+        if File.extname(a.source.path) == ".mp3"
+          puts "#{a.id}: Already mp3, creating symlink"
+          File.symlink(a.source.path, output + "/input.mp3")
+        else
           puts "#{a.id}: Writing mp3"
           `#{$FFMPEG} -i #{a.source.path} -codec:a libmp3lame -qscale:a 2 #{output}/input.mp3 -y`
         end
-        unless File.extname(a.source.path) == ".ogg"
+
+        if File.extname(a.source.path) == ".ogg"
+          puts "#{a.id}: Already ogg, creating symlink"
+          File.symlink(a.source.path, output + "/input.ogg")
+        else
           puts "#{a.id}: Writing ogg"
           `#{$FFMPEG} -i #{a.source.path} -codec:a libvorbis -qscale:a 7 #{output}/input.ogg -y`
         end

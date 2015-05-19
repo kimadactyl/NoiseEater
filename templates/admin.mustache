@@ -8,7 +8,7 @@
           <td>ID</td>
           <td>Description</td>
           <td>Email</td>
-          <td>Link</td>
+          <td>Test</td>
           <td>Created</td>
           <td>Completed</td>
           <td>Success</td>
@@ -18,10 +18,10 @@
       <tbody> 
         {{#get_all}}
           <tr>
-            <td>{{id}}</td>
-            <td>{{description}}</td>
+            <td><a href="/report/{{validationstring}}">{{id}}</a></td>
+            <td><a href="/report/{{validationstring}}">{{description}}</a></td>
             <td>{{email}}</td>
-            <td><a href="/report/{{validationstring}}">Link</a></td>
+            <td>{{detection}}</td>
             <td>{{created_at}}</td>
             <td>{{completed_at}}</td>
             <td>{{success}}</td>

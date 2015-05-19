@@ -107,6 +107,12 @@ class NoiseEater < Sinatra::Base
         desc = "Wind detection: Birdsong"
       when "wind-didgeridoo"
         desc = "Wind detection: Didgeridoo"
+      when "dist-metro-musica"
+        desc = "Distortion: Metro Musica"
+      when "dist-ambulance"
+        desc = "Distortion: Ambulance"
+      when "dist-sheep-helicopter"
+        desc = "Distortion: Sheep and Helicopter"
       else
         not_found
     end
@@ -159,6 +165,8 @@ class NoiseEater < Sinatra::Base
     response.headers['content_type'] = "application/octet-stream"
 
     if(type == "zip")
+      # Delete last attempt
+      FileUtils.rm_rf("#{dir}/regions")
       # Make a directory
       FileUtils.mkdir_p("#{dir}/regions")
 
@@ -279,6 +287,10 @@ class NoiseEater < Sinatra::Base
 
   get "/contact" do
     mustache :contact
+  end
+
+  get "/terms" do
+    mustache :terms
   end
 
   # === Errors === #

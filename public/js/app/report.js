@@ -121,7 +121,7 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
 
   var waveformView = {
     init: function() {
-      // TODO: refactor considering we are now using validation string urls
+      // Set up the peaks element
       url = model.url // Should go through octupus rlly
 
       this.peaksElem = Peaks.init({

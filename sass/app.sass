@@ -99,6 +99,8 @@ form#uploadform
     color: $primary-color
   label[for="terms"]
     margin-top: 2em
+  .terms a
+    text-decoration: underline
   #droparea
     &:hover
       cursor: pointer
@@ -154,6 +156,26 @@ form#uploadform
     margin: auto auto 2em
     background-color: $primary-color
     font-weight: bold
+
+  input[type="checkbox"]:not(old)
+    $checksize: 20px
+    width: $checksize
+    margin: 0
+    padding: 0
+    opacity: 0
+    + label
+      display: inline-block
+      margin-left: -$checksize
+      margin-top: $checksize / 2
+      margin-bottom: $checksize / 2
+      padding-left: $checksize * 1.5
+      background: url("/images/buttons/untick.png") no-repeat 0 0
+      background-size: $checksize
+      line-height: $checksize
+    &:checked + label
+      background: url("/images/buttons/tick.png") no-repeat 0 0
+      background-size: $checksize
+
 
 section#samples
   background-color: $secondary-color
@@ -269,7 +291,7 @@ section#download
   #formats label
     font-size: rem-calc(24px)
     font-weight: normal
-  input[type="radio"]:not(old) 
+  input[type="radio"]:not(old)
     width: $btnsize
     margin: 0
     padding: 0
@@ -286,6 +308,8 @@ section#download
     &:checked + label
       background: url("/images/buttons/on.png") no-repeat 0 0
       background-size: $btnsize
+
+
   button#download
     +radius(5px)
     display: block
@@ -308,6 +332,9 @@ section#download
   margin-bottom: 15em
   h2
     margin-bottom: 1em
+  .bgimage
+    background: url("/images/NE_bot_bkgwhite.png") 100% 0% no-repeat   
+    min-height: 570px
 
 .error
   .row
