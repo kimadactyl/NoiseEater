@@ -9,6 +9,9 @@ $REQUIRE_VALIDATION = false
 # Send an email when processing complete?
 $SEND_CONFIRMATION = false
 
+# One file per user?
+$ONE_FILE_PER_USER = true
+
 # Paths for ffmpeg tools
 $FFMPEG = "ffmpeg"
 $FFPROBE = "ffprobe"
@@ -19,7 +22,18 @@ $DBSTRING = "sqlite3://#{Dir.pwd}/audio.db"
 
 # Binaries
 $AUDIOWAVEFORM = "./bin/audiowaveform"
-$WINDDET = "./bin/windDet"
+$WINDDET = "./bin/wind/windDet-ubuntu-64-1404 -l ./bin/wind/trees -v 0"
+$DISTDET = "./bin/distortion/distDet-ubuntu-64-1404 -l ./bin/distortion/trees/dectrees_new -v 0"
+$MICDET = ""
 
-# Time estimated to process one second of data
+# Time estimated to process one second of data (seconds)
 $TIME_PER_SECOND = 1 
+
+# Time before deleting files (days)
+$DELETE_TIME = 14
+
+# Time before deleting non-validated files (days)
+$DELETE_IF_NOT_VALIDATED = 2
+
+# Mail params
+$MAIL_PARAMS = "mail.delivery_method :sendmail"

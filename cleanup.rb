@@ -6,8 +6,8 @@ require 'colorize'
 
 # Cronjob activated script to clear out old files
 
-old_files = Audio.all(:created_at.lt => (Date.today - $DELETE_TIME))
-not_validated_files = Audio.all(:created_at.lt => (Date.today - $DELETE_IF_NOT_VALIDATED), :validated => false)
+old_files = Audio.all(:completed_at.lt => (Date.today - $DELETE_TIME))
+not_validated_files = Audio.all(:completed_at.lt => (Date.today - $DELETE_IF_NOT_VALIDATED), :validated => false)
 
 all_files = old_files + not_validated_files
 

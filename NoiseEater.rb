@@ -334,7 +334,7 @@ class NoiseEater < Sinatra::Base
         to a.email
         body 'Thanks for your submission. Click here to start processing your file: ' + link
       end
-      # mail.delivery_method :sendmail
+      $MAIL_PARAMS
       mail.deliver
     end
 
