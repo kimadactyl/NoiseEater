@@ -29,6 +29,18 @@ class NoiseEater
         @location
       end
 
+      def feedbackrating
+        @a.feedbackrating ||= 50
+      end
+
+      def feedbacktext  
+        @a.feedbacktext
+      end
+
+      def is_not_example
+        @location == "audio"
+      end
+
     end
   end
 end

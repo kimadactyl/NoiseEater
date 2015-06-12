@@ -234,6 +234,23 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
       $('.snr').toggle();
       $('.pc').toggle();
     })
+
+    $('#feedback').on('submit', function(event) {
+      // Stop the default event, eg redirect
+      event.preventDefault();
+      $.ajax({
+        // Send this to our feedback/* route
+        url: '/feedback/' + model.validationstring,
+        datatype: 'json',
+        type: 'POST',
+        // Serialise all the parameters
+        data: $(event.target).serialize(),
+        accepts: "application/json",
+        success: function(json) {
+          alert("Thanks for the feedback!");
+        }
+      })
+    })
   });
 
 });

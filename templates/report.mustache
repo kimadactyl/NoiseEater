@@ -99,24 +99,27 @@
       </table>
     </section>
 
-    <section id="feedback">
-      <h3>Tell us what you think</h3>
-      <p>NoiseEater is still in development. Let us what you think using this form.</p>
-      <p>Alternatively, tweet us: <a href="https://twitter.com/goodrecording">@GoodRecording</a>.
+    {{#is_not_example}}
+      <section id="feedback">
+        <h3>Tell us what you think</h3>
+        <p>NoiseEater is still in development. Let us what you think using this form.</p>
+        <p>Alternatively, tweet us: <a href="https://twitter.com/goodrecording">@GoodRecording</a>.
 
-      <form id="feedback" method="post" action="/feedback/{{validationstring}}">
-        <p>What percentage of error in your recording did NoiseEater correctly identify?</p>
-        <h5>Rating: <span id="ratingOutput"></span>%</h5>
-        <div id="rating-slider" class="range-slider text-left" data-slider data-options="display_selector: #ratingOutput; initial: 50;">
-          <span class="range-slider-handle" role="slider" tabindex="0"></span>
-          <span class="range-slider-active-segment"></span>
-        </div>  
-        <label><h5>Any other comments?</h5>
-          <textarea rows="10"></textarea>
-        </label>
-        <button type="submit" name="feedback" class="download" value="feedback">Submit Feedback</button>
-      </form>
-    </section>
+        <form id="feedback" method="post" action="/feedback/{{validationstring}}">
+          <p>What percentage of error in your recording did NoiseEater correctly identify?</p>
+          <h5>Rating: <span id="ratingOutput"></span>%</h5>
+          <div id="rating-slider" class="range-slider text-left" data-slider data-options="display_selector: #ratingOutput; initial: {{feedbackrating}};">
+            <span class="range-slider-handle" role="slider" tabindex="0"></span>
+            <span class="range-slider-active-segment"></span>
+            <input type="hidden" name="rating">
+          </div>  
+          <label><h5>Any other comments?</h5>
+            <textarea name="textfeedback">{{feedbacktext}}</textarea>
+          </label>
+          <button type="submit" name="feedback" class="download" value="feedback">Submit Feedback</button>
+        </form>
+      </section>
+    {{/is_not_example}}
   </div>
 
   <div class="large-4 columns text-center">
@@ -159,6 +162,7 @@
     passingRegions: [],
     showAllRegionsToggle: 0,
     url: "{{location}}/{{validationstring}}",
+    validationstring: "{{validationstring}}",
   };
 </script>
 

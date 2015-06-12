@@ -227,6 +227,17 @@ class NoiseEater < Sinatra::Base
 
   end
 
+  # === Feedback form === #
+
+  post "/feedback/:key" do
+    @a = Audio.first(:validationstring => params[:key])
+    @a.feedbackrating = params[:rating]
+    @a.feedbacktext = params[:textfeedback]
+    @a.save
+    halt 200
+  end
+
+
   # === Validate strings clicked in emails === #
 
   get "/validate/:key" do
