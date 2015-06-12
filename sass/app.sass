@@ -27,6 +27,9 @@ h2.title
 h4
   font-weight: bold
 
+textarea
+  border: 1px solid $primary-color
+
 a:hover
   text-decoration: underline
 
@@ -310,17 +313,17 @@ section#download
       background-size: $btnsize
 
 
-  button#download
-    +radius(5px)
-    display: block
-    text-align: center
-    margin: 1em auto 0
-    color: white
-    font-weight: bold
-    background-color: $primary-color
-    &:hover
-      background-color: white
-      color: $primary-color
+button.download
+  +radius(5px)
+  display: block
+  text-align: center
+  margin: 1em auto 0
+  color: white
+  font-weight: bold
+  background-color: $primary-color
+  &:hover
+    background-color: white
+    color: $primary-color
 
 // === Admin === //
 

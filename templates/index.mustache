@@ -30,7 +30,8 @@
 
         <div id="hiddenarea" class="selected">
           <label for="audio">
-            <input type="file" name="audio" id="audiofile" required>
+            <input type="file" name="audio" id="audiofile" required pattern="^.+?\.(wav|au|aiff|flac|mp3|m4a|aac|bwf|ogg|oga|raw|wma|WAV|AU|AIFF|FLAC|MP3|M4A|AAC|BWF|OGG|OGA|RAW|WMA
+)$"  accept="audio/*" required>
             <small class="error">Please select an audio file</small>
           </label>
 

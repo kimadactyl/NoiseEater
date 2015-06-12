@@ -44,8 +44,9 @@ class Audio
   property :email, Text, :required => true
   # What to detect for
   property :detection, Enum[:wind, :mic, :distortion]
-  # Creation time and completion time
+  # Upload time
   property :created_at, DateTime
+  # Processing completion time
   property :completed_at, DateTime
   # Audio length in seconds for estimating processing time
   property :filelength, Float, :default => 0
@@ -56,9 +57,15 @@ class Audio
   property :validated, Boolean, :default => true
   # Has the file been processed?
   property :processed, Boolean, :default => false
+  # How long did it take to process in seconds?
   property :processingtime, Float, :default => 0
   # Was the file processed successfully? 0 == yes, other values for error codes
   property :success, Boolean, :default => false
+  # Has it expired and been deleted?
+  property :expired, Boolean, :default => false
+  # What feedback did the user give?
+  property :feedbackrating, Integer
+  property :feedbacktext, Text
   # Uploader gizmo
   mount_uploader :source, AudioUploader
 end

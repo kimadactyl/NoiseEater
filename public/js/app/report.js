@@ -171,18 +171,45 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
     },
 
     render: function() {
+      var MAX_REGIONS = 5
       var regions = octopus.getNoiseFreeRegions();
       this.tableElem.innerHTML = '';
-      
-      for(i = 0; i < regions.length; i++) {
-        region = regions[i];
-        // Doing this manually as its just as quick as getting rid of 2 cols we don't need
+      // If there's more than X results, hide the list for brevity.
+      if (regions.length > MAX_REGIONS && !model.showAllRegionsToggle) {
         var newRow = noisefreeView.tableElem.insertRow();
-        var ts = newRow.insertCell()
-        ts.textContent = region["Ts"];
-        var te = newRow.insertCell();
-        te.textContent = region["Te"];
-      };
+        var toolong = newRow.insertCell()
+        toolong.colSpan = 2;
+        toolong.className = "regions-expand";
+        toolong.textContent = "More than 5 results. Click here to show all regions.";
+        toolong.addEventListener('click', function() {
+          model.showAllRegionsToggle = true;
+          noisefreeView.render();
+        })
+      } 
+      else {
+        // Show all the items
+        for(i = 0; i < regions.length; i++) {
+          region = regions[i];
+          // Doing this manually as its just as quick as getting rid of 2 cols we don't need
+          var newRow = noisefreeView.tableElem.insertRow();
+          var ts = newRow.insertCell()
+          ts.textContent = region["Ts"];
+          var te = newRow.insertCell();
+          te.textContent = region["Te"];
+        }
+        // Offer to reduce it down if it's too long
+        if(regions.length > MAX_REGIONS) {
+          var newRow = noisefreeView.tableElem.insertRow();
+          var toolong = newRow.insertCell()
+          toolong.colSpan = 2;            
+          toolong.className = "regions-contract";
+          toolong.textContent = "More than 5 results. Click here to hide this list.";
+          toolong.addEventListener('click', function() {
+              model.showAllRegionsToggle = false;
+              noisefreeView.render();
+          })
+        }
+      }
     }
   }
 

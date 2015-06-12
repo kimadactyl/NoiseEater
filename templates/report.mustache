@@ -36,8 +36,10 @@
 
 <div class="row soundinfo">
   <div class="large-8 columns text-center">
+
     <section id="global-stats">
       <h3>Global Statistics</h3>
+      <p>This shows the overall amount of noise in your audio file.</p>
       <table>
         <thead>
           <tr id="toggle">
@@ -81,8 +83,10 @@
         </tbody>
       </table>
     </section>
+
     <section id="wind-free-regions">
       <h3>Noise-Free Regions</h3>
+      <p>These are the regions free from noise at the selected threshold.</p>
       <table id="wind-free-regions">
         <thead>
           <tr>
@@ -93,6 +97,25 @@
         <tbody>
         </tbody>
       </table>
+    </section>
+
+    <section id="feedback">
+      <h3>Tell us what you think</h3>
+      <p>NoiseEater is still in development. Let us what you think using this form.</p>
+      <p>Alternatively, tweet us: <a href="https://twitter.com/goodrecording">@GoodRecording</a>.
+
+      <form id="feedback" method="post" action="/feedback/{{validationstring}}">
+        <p>What percentage of error in your recording did NoiseEater correctly identify?</p>
+        <h5>Rating: <span id="ratingOutput"></span>%</h5>
+        <div id="rating-slider" class="range-slider text-left" data-slider data-options="display_selector: #ratingOutput; initial: 50;">
+          <span class="range-slider-handle" role="slider" tabindex="0"></span>
+          <span class="range-slider-active-segment"></span>
+        </div>  
+        <label><h5>Any other comments?</h5>
+          <textarea rows="10"></textarea>
+        </label>
+        <button type="submit" name="feedback" class="download" value="feedback">Submit Feedback</button>
+      </form>
     </section>
   </div>
 
@@ -120,8 +143,9 @@
           <label for="type-zip">Zip file of noise-free regions</label><br>
 
           <input type="hidden" name="regions" id="regions" value="">
-          <button type="submit" name="download" id="download" value="download">Download</button>
+          <button type="submit" name="download" class="download" value="download">Download</button>
         </fieldset>
+
       </form>
     </section>
 
@@ -133,6 +157,7 @@
     threshold: 25,
     timeHistory: {{{time_history}}},
     passingRegions: [],
+    showAllRegionsToggle: 0,
     url: "{{location}}/{{validationstring}}",
   };
 </script>
