@@ -22,6 +22,10 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
       model.threshold = thresh;
     },
 
+    getFileLength: function() {
+      return model.timeHistory[model.timeHistory.length - 1]["Te"]
+    },
+
     generateNoiseFreeRegions: function() {
       // Set up storage for our passing rows
       var passing_rows = [];
@@ -167,10 +171,15 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
   var noisefreeView = {
     init: function() {
       this.tableElem = document.getElementById('wind-free-regions').getElementsByTagName('tbody')[0];
+      // This controls if the download button is disabled or not
+      this.downloadBtn = document.getElementById("downloadbtn");
+      // For telling the user why their download is disabled
+      this.downloadError = document.getElementById("downloaderror");
       this.render();
     },
 
     render: function() {
+      // Maximum regions to render
       var MAX_REGIONS = 5
       var regions = octopus.getNoiseFreeRegions();
       this.tableElem.innerHTML = '';
@@ -209,6 +218,19 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
               noisefreeView.render();
           })
         }
+      }
+
+      if(regions.length == 0) {
+        this.downloadBtn.disabled = true;
+        this.downloadError.textContent = "No regions selected.";
+
+      } else if(regions.length == 1 && regions[0]["Ts"] == 0 && regions[0]["Te"] == octopus.getFileLength()) {
+        this.downloadBtn.disabled = true;
+        this.downloadError.textContent = "Whole file selected, adjust the threshold to enable downloading.";
+
+      } else {
+        this.downloadBtn.disabled = true;
+        this.downloadError.textContent = "";
       }
     }
   }

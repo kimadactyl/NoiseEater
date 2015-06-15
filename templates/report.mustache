@@ -116,7 +116,9 @@
           <label><h5>Any other comments?</h5>
             <textarea name="textfeedback">{{feedbacktext}}</textarea>
           </label>
-          <button type="submit" name="feedback" class="download" value="feedback">Submit Feedback</button>
+          <button type="submit" name="feedback" class="download" value="feedback">
+            Submit Feedback
+          </button>
         </form>
       </section>
     {{/is_not_example}}
@@ -146,7 +148,10 @@
           <label for="type-zip">Zip file of noise-free regions</label><br>
 
           <input type="hidden" name="regions" id="regions" value="">
-          <button type="submit" name="download" class="download" value="download">Download</button>
+          <button type="submit" name="download" id="downloadbtn" class="download" value="download"> 
+            Download
+          </button>
+          <p id="downloaderror"></p>
         </fieldset>
 
       </form>

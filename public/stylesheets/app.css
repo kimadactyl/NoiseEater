@@ -9638,68 +9638,75 @@ button.download:hover {
   color: #0abaee;
 }
 
-/* line 333, ../../sass/app.sass */
+/* line 328, ../../sass/app.sass */
+#downloaderror {
+  font-style: italic;
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+
+/* line 338, ../../sass/app.sass */
 .static {
   margin-bottom: 15em;
 }
-/* line 336, ../../sass/app.sass */
+/* line 341, ../../sass/app.sass */
 .static h2 {
   margin-bottom: 1em;
 }
-/* line 338, ../../sass/app.sass */
+/* line 343, ../../sass/app.sass */
 .static .bgimage {
   background: url("/images/NE_bot_bkgwhite.png") 100% 0% no-repeat;
   min-height: 570px;
 }
 
-/* line 343, ../../sass/app.sass */
+/* line 348, ../../sass/app.sass */
 .error .row {
   background: url("/images/ne_bot_error.png") 100% 0% no-repeat;
 }
-/* line 345, ../../sass/app.sass */
+/* line 350, ../../sass/app.sass */
 .error h2 {
   font-size: 3rem;
 }
-/* line 347, ../../sass/app.sass */
+/* line 352, ../../sass/app.sass */
 .error .button {
   margin: 5em 0 25em;
 }
 
-/* line 352, ../../sass/app.sass */
+/* line 357, ../../sass/app.sass */
 footer {
   margin-top: 5em;
   background-color: #5b5b5b;
 }
-/* line 355, ../../sass/app.sass */
+/* line 360, ../../sass/app.sass */
 footer a {
   color: white;
 }
-/* line 357, ../../sass/app.sass */
+/* line 362, ../../sass/app.sass */
 footer .row {
   padding-top: 4em;
   background: url("/images/ne_bot_footerbacking.png") 100% 20% no-repeat;
   min-height: 30em;
 }
-/* line 361, ../../sass/app.sass */
+/* line 366, ../../sass/app.sass */
 footer img, footer nav, footer ul {
   display: inline-block;
 }
-/* line 363, ../../sass/app.sass */
+/* line 368, ../../sass/app.sass */
 footer .impressum {
   font-size: 100%;
   margin-top: 1.3em;
   color: white;
 }
-/* line 367, ../../sass/app.sass */
+/* line 372, ../../sass/app.sass */
 footer .impressum a {
   color: white;
   text-decoration: underline;
 }
-/* line 370, ../../sass/app.sass */
+/* line 375, ../../sass/app.sass */
 footer .authors {
   color: #e6e6e6;
 }
-/* line 372, ../../sass/app.sass */
+/* line 377, ../../sass/app.sass */
 footer .authors a {
   color: #e6e6e6;
 }
