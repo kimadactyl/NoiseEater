@@ -91,6 +91,8 @@ class NoiseEater < Sinatra::Base
     @location = "audio"
     if(!@a)
       not_found
+    elsif(@a.expired == true)
+      redirect "/error/file-deleted"
     elsif(@a.processed == true)
       datafile = File.read("./public/audio/" + @a.validationstring + "/" + "data.json")
       @json = JSON.parse(datafile)
@@ -320,6 +322,9 @@ class NoiseEater < Sinatra::Base
     when "couldnt-generate-output"
       @title = "Error: Couldn't generate report"
       @body = "Your output could not be generated. Please contact us, this shouldn't happen!"
+    when "file-deleted"
+      @title = "Your file expired"
+      @body = "Files are deleted #{$DELETE_TIME} days after uploading. Sorry for the inconvenience."
     else
       @title = "Error"
       @body = "Something happened without a specific error page. Please contact us and tell us what went wrong!"

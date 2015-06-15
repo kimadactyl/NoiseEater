@@ -1,6 +1,7 @@
 require './config/settings'
 require './models'
 require 'date'
+require 'logger'
 require 'fileutils'
 require 'colorize'
 

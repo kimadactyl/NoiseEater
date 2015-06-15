@@ -1,3 +1,4 @@
+require 'logger'
 require './config/settings'
 require './models'
 
