@@ -8,9 +8,6 @@ gem "compass", "~> 1.0"
 gem "sinatra", git: 'https://github.com/sinatra/sinatra.git'
 gem "mustache-sinatra"
 
-# Pretty output
-gem "colorize"
-
 # Database
 gem "datamapper"
 gem "json"

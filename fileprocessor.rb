@@ -2,11 +2,17 @@ class ProcessorQueue
 
   def initialize
     # Start the queue
-    puts ("Queue starting on " + $DOMAIN + " as " + $FROM_EMAIL).colorize(:green)
-    puts $REQUIRE_VALIDATION ? "Validation is enabled".colorize(:green) : "Validation is disabled".colorize(:red)
-    puts $SEND_CONFIRMATION ? "Email confirmation is enabled".colorize(:green) : "Email confirmation is disabled".colorize(:red)
-    # print ("ffmpeg path is " + `which ffmpeg`).colorize(:green)
-    # print ("ffprobe path is " + `which ffprobe`).colorize(:green)
+    $l.info ("Queue starting on " + $DOMAIN + " as " + $FROM_EMAIL)
+    if $REQUIRE_VALIDATION
+      $l.info "Validation is enabled"
+    else
+      $l.warn "Validation is disabled"
+    end
+    if $SEND_CONFIRMATION
+      $l.info "Email confirmation is enabled"
+    else
+      $l.warn "Email confirmation is disabled"
+    end
     @running = false
     Thread.new { loop }
   end
@@ -15,7 +21,7 @@ class ProcessorQueue
     while true do
       if next_ticket && !@running
         # If there's a ticket to process, go do that
-        puts "#{next_ticket}: Next ticket".colorize(:green)
+        $l.info "#{next_ticket}: Next ticket"
         # Stop doing this until it's done
         @running = true
         process(next_ticket)
@@ -54,15 +60,15 @@ class ProcessorQueue
 
     # Is it a valid format?
     if probe.include? "[ERROR]"
-        puts "#{a.id}: Audio file is not in a valid format. Aborting.".colorize(:red)
+        $l.error "#{a.id}: Audio file is not in a valid format. Aborting."
         a.processed = true
         a.success = false
     else
       # If so, is it a 16 bit, 44.1khz, mono wav file?
       unless tests.all? { |test| probe.include?(test) }
         # If not, convert to a valid format
-        puts "#{a.id}: Not a 16 bit mono wav. Converting.".colorize(:green)
-        puts "#{a.id}: ffmpeg -i #{input} -acodec pcm_s16le -ac 1 -ar 44100 #{output}/converted.wav".colorize(:yellow)
+        $l.info "#{a.id}: Not a 16 bit mono wav. Converting."
+        $l.debug "#{a.id}: ffmpeg -i #{input} -acodec pcm_s16le -ac 1 -ar 44100 #{output}/converted.wav"
         `#{$FFMPEG} -i #{input} -acodec pcm_s16le -ac 1 -ar 44100 -v quiet #{output}/converted.wav -y`
         input = "#{output}/converted.wav"
       end
@@ -84,7 +90,7 @@ class ProcessorQueue
       # Timestamp for estimates
       start_time = Time.now
       # Log that we got this far
-      puts "#{a.id}: #{det} -i #{input} -j #{output}/data.json".colorize(:yellow)
+      $l.debug "#{a.id}: #{det} -i #{input} -j #{output}/data.json"
       # Launch process
       pid = spawn("#{det} -i #{input} -j #{output}/data.json")
       # Wait here for a response
@@ -94,8 +100,7 @@ class ProcessorQueue
       if $?.success?
         # We did it!
         processing_time = Time.now - start_time
-        puts "Completed"
-        puts "#{a.id}: Processing completed successfully, took #{processing_time}s.".colorize(:green)
+        $l.info "#{a.id}: Processing completed successfully, took #{processing_time}s."
 
         # Sanitise json
         data = File.open("#{output}/data.json", "r")
@@ -105,25 +110,25 @@ class ProcessorQueue
 
         # Write waveform data. -b 8 is critical for peaks.js to work with the data.
         if system "#{$AUDIOWAVEFORM} -i #{input} -o #{output}/waves.dat -b 8"
-          puts "#{a.id}: Generated waveform data".colorize(:green)
+          $l.info "#{a.id}: Generated waveform data"
         else
-          puts "#{a.id}: Waveform generation failed! #{$AUDIOWAVEFORM} -i #{input} -o #{output}/waves.dat -b 8".colorize(:red)
+          $l.error "#{a.id}: Waveform generation failed! #{$AUDIOWAVEFORM} -i #{input} -o #{output}/waves.dat -b 8"
         end
 
         # Convert it to an mp3 and ogg for playback
         if File.extname(a.source.path) == ".mp3"
-          puts "#{a.id}: Already mp3, creating symlink"
+          $l.info "#{a.id}: Already mp3, creating symlink"
           File.symlink(a.source.path, output + "/input.mp3")
         else
-          puts "#{a.id}: Writing mp3"
+          $l.info "#{a.id}: Writing mp3"
           `#{$FFMPEG} -i #{a.source.path} -codec:a libmp3lame -qscale:a 2 #{output}/input.mp3 -y`
         end
 
         if File.extname(a.source.path) == ".ogg"
-          puts "#{a.id}: Already ogg, creating symlink"
+          $l.info "#{a.id}: Already ogg, creating symlink"
           File.symlink(a.source.path, output + "/input.ogg")
         else
-          puts "#{a.id}: Writing ogg"
+          $l.info "#{a.id}: Writing ogg"
           `#{$FFMPEG} -i #{a.source.path} -codec:a libvorbis -qscale:a 7 #{output}/input.ogg -y`
         end
 
@@ -136,10 +141,10 @@ class ProcessorQueue
         if $SEND_CONFIRMATION
           # Confirm if requested
           send_confirmation_email(a)
-          puts "#{a.id}: Sent confirmation email".colorize(:green)
+          $l.info "#{a.id}: Sent confirmation email"
         end
       else
-        puts "#{a.id}: Processing unsuccessful.".colorize(:red)
+        $l.error "#{a.id}: Processing unsuccessful."
         a.processed = true
         a.success = false
       end
@@ -147,7 +152,7 @@ class ProcessorQueue
 
     # Save db record
     a.save
-    puts "#{a.id}: Complete".colorize(:green)
+    $l.info "#{a.id}: Complete"
   end
 
 

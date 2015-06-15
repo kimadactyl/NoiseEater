@@ -39,7 +39,6 @@ GEM
       carrierwave (~> 0.8.0)
       dm-core (~> 1.1)
     chunky_png (1.3.4)
-    colorize (0.7.5)
     compass (1.0.3)
       chunky_png (~> 1.2)
       compass-core (~> 1.0.2)
@@ -183,7 +182,6 @@ DEPENDENCIES
   capybara
   carrierwave
   carrierwave-datamapper
-  colorize
   compass (~> 1.0)
   cucumber
   datamapper

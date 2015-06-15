@@ -20,6 +20,9 @@ $FFPROBE = "ffprobe"
 $DBGEM = "dm-sqlite-adapter"
 $DBSTRING = "sqlite3://#{Dir.pwd}/audio.db"
 
+# Log location
+$LOG = "./noiseater.log"
+
 # Binaries
 $AUDIOWAVEFORM = "./bin/audiowaveform"
 $WINDDET = "./bin/wind/windDet-ubuntu-64-1404 -l ./bin/wind/trees -v 0"

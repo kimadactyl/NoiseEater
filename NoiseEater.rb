@@ -5,14 +5,17 @@ require "mustache/sinatra"
 require "audio_waveform"
 require "securerandom"
 require "mail"
-require "colorize"
 require "fileutils"
 require "date"
 require "ostruct"
+require "logger"
 require "./config/settings"
 require "./models"
 require "./fileprocessor"
 
+
+$l = Logger.new $LOG, 'daily'
+$l.level = Logger::INFO
 $queue = ProcessorQueue.new
 
 class NoiseEater < Sinatra::Base
@@ -47,7 +50,7 @@ class NoiseEater < Sinatra::Base
 
     # Is it a valid format?
     if probe.include? "[ERROR]"
-      puts "Uploaded file is not in a valid format. Aborting.".colorize(:red)
+      $l.warn "Uploaded file is not in a valid format. Aborting."
       # TODO: delete any temp files
       redirect "/error/file-not-valid"
     end
@@ -69,13 +72,13 @@ class NoiseEater < Sinatra::Base
     if $REQUIRE_VALIDATION
       a.validated = false
       a.save
-      puts "#{a.id}: Emailing #{a.email} a validation link".colorize(:blue)
+      $l.info "#{a.id}: Emailing #{a.email} a validation link"
       send_validation_email(a.id)
       redirect "/thankyou"
     else
       a.validated = true
       a.save
-      puts "#{a.id}: Uploaded, validation disabled".colorize(:blue)
+      $l.info "#{a.id}: Uploaded, validation disabled"
       redirect "/report/#{a.id}"      
     end
   end
@@ -142,7 +145,7 @@ class NoiseEater < Sinatra::Base
       redirect "/error/couldnt-generate-output"
     end
 
-    puts "#{@a.id}: Output file request received".colorize(:green)
+    $l.info "#{@a.id}: Output file request received"
 
     # Read our JSON
     dir = File.dirname(@a.source.path)
@@ -173,7 +176,7 @@ class NoiseEater < Sinatra::Base
       # TODO: delete already existing files
 
       # For each region, write one file in regions dir
-      print "#{@a.id}: Writing regions... ".colorize(:yellow)
+      print "#{@a.id}: Writing regions... "
       regions.each_with_index do |region, idx|
         print "#{idx},"
         `#{$FFMPEG} -i #{input} -ss #{region["s"]} -t #{region["e"]} -v quiet #{dir}/regions/region-#{idx}.#{ext} -y`
@@ -181,8 +184,8 @@ class NoiseEater < Sinatra::Base
 
       # Write the zip file. --filesync overwrites rather than adds in extra files. --junk-paths removes dir info
       `zip --filesync --junk-paths #{dir}/regions.zip #{dir}/regions/*.#{ext}`
-      puts "zip #{dir}/regions.zip #{dir}/regions/*.#{ext}"
-      puts "\n#{@a.id}: Regions written.".colorize(:green)
+      $l.debug "zip #{dir}/regions.zip #{dir}/regions/*.#{ext}"
+      $l.info "\n#{@a.id}: Regions written."
 
       # Send to user
       attachment("#{@a.description}-noise-free-regions.zip")
@@ -214,12 +217,12 @@ class NoiseEater < Sinatra::Base
         end
         filter = '"' + filter.join(", ") + '"'
         `#{$FFMPEG} -i #{input} -af #{filter} -v quiet #{dir}/output.#{ext} -y`
-        puts "#{@a.id}: Muted file #{dir}/output.#{ext} written.".colorize(:green)
+        $l.info "#{@a.id}: Muted file #{dir}/output.#{ext} written."
 
         # Send file
         attachment("#{@a.description}-with-regions-muted.#{ext}")
         response.write(File.read("#{dir}/output.#{ext}"))
-        puts "#{@a.id} Muted file sent"
+        $l.info "#{@a.id} Muted file sent"
       else
         # TODO: handle if no regions exist
       end
@@ -245,7 +248,7 @@ class NoiseEater < Sinatra::Base
     if @a
       @a.validated = true
       @a.save
-      puts "#{@a.id}: Validation link clicked. Redirecting...".colorize(:blue)
+      $l.info "#{@a.id}: Validation link clicked. Redirecting..."
       mustache :validated
     else
       not_found
@@ -264,7 +267,7 @@ class NoiseEater < Sinatra::Base
     a = Audio.get(params[:id])
     a.destroy
     FileUtils.rm_rf("#{Dir.pwd}/public/audio/#{a.validationstring}")
-    puts "#{a.id}: Deleted on admin request".colorize(:red)
+    $l.info "#{a.id}: Deleted on admin request"
     redirect "/admin"
   end
 
