@@ -41,6 +41,16 @@ class NoiseEater
         @location == "audio"
       end
 
+      def algo
+        case @a.detection
+          when :wind
+            return "Wind"
+          when :mic
+            return "Handling"
+          when :distortion
+            return "Distortion"
+        end
+      end
     end
   end
 end

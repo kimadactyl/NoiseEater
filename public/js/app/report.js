@@ -158,7 +158,7 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
         rstring[i] =  {
           startTime: regions[i]["Ts"],
           endTime: regions[i]["Te"],
-          labelText: "Wind-free region"
+          labelText: "Noise-free region"
         };
       }
       
