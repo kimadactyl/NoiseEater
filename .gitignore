@@ -9,7 +9,6 @@
 /config/settings.rb
 /*.txt
 /*.b
-/bin/distortion/*
-/bin/mic/*
+/bin/*
 /logs/*
 /Gemfile.lock
