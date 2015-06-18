@@ -9362,28 +9362,29 @@ form#uploadform input[type="text"], form#uploadform input[type="email"] {
   font-size: 1rem;
   max-width: 36em;
   margin: 0 auto;
-  padding: 1.5em;
+  padding: 0 1.5em;
+  height: 3em;
 }
-/* line 139, ../../sass/app.sass */
+/* line 140, ../../sass/app.sass */
 form#uploadform input[type="radio"] {
   opacity: 0;
 }
-/* line 141, ../../sass/app.sass */
+/* line 142, ../../sass/app.sass */
 form#uploadform input[type="radio"] + label {
   color: #0abaee;
   background-color: white;
 }
-/* line 144, ../../sass/app.sass */
+/* line 145, ../../sass/app.sass */
 form#uploadform input[type="radio"]:checked + label {
   color: white;
   background-color: #0abaee;
 }
-/* line 147, ../../sass/app.sass */
+/* line 148, ../../sass/app.sass */
 form#uploadform ul#distortion-type {
   display: inline-block;
   list-style-type: none;
 }
-/* line 150, ../../sass/app.sass */
+/* line 151, ../../sass/app.sass */
 form#uploadform li label, form#uploadform button#upload {
   width: 17em;
   display: block;
@@ -9394,21 +9395,21 @@ form#uploadform li label, form#uploadform button#upload {
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 157, ../../sass/app.sass */
+/* line 158, ../../sass/app.sass */
 form#uploadform button#upload {
   color: white;
   margin: auto auto 2em;
   background-color: #0abaee;
   font-weight: bold;
 }
-/* line 163, ../../sass/app.sass */
+/* line 164, ../../sass/app.sass */
 form#uploadform input[type="checkbox"]:not(old) {
   width: 20px;
   margin: 0;
   padding: 0;
   opacity: 0;
 }
-/* line 169, ../../sass/app.sass */
+/* line 170, ../../sass/app.sass */
 form#uploadform input[type="checkbox"]:not(old) + label {
   display: inline-block;
   margin-left: -20px;
@@ -9419,26 +9420,26 @@ form#uploadform input[type="checkbox"]:not(old) + label {
   background-size: 20px;
   line-height: 20px;
 }
-/* line 178, ../../sass/app.sass */
+/* line 179, ../../sass/app.sass */
 form#uploadform input[type="checkbox"]:not(old):checked + label {
   background: url("/images/buttons/tick.png") no-repeat 0 0;
   background-size: 20px;
 }
 
-/* line 183, ../../sass/app.sass */
+/* line 184, ../../sass/app.sass */
 section#samples {
   background-color: #e6e6e6;
   padding: 2em 0 3em;
 }
-/* line 186, ../../sass/app.sass */
+/* line 187, ../../sass/app.sass */
 section#samples h2 {
   color: #5b5b5b;
 }
-/* line 188, ../../sass/app.sass */
+/* line 189, ../../sass/app.sass */
 section#samples h4 {
   color: #0abaee;
 }
-/* line 190, ../../sass/app.sass */
+/* line 191, ../../sass/app.sass */
 section#samples ul {
   list-style-type: none;
   background-color: white;
@@ -9446,7 +9447,7 @@ section#samples ul {
   margin: 0;
   border-radius: 7px;
 }
-/* line 196, ../../sass/app.sass */
+/* line 197, ../../sass/app.sass */
 section#samples li {
   background-color: #e6e6e6;
   margin: 1em 0;
@@ -9454,20 +9455,20 @@ section#samples li {
   font-weight: 600;
   border-radius: 7px;
 }
-/* line 202, ../../sass/app.sass */
+/* line 203, ../../sass/app.sass */
 section#samples li a {
   color: #5b5b5b;
 }
-/* line 204, ../../sass/app.sass */
+/* line 205, ../../sass/app.sass */
 section#samples li:hover {
   background-color: #0abaee;
 }
-/* line 206, ../../sass/app.sass */
+/* line 207, ../../sass/app.sass */
 section#samples li:hover a {
   color: white;
 }
 
-/* line 210, ../../sass/app.sass */
+/* line 211, ../../sass/app.sass */
 section#how-it-works .process {
   padding: 4em 0.5em 2em;
   border-radius: 15px;
@@ -9479,57 +9480,57 @@ section#how-it-works .process {
 section#how-it-works .process h1, section#how-it-works .process h2, section#how-it-works .process h3, section#how-it-works .process h4, section#how-it-works .process h5, section#how-it-works .process h6 {
   color: white;
 }
-/* line 215, ../../sass/app.sass */
+/* line 216, ../../sass/app.sass */
 section#how-it-works .process1 img {
   margin-bottom: 2px;
 }
-/* line 218, ../../sass/app.sass */
+/* line 219, ../../sass/app.sass */
 section#how-it-works .process2 img {
   margin-bottom: 20px;
 }
-/* line 223, ../../sass/app.sass */
+/* line 224, ../../sass/app.sass */
 section#how-it-works h5 {
   margin-top: 2em;
 }
 
-/* line 230, ../../sass/app.sass */
+/* line 231, ../../sass/app.sass */
 .overview-container, .zoom-container {
   background-color: #F3F3F3;
   margin-bottom: 1em;
 }
 
-/* line 234, ../../sass/app.sass */
+/* line 235, ../../sass/app.sass */
 .soundinfo h3 {
   color: #5b5b5b;
   margin: 1em 0 1.5em;
 }
 
-/* line 238, ../../sass/app.sass */
+/* line 239, ../../sass/app.sass */
 audio {
   width: 100%;
 }
 
-/* line 242, ../../sass/app.sass */
+/* line 243, ../../sass/app.sass */
 #threshold h5 {
   font-size: 1.5rem;
   text-align: center;
   margin: 1em;
 }
 
-/* line 247, ../../sass/app.sass */
+/* line 248, ../../sass/app.sass */
 #key {
   margin-top: 4em;
 }
-/* line 249, ../../sass/app.sass */
+/* line 250, ../../sass/app.sass */
 #key ul {
   list-style-type: none;
 }
-/* line 251, ../../sass/app.sass */
+/* line 252, ../../sass/app.sass */
 #key li {
   color: #0abaee;
   font-weight: 600;
 }
-/* line 254, ../../sass/app.sass */
+/* line 255, ../../sass/app.sass */
 #key li div {
   margin-right: 0.5em;
   display: inline-block;
@@ -9537,75 +9538,75 @@ audio {
   height: 1em;
   border-radius: 3px;
 }
-/* line 260, ../../sass/app.sass */
+/* line 261, ../../sass/app.sass */
 #key li.clean div {
   background-color: #25E063;
 }
-/* line 262, ../../sass/app.sass */
+/* line 263, ../../sass/app.sass */
 #key li.noise div {
   background-color: #5b5b5b;
 }
 
-/* line 265, ../../sass/app.sass */
+/* line 266, ../../sass/app.sass */
 table {
   margin: 0 auto;
 }
-/* line 267, ../../sass/app.sass */
+/* line 268, ../../sass/app.sass */
 table thead tr td, table tr td {
   padding: 1rem;
 }
-/* line 269, ../../sass/app.sass */
+/* line 270, ../../sass/app.sass */
 table tr td {
   text-align: center;
 }
-/* line 271, ../../sass/app.sass */
+/* line 272, ../../sass/app.sass */
 table tbody {
   background-color: #e6e6e6;
 }
 
-/* line 275, ../../sass/app.sass */
+/* line 276, ../../sass/app.sass */
 #global-stats table {
   width: 100%;
 }
 
-/* line 277, ../../sass/app.sass */
+/* line 278, ../../sass/app.sass */
 table#wind-free-regions {
   width: 50%;
 }
 
-/* line 280, ../../sass/app.sass */
+/* line 281, ../../sass/app.sass */
 .snr {
   display: none;
 }
 
-/* line 285, ../../sass/app.sass */
+/* line 286, ../../sass/app.sass */
 section#download fieldset {
   margin-top: 0;
   margin-bottom: 0;
 }
-/* line 288, ../../sass/app.sass */
+/* line 289, ../../sass/app.sass */
 section#download h6 {
   color: #5b5b5b;
   font-weight: 600;
 }
-/* line 291, ../../sass/app.sass */
+/* line 292, ../../sass/app.sass */
 section#download form {
   border: 2px solid #0abaee;
   border-radius: 5px;
 }
-/* line 294, ../../sass/app.sass */
+/* line 295, ../../sass/app.sass */
 section#download #formats label {
   font-size: 1.5rem;
   font-weight: normal;
 }
-/* line 297, ../../sass/app.sass */
+/* line 298, ../../sass/app.sass */
 section#download input[type="radio"]:not(old) {
   width: 1.5rem;
   margin: 0;
   padding: 0;
   opacity: 0;
 }
-/* line 302, ../../sass/app.sass */
+/* line 303, ../../sass/app.sass */
 section#download input[type="radio"]:not(old) + label {
   display: inline-block;
   margin-left: -1.5rem;
@@ -9616,13 +9617,13 @@ section#download input[type="radio"]:not(old) + label {
   background-size: 1.5rem;
   line-height: 1.5rem;
 }
-/* line 311, ../../sass/app.sass */
+/* line 312, ../../sass/app.sass */
 section#download input[type="radio"]:not(old):checked + label {
   background: url("/images/buttons/on.png") no-repeat 0 0;
   background-size: 1.5rem;
 }
 
-/* line 316, ../../sass/app.sass */
+/* line 317, ../../sass/app.sass */
 button.download {
   border-radius: 5px;
   display: block;
@@ -9632,81 +9633,81 @@ button.download {
   font-weight: bold;
   background-color: #0abaee;
 }
-/* line 324, ../../sass/app.sass */
+/* line 325, ../../sass/app.sass */
 button.download:hover {
   background-color: white;
   color: #0abaee;
 }
 
-/* line 328, ../../sass/app.sass */
+/* line 329, ../../sass/app.sass */
 #downloaderror {
   font-style: italic;
   margin-top: 0.5em;
   margin-bottom: 0;
 }
 
-/* line 338, ../../sass/app.sass */
+/* line 339, ../../sass/app.sass */
 .static {
   margin-bottom: 15em;
 }
-/* line 341, ../../sass/app.sass */
+/* line 342, ../../sass/app.sass */
 .static h2 {
   margin-bottom: 1em;
 }
-/* line 343, ../../sass/app.sass */
+/* line 344, ../../sass/app.sass */
 .static .bgimage {
   background: url("/images/NE_bot_bkgwhite.png") 100% 0% no-repeat;
   min-height: 570px;
 }
 
-/* line 348, ../../sass/app.sass */
+/* line 349, ../../sass/app.sass */
 .error .row {
   background: url("/images/ne_bot_error.png") 100% 0% no-repeat;
 }
-/* line 350, ../../sass/app.sass */
+/* line 351, ../../sass/app.sass */
 .error h2 {
   font-size: 3rem;
 }
-/* line 352, ../../sass/app.sass */
+/* line 353, ../../sass/app.sass */
 .error .button {
   margin: 5em 0 25em;
 }
 
-/* line 357, ../../sass/app.sass */
+/* line 358, ../../sass/app.sass */
 footer {
   margin-top: 5em;
   background-color: #5b5b5b;
 }
-/* line 360, ../../sass/app.sass */
+/* line 361, ../../sass/app.sass */
 footer a {
   color: white;
 }
-/* line 362, ../../sass/app.sass */
+/* line 363, ../../sass/app.sass */
 footer .row {
   padding-top: 4em;
   background: url("/images/ne_bot_footerbacking.png") 100% 20% no-repeat;
   min-height: 30em;
 }
-/* line 366, ../../sass/app.sass */
+/* line 367, ../../sass/app.sass */
 footer img, footer nav, footer ul {
   display: inline-block;
 }
-/* line 368, ../../sass/app.sass */
+/* line 369, ../../sass/app.sass */
 footer .impressum {
   font-size: 100%;
   margin-top: 1.3em;
   color: white;
 }
-/* line 372, ../../sass/app.sass */
+/* line 373, ../../sass/app.sass */
 footer .impressum a {
   color: white;
   text-decoration: underline;
 }
-/* line 375, ../../sass/app.sass */
+/* line 376, ../../sass/app.sass */
 footer .authors {
   color: #e6e6e6;
 }
-/* line 377, ../../sass/app.sass */
+/* line 378, ../../sass/app.sass */
 footer .authors a {
   color: #e6e6e6;
 }
