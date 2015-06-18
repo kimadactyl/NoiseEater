@@ -12,3 +12,4 @@
 /bin/distortion/*
 /bin/mic/*
 /logs/*
+/Gemfile.lock
