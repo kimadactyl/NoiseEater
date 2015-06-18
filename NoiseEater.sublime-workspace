@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"font-s",
+				"font-style"
+			],
+			[
+				"get",
+				"getFileLength"
+			],
+			[
+				"down",
+				"downloadError"
+			],
+			[
+				"download",
+				"downloadError"
+			],
+			[
+				"noise",
+				"noisefreeView"
+			],
+			[
 				"cat",
 				"catList"
 			],
@@ -46,10 +66,6 @@
 			[
 				"vali",
 				"validationstring"
-			],
-			[
-				"get",
-				"get_audio"
 			],
 			[
 				"second",
@@ -235,24 +251,47 @@
 			"file": "fileprocessor.rb",
 			"settings":
 			{
-				"buffer_size": 4822,
+				"buffer_size": 5219,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "spawntest.rb",
+			"file": "Gemfile",
 			"settings":
 			{
-				"buffer_size": 172,
-				"line_ending": "Unix",
-				"name": "pid = spawn(\"\")"
+				"buffer_size": 877,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resetdb.rb",
+			"settings":
+			{
+				"buffer_size": 385,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "NoiseEater.rb",
+			"settings":
+			{
+				"buffer_size": 10685,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "config/settings.rb",
 			"settings":
 			{
-				"buffer_size": 640,
+				"buffer_size": 1070,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/settings.rb.example",
+			"settings":
+			{
+				"buffer_size": 1070,
 				"line_ending": "Unix"
 			}
 		}
@@ -264,10 +303,22 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 33.0,
-		"last_filter": "",
+		"height": 392.0,
+		"last_filter": "sas",
 		"selected_items":
 		[
+			[
+				"sas",
+				"Set Syntax: Sass"
+			],
+			[
+				"upp",
+				"Convert Case: Upper Case"
+			],
+			[
+				"lower",
+				"Convert Case: Lower Case"
+			],
 			[
 				"instal",
 				"Package Control: Install Package"
@@ -295,10 +346,6 @@
 			[
 				"side",
 				"View: Toggle Side Bar"
-			],
-			[
-				"sas",
-				"Set Syntax: Sass"
 			],
 			[
 				"sass",
@@ -351,10 +398,6 @@
 			[
 				"sort",
 				"Sort Lines"
-			],
-			[
-				"lower",
-				"Convert Case: Lower Case"
 			],
 			[
 				"export",
@@ -473,7 +516,7 @@
 				"Set Syntax: Markdown Extended"
 			]
 		],
-		"width": 575.0
+		"width": 476.0
 	},
 	"console":
 	{
@@ -495,33 +538,42 @@
 	"expanded_folders":
 	[
 		"/home/kim/NoiseEater",
-		"/home/kim/NoiseEater/config",
-		"/home/kim/NoiseEater/testdata"
+		"/home/kim/NoiseEater/public",
+		"/home/kim/NoiseEater/templates"
 	],
 	"file_history":
 	[
+		"/home/kim/NoiseEater/cleanup.rb",
+		"/home/kim/NoiseEater/Gemfile",
+		"/home/kim/NoiseEater/NoiseEater.sublime-project",
+		"/home/kim/NoiseEater/.gitignore",
+		"/home/kim/NoiseEater/noiseater.log",
+		"/home/kim/NoiseEater/templates/report.mustache",
+		"/home/kim/NoiseEater/views/report.rb",
+		"/home/kim/NoiseEater/public/js/app/report.js",
+		"/home/kim/NoiseEater/sass/app.sass",
+		"/home/kim/NoiseEater/config/settings.rb",
+		"/home/kim/NoiseEater/templates/index.mustache",
+		"/home/kim/NoiseEater/models.rb",
+		"/home/kim/.bash_profile",
+		"/home/kim/Dropbox/Cassowary Project/twitters.md",
+		"/home/kim/NoiseEater/sass/screen.sass",
+		"/home/kim/Dropbox/Blog Posts/some-chambers.mdown",
+		"/home/kim/NoiseEater/spawntest.rb",
 		"/home/kim/TaiChiRails/config/secrets.yml",
 		"/home/kim/Dropbox/Projects/drush-docs.mdown",
 		"/home/kim/Dropbox/Projects/drush-docs-2.mdown",
 		"/home/kim/NoiseEater/NoiseEater.rb",
 		"/home/kim/NoiseEater/templates/waitingtime.mustache",
 		"/home/kim/NoiseEater/templates/validated.mustache",
-		"/home/kim/NoiseEater/.gitignore",
 		"/home/kim/NoiseEater/templates/processing.mustache",
 		"/home/kim/NoiseEater/public/js/app/processing.js",
 		"/home/kim/NoiseEater/fileprocessor.rb",
-		"/home/kim/NoiseEater/config/settings.rb",
 		"/home/kim/NoiseEater/views/admin.rb",
-		"/home/kim/NoiseEater/sass/app.sass",
-		"/home/kim/NoiseEater/templates/report.mustache",
-		"/home/kim/NoiseEater/models.rb",
 		"/home/kim/NoiseEater/templates/admin.mustache",
 		"/home/kim/NoiseEater/config/settings.rb.example",
-		"/home/kim/NoiseEater/templates/index.mustache",
 		"/home/kim/NoiseEater/templates/about.mustache",
 		"/home/kim/NoiseEater/public/audio/0959ad3946251beec0d8889131c0e0d4/data.json",
-		"/home/kim/NoiseEater/public/js/app/report.js",
-		"/home/kim/NoiseEater/views/report.rb",
 		"/home/kim/NoiseEater/public/audio/e434bd685db6b4816b8572dc6a800e4e/data.json",
 		"/home/kim/NoiseEater/templates/thankyou.mustache",
 		"/home/kim/NoiseEater/views/validated.rb",
@@ -542,7 +594,6 @@
 		"/home/kim/NoiseEater/public/js/app/index.js",
 		"/home/kim/NoiseEater/public/js/index.js",
 		"/home/kim/NoiseEater/sass/_settings.sass",
-		"/home/kim/NoiseEater/Gemfile",
 		"/home/kim/NoiseEater/public/js/timedata.js",
 		"/home/kim/NoiseEater/templates/contact.mustache",
 		"/home/kim/NoiseEater/public/js/common.js",
@@ -550,7 +601,6 @@
 		"/home/kim/NoiseEater/public/js/slider.js",
 		"/home/kim/NoiseEater/public/js/waveform.js",
 		"/home/kim/NoiseEater/config.rb",
-		"/home/kim/.bash_profile",
 		"/home/kim/NoiseEater/humans.txt",
 		"/home/kim/NoiseEater/views/layout.rb",
 		"/home/kim/NoiseEater/public/js/app/main.js",
@@ -620,18 +670,11 @@
 		"/home/kim/lgbthistoryfestival/helpers/calendar.rb",
 		"/home/kim/lgbthistoryfestival/data/authors.yml",
 		"/home/kim/Dropbox/Manchester In Love/Communications/huffpo.mdown",
-		"/home/kim/lgbthistoryfestival/quiz.txt",
-		"/home/kim/lgbthistoryfestival/source/blog/2015-02-13-amiable-warriors.mdown.erb",
-		"/home/kim/lgbthistoryfestival/data/events.yml",
-		"/home/kim/lgbthistoryfestival/source/contact.html.haml",
-		"/home/kim/Dropbox/Manchester In Love/Communications/monitoring-form.mdown",
-		"/run/user/1000/gvfs/sftp:host=192.168.2.13/var/www/html/sites/all/themes/carp/templates/page.tpl.php",
-		"/run/user/1000/gvfs/sftp:host=192.168.2.13/var/www/html/sites/all/modules/custom/project_nodes/project_nodes.module",
-		"/run/user/1000/gvfs/sftp:host=192.168.2.13/var/www/html/sites/all/modules/custom/action_blocks/action_blocks.module"
+		"/home/kim/lgbthistoryfestival/quiz.txt"
 	],
 	"find":
 	{
-		"height": 32.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -645,6 +688,53 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"send_validation",
+			"send_va",
+			"Emailing",
+			"validation",
+			"emailing",
+			"png",
+			"puts",
+			"\\.colorize.*$",
+			"colorize.*$",
+			"colorize",
+			"puts",
+			"wind-free",
+			"console",
+			"Regions",
+			"regions",
+			"Regions",
+			"REGIONS",
+			"regions",
+			"Regions",
+			"regions",
+			"class",
+			">\n",
+			"location",
+			"post",
+			"create",
+			"participants",
+			"get",
+			"links",
+			"feedback",
+			"download",
+			"cols",
+			"textarea",
+			"toggle",
+			"on",
+			"click",
+			"rows",
+			"ts",
+			"sliderOutput",
+			"Threshold",
+			"sliderOutput",
+			"\">\n",
+			"sliderOutput",
+			"report",
+			"reevaluate",
+			"about",
+			"our",
+			", ",
 			"puts",
 			"boring",
 			"with",
@@ -725,54 +815,7 @@
 			"/error",
 			"tempfile",
 			"source",
-			"favicon_large",
-			"qlength",
-			"qtime",
-			"id",
-			"data",
-			"params",
-			"div",
-			"queuetime",
-			"queuelength",
-			"banana",
-			"Queue",
-			"queue",
-			"banana",
-			"queue",
-			"/queue",
-			"queue",
-			"Processing",
-			"validated",
-			"index",
-			"validated",
-			"Index",
-			"get_id",
-			"define",
-			"timedata",
-			"delete",
-			"map",
-			"each",
-			"delete",
-			"completed",
-			"'",
-			"Error",
-			"header",
-			"file",
-			"static",
-			"info",
-			"small",
-			"timehistoryView",
-			"timehistoryView.render",
-			"color",
-			"$-",
-			"secondary",
-			"solid",
-			"table",
-			"true",
-			"primar",
-			"yellow",
-			"margin",
-			"samples"
+			"favicon_large"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -780,6 +823,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"|",
 			"$2 $1",
 			"<li>",
 			"'",
@@ -789,7 +833,7 @@
 			"</li>",
 			"<li>"
 		],
-		"reverse": true,
+		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
 		"whole_word": false,
@@ -798,7 +842,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -807,19 +851,52 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4822,
+						"buffer_size": 5219,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1461,
-								1461
+								4731,
+								4731
 							]
 						],
 						"settings":
 						{
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "ruby",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3347.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Gemfile",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 877,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								197,
+								197
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
 							"WordCountSyntax": "ruby",
 							"syntax": "Packages/Ruby/Ruby.tmLanguage",
 							"tab_size": 2,
@@ -829,68 +906,129 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "spawntest.rb",
+					"buffer": 2,
+					"file": "resetdb.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 172,
+						"buffer_size": 385,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								130,
-								130
+								385,
+								385
 							]
 						],
 						"settings":
 						{
 							"WordCountShouldRun": true,
 							"WordCountSyntax": "ruby",
-							"auto_name": "pid = spawn(\"\")",
-							"is_xml": false,
 							"syntax": "Packages/Ruby/Ruby.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "config/settings.rb",
+					"buffer": 3,
+					"file": "NoiseEater.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 640,
+						"buffer_size": 10685,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								288,
-								288
+								9833,
+								9833
 							]
 						],
 						"settings":
 						{
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "ruby",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7811.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "config/settings.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1070,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								640,
+								640
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
 							"WordCountSyntax": "ruby",
 							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": -0.0,
+						"translation.y": 288.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "config/settings.rb.example",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1070,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								558,
+								558
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "plain text",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -935,7 +1073,7 @@
 	"project": "NoiseEater.sublime-project",
 	"replace":
 	{
-		"height": 60.0
+		"height": 74.0
 	},
 	"save_all_on_build": true,
 	"select_file":

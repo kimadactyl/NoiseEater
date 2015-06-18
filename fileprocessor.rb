@@ -165,7 +165,7 @@ class ProcessorQueue
       to a.email
       body 'Audio file processing complete. View the report on our website: ' + link
     end
-    $MAIL_PARAMS
+    mail.delivery_method $MAIL_PARAMS
     mail.deliver
   end
 

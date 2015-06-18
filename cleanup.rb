@@ -2,8 +2,6 @@ require './config/settings'
 require './models'
 require 'date'
 require 'logger'
-require 'fileutils'
-require 'colorize'
 
 $l = Logger.new $LOG, 'daily'
 $l.level = Logger::INFO
@@ -21,8 +19,9 @@ if all_files.length > 0
   $l.info "Cleanup: running automated deletion"
 
   all_files.each do |file|
-    $l.info "Cleanup: #{file.id}: Deleted"
-    FileUtils.rm_rf("./public/audio/" + file.validationstring)
+    $l.info "Cleanup: #{file.id}: audio files deleted"
+    # Find everything that's not a directory, and isn't data.json or waves.dat, and delete
+    `find ./public/#{file.validationstring}/ ! -name data.json ! -name waves.dat -type f -delete`
   end
 
   all_files.update(:expired => true)

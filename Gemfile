@@ -27,18 +27,17 @@ gem 'mail'
 gem "rack"
 
 group :production do
-  gem "dm-postgres-adapter"
   gem "dm-mysql-adapter"
 end
 
 # Test suite
 group :development do
   gem "dm-sqlite-adapter"
-  gem "cucumber"
-  gem "capybara"
-  gem "rspec"
   gem "favicon_maker"
   gem "shotgun"
+  # gem "cucumber"
+  # gem "capybara"
+  # gem "rspec"
   # gem "capybara-webkit"
   # gem "launchy"
   # gem "poltergeist"

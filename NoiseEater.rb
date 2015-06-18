@@ -103,31 +103,35 @@ class NoiseEater < Sinatra::Base
   end
 
   get "/example/:key" do
+    # Make a fake object
+    @a = OpenStruct.new    
     # Load these manually
     key = params[:key]
     case key
       when "wind-cows"
-        desc = "Wind detection: Cows mooing"
+        @a.description = "Wind detection: Cows mooing"
+        @a.detection = :wind
       when "wind-birds"
-        desc = "Wind detection: Birdsong"
+        @a.description = "Wind detection: Birdsong"
+        @a.detection = :wind
       when "wind-didgeridoo"
-        desc = "Wind detection: Didgeridoo"
+        @a.description = "Wind detection: Didgeridoo"
+        @a.detection = :wind
       when "dist-metro-musica"
-        desc = "Distortion: Metro Musica"
+        @a.description = "Distortion: Metro Musica"
+        @a.detection = :distortion
       when "dist-ambulance"
-        desc = "Distortion: Ambulance"
+        @a.description = "Distortion: Ambulance"
+        @a.detection = :distortion
       when "dist-sheep-helicopter"
-        desc = "Distortion: Sheep and Helicopter"
+        @a.description = "Distortion: Sheep and Helicopter"
+        @a.detection = :distortion
       else
         not_found
     end
     # Not very DRY, should probably abstract
     datafile = File.read("./public/examples/" + key + "/" + "data.json")
     @json = JSON.parse(datafile)
-
-    # Make a fake object
-    @a = OpenStruct.new
-    @a.description = desc
     @a.validationstring = key
     @location = "examples"
     mustache :report
@@ -353,7 +357,7 @@ class NoiseEater < Sinatra::Base
         to a.email
         body 'Thanks for your submission. Click here to start processing your file: ' + link
       end
-      $MAIL_PARAMS
+      mail.delivery_method $MAIL_PARAMS
       mail.deliver
     end
 
