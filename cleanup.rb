@@ -21,10 +21,11 @@ if all_files.length > 0
   all_files.each do |file|
     $l.info "Cleanup: #{file.id}: audio files deleted"
     # Find everything that's not a directory, and isn't data.json or waves.dat, and delete
-    `find ./public/#{file.validationstring}/ ! -name data.json ! -name waves.dat -type f -delete`
+    `find ./public/audio/#{file.validationstring}/ ! -name data.json ! -name waves.dat -type f -delete`
   end
 
   all_files.update(:expired => true)
+  $l.info "Cleanup: Completed."
 else
   $l.info "Cleanup: Automated deletion ran, nothing to do."
 end
