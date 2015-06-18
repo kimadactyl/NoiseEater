@@ -27,6 +27,7 @@ gem 'mail'
 gem "rack"
 
 group :production do
+  # Tiny change to test hooks
   gem "dm-mysql-adapter"
 end
 
