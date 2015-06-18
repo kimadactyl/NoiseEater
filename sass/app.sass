@@ -81,7 +81,7 @@ nav#secondary
 
 section#hero
   +invert
-  .row
+  >.row
     padding: 2em 0
     background: url("/images/ne_bot_bannerbacking.png") 100% 20% no-repeat
   h1
@@ -92,10 +92,6 @@ section#hero
     color: white
     border-color: white
     font-size: rem-calc(24)
-    &.first
-      margin-right: 1.5em
-    &.second
-      margin-left: 1.5em
 
 form#uploadform
   label
@@ -149,7 +145,8 @@ form#uploadform
     display: inline-block
     list-style-type: none
   li label, button#upload
-    width: 17em
+    @media #{$medium-up}
+      width: 17em
     display: block
     font-size: rem-calc(24px)
     padding: 0.25em
@@ -181,9 +178,13 @@ form#uploadform
       background-size: $checksize
 
 
+.small-list-spacer
+  margin-bottom: 2em  
+  
 section#samples
   background-color: $secondary-color
   padding: 2em 0 3em
+  @media #{$small-only}
   h2
     color: $tertiary-color
   h4
