@@ -9577,38 +9577,44 @@ table#wind-free-regions {
 }
 
 /* line 282, ../../sass/app.sass */
+.regions-expand {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* line 286, ../../sass/app.sass */
 .snr {
   display: none;
 }
 
-/* line 287, ../../sass/app.sass */
+/* line 291, ../../sass/app.sass */
 section#download fieldset {
   margin-top: 0;
   margin-bottom: 0;
 }
-/* line 290, ../../sass/app.sass */
+/* line 294, ../../sass/app.sass */
 section#download h6 {
   color: #5b5b5b;
   font-weight: 600;
 }
-/* line 293, ../../sass/app.sass */
+/* line 297, ../../sass/app.sass */
 section#download form {
   border: 2px solid #0abaee;
   border-radius: 5px;
 }
-/* line 296, ../../sass/app.sass */
+/* line 300, ../../sass/app.sass */
 section#download #formats label {
   font-size: 1.5rem;
   font-weight: normal;
 }
-/* line 299, ../../sass/app.sass */
+/* line 303, ../../sass/app.sass */
 section#download input[type="radio"]:not(old) {
   width: 1.5rem;
   margin: 0;
   padding: 0;
   opacity: 0;
 }
-/* line 304, ../../sass/app.sass */
+/* line 308, ../../sass/app.sass */
 section#download input[type="radio"]:not(old) + label {
   display: inline-block;
   margin-left: -1.5rem;
@@ -9619,13 +9625,13 @@ section#download input[type="radio"]:not(old) + label {
   background-size: 1.5rem;
   line-height: 1.5rem;
 }
-/* line 313, ../../sass/app.sass */
+/* line 317, ../../sass/app.sass */
 section#download input[type="radio"]:not(old):checked + label {
   background: url("/images/buttons/on.png") no-repeat 0 0;
   background-size: 1.5rem;
 }
 
-/* line 318, ../../sass/app.sass */
+/* line 322, ../../sass/app.sass */
 button.download {
   border-radius: 5px;
   display: block;
@@ -9635,81 +9641,81 @@ button.download {
   font-weight: bold;
   background-color: #0abaee;
 }
-/* line 326, ../../sass/app.sass */
+/* line 330, ../../sass/app.sass */
 button.download:hover {
   background-color: white;
   color: #0abaee;
 }
 
-/* line 330, ../../sass/app.sass */
+/* line 334, ../../sass/app.sass */
 #downloaderror {
   font-style: italic;
   margin-top: 0.5em;
   margin-bottom: 0;
 }
 
-/* line 340, ../../sass/app.sass */
+/* line 344, ../../sass/app.sass */
 .static {
   margin-bottom: 15em;
 }
-/* line 343, ../../sass/app.sass */
+/* line 347, ../../sass/app.sass */
 .static h2 {
   margin-bottom: 1em;
 }
-/* line 345, ../../sass/app.sass */
+/* line 349, ../../sass/app.sass */
 .static .bgimage {
   background: url("/images/NE_bot_bkgwhite.png") 100% 0% no-repeat;
   min-height: 570px;
 }
 
-/* line 350, ../../sass/app.sass */
+/* line 354, ../../sass/app.sass */
 .error .row {
   background: url("/images/ne_bot_error.png") 100% 0% no-repeat;
 }
-/* line 352, ../../sass/app.sass */
+/* line 356, ../../sass/app.sass */
 .error h2 {
   font-size: 3rem;
 }
-/* line 354, ../../sass/app.sass */
+/* line 358, ../../sass/app.sass */
 .error .button {
   margin: 5em 0 25em;
 }
 
-/* line 359, ../../sass/app.sass */
+/* line 363, ../../sass/app.sass */
 footer {
   margin-top: 5em;
   background-color: #5b5b5b;
 }
-/* line 362, ../../sass/app.sass */
+/* line 366, ../../sass/app.sass */
 footer a {
   color: white;
 }
-/* line 364, ../../sass/app.sass */
+/* line 368, ../../sass/app.sass */
 footer .row {
   padding-top: 4em;
   background: url("/images/ne_bot_footerbacking.png") 100% 20% no-repeat;
   min-height: 30em;
 }
-/* line 368, ../../sass/app.sass */
+/* line 372, ../../sass/app.sass */
 footer img, footer nav, footer ul {
   display: inline-block;
 }
-/* line 370, ../../sass/app.sass */
+/* line 374, ../../sass/app.sass */
 footer .impressum {
   font-size: 100%;
   margin-top: 1.3em;
   color: white;
 }
-/* line 374, ../../sass/app.sass */
+/* line 378, ../../sass/app.sass */
 footer .impressum a {
   color: white;
   text-decoration: underline;
 }
-/* line 377, ../../sass/app.sass */
+/* line 381, ../../sass/app.sass */
 footer .authors {
   color: #e6e6e6;
 }
-/* line 379, ../../sass/app.sass */
+/* line 383, ../../sass/app.sass */
 footer .authors a {
   color: #e6e6e6;
 }
