@@ -9577,7 +9577,7 @@ table#wind-free-regions {
 }
 
 /* line 282, ../../sass/app.sass */
-.regions-expand {
+.regions-expand, .regions-contract {
   text-decoration: underline;
   cursor: pointer;
 }
