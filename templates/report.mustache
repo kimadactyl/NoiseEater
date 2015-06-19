@@ -128,34 +128,40 @@
 
     <h3>Download these regions</h3>
 
-    <section id="download">
-      <form class="text-left" id="output" method="post" action="/report/{{validationstring}}">
-        <fieldset>
-          <label for="format"><h6>Format</h6></label>
-          <div id="formats">
-            <input type="radio" name="format" id="format-mp3" value="mp3" checked>
-            <label for="format-mp3">MP3</label><br>
-            <input type="radio" name="format" id="format-ogg" value="ogg">
-            <label for="format-ogg">Ogg</label><br>
-            <input type="radio" name="format" id="format-wav" value="wav">
-            <label for="format-wav">Source</label><br>
-          </div>
+    {{^is_not_example}}
+      <p>When you upload your own audio, you will be given an option here to download it as source, ogg or mp3, as a zip file with all the noise-free regions, or as a concatanated file with noise removed.</p>
+    {{/is_not_example}}
 
-          <label for="type"><h6>Type</h6></label>
-          <input type="radio" name="type" id="type-mute" value="mute" checked>
-          <label for="type-mute">File with noise regions muted</label><br>
-          <input type="radio" name="type" id="type-zip" value="zip">
-          <label for="type-zip">Zip file of noise-free regions</label><br>
+    {{#is_not_example}}
+      <section id="download">
+        <form class="text-left" id="output" method="post" action="/report/{{validationstring}}">
+          <fieldset>
+            <label for="format"><h6>Format</h6></label>
+            <div id="formats">
+              <input type="radio" name="format" id="format-mp3" value="mp3" checked>
+              <label for="format-mp3">MP3</label><br>
+              <input type="radio" name="format" id="format-ogg" value="ogg">
+              <label for="format-ogg">Ogg</label><br>
+              <input type="radio" name="format" id="format-wav" value="wav">
+              <label for="format-wav">Source</label><br>
+            </div>
 
-          <input type="hidden" name="regions" id="regions" value="">
-          <button type="submit" name="download" id="downloadbtn" class="download" value="download"> 
-            Download
-          </button>
-          <p id="downloaderror"></p>
-        </fieldset>
+            <label for="type"><h6>Type</h6></label>
+            <input type="radio" name="type" id="type-mute" value="mute" checked>
+            <label for="type-mute">File with noise regions muted</label><br>
+            <input type="radio" name="type" id="type-zip" value="zip">
+            <label for="type-zip">Zip file of noise-free regions</label><br>
 
-      </form>
-    </section>
+            <input type="hidden" name="regions" id="regions" value="">
+            <button type="submit" name="download" id="downloadbtn" class="download" value="download"> 
+              Download
+            </button>
+            <p id="downloaderror"></p>
+          </fieldset>
+
+        </form>
+      </section>
+    {{/is_not_example}}
 
   </div>
 </div>  
@@ -168,6 +174,7 @@
     showAllRegionsToggle: 0,
     url: "{{location}}/{{validationstring}}",
     validationstring: "{{validationstring}}",
+    is_not_example: {{is_not_example}},
   };
 </script>
 

@@ -171,10 +171,12 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
   var noisefreeView = {
     init: function() {
       this.tableElem = document.getElementById('wind-free-regions').getElementsByTagName('tbody')[0];
-      // This controls if the download button is disabled or not
-      this.downloadBtn = document.getElementById("downloadbtn");
-      // For telling the user why their download is disabled
-      this.downloadError = document.getElementById("downloaderror");
+      if(model.is_not_example) {
+        // This controls if the download button is disabled or not
+        this.downloadBtn = document.getElementById("downloadbtn");
+        // For telling the user why their download is disabled
+        this.downloadError = document.getElementById("downloaderror");
+      }
       this.render();
     },
 
@@ -220,17 +222,19 @@ require(["jquery", "foundation", "peaks"], function($,foundation,Peaks) {
         }
       }
 
-      if(regions.length == 0) {
-        this.downloadBtn.disabled = true;
-        this.downloadError.textContent = "No regions selected.";
+      if(model.is_not_example) {
+        if(regions.length == 0) {
+          this.downloadBtn.disabled = true;
+          this.downloadError.textContent = "No regions selected.";
 
-      } else if(regions.length == 1 && regions[0]["Ts"] == 0 && regions[0]["Te"] == octopus.getFileLength()) {
-        this.downloadBtn.disabled = true;
-        this.downloadError.textContent = "Whole file selected, adjust the threshold to enable downloading.";
+        } else if(regions.length == 1 && regions[0]["Ts"] == 0 && regions[0]["Te"] == octopus.getFileLength()) {
+          this.downloadBtn.disabled = true;
+          this.downloadError.textContent = "Whole file selected, adjust the threshold to enable downloading.";
 
-      } else {
-        this.downloadBtn.disabled = true;
-        this.downloadError.textContent = "";
+        } else {
+          this.downloadBtn.disabled = true;
+          this.downloadError.textContent = "";
+        }
       }
     }
   }
