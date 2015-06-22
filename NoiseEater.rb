@@ -32,6 +32,7 @@ class NoiseEater < Sinatra::Base
   # === Index Routes === #
   get "/" do
     # Homepage
+    @bonus_class = "noborder"
     mustache :index
   end
 
